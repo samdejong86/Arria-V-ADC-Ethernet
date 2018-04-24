@@ -105,7 +105,7 @@
  </parameter>
  <parameter name="projectName">
   <type>java.lang.String</type>
-  <value>BUP_updated.qpf</value>
+  <value>ArriaVADCEthernet.qpf</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
