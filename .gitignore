@@ -20,3 +20,4 @@ greybox_tmp/*
 simulation/*
 *.log
 *.o
+unsaved/*
