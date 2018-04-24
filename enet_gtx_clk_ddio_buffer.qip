@@ -1,0 +1,10 @@
+set_global_assignment -name IP_TOOL_NAME "ALTDDIO_OUT"
+set_global_assignment -name IP_TOOL_VERSION "16.1"
+set_global_assignment -name IP_GENERATED_DEVICE_FAMILY "{Arria V}"
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "enet_gtx_clk_ddio_buffer.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "enet_gtx_clk_ddio_buffer.bsf"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "enet_gtx_clk_ddio_buffer_inst.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "enet_gtx_clk_ddio_buffer_bb.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "enet_gtx_clk_ddio_buffer.inc"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "enet_gtx_clk_ddio_buffer.cmp"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "enet_gtx_clk_ddio_buffer.ppf"]

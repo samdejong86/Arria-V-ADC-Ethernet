@@ -1,0 +1,5 @@
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) enet_gtx_clk_ddio_buffer.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) global_reset_generator.v]
+set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) a5gx_starter_fpga_bup_top.sdc]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) a5gx_starter_fpga_bup_top.v]
+

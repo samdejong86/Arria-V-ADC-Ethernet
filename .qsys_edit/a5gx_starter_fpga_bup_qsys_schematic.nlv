@@ -1,0 +1,57 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst a5gx_starter_fpga_bup_qsys.enet_pll -pg 1 -lvl 7 -y 230
+preplace inst a5gx_starter_fpga_bup_qsys.sgdma_rx -pg 1 -lvl 3 -y 950
+preplace inst a5gx_starter_fpga_bup_qsys.ext_flash.slave_translator -pg 1
+preplace inst a5gx_starter_fpga_bup_qsys.button_pio -pg 1 -lvl 7 -y 30
+preplace inst a5gx_starter_fpga_bup_qsys.onchip_ram -pg 1 -lvl 7 -y 990
+preplace inst a5gx_starter_fpga_bup_qsys.sysid -pg 1 -lvl 7 -y 410
+preplace inst a5gx_starter_fpga_bup_qsys.lcd -pg 1 -lvl 7 -y 310
+preplace inst a5gx_starter_fpga_bup_qsys.descriptor_memory -pg 1 -lvl 7 -y 1130
+preplace inst a5gx_starter_fpga_bup_qsys.cpu -pg 1 -lvl 4 -y 950
+preplace inst a5gx_starter_fpga_bup_qsys.ext_flash.tdt -pg 1
+preplace inst a5gx_starter_fpga_bup_qsys.cfi_flash_atb_bridge_0 -pg 1 -lvl 7 -y 790
+preplace inst a5gx_starter_fpga_bup_qsys.pb_cpu_to_io -pg 1 -lvl 6 -y 970
+preplace inst a5gx_starter_fpga_bup_qsys.clkin_50 -pg 1 -lvl 5 -y 860
+preplace inst a5gx_starter_fpga_bup_qsys.tse_mac.i_tse_mac -pg 1
+preplace inst a5gx_starter_fpga_bup_qsys.ext_flash.reset -pg 1
+preplace inst a5gx_starter_fpga_bup_qsys.ext_flash -pg 1 -lvl 6 -y 860
+preplace inst a5gx_starter_fpga_bup_qsys.merged_resets -pg 1 -lvl 4 -y 880
+preplace inst a5gx_starter_fpga_bup_qsys.led_pio -pg 1 -lvl 7 -y 490
+preplace inst a5gx_starter_fpga_bup_qsys.dipsw_pio -pg 1 -lvl 7 -y 130
+preplace inst a5gx_starter_fpga_bup_qsys.tse_mac -pg 1 -lvl 2 -y 1020
+preplace inst a5gx_starter_fpga_bup_qsys.ext_flash.clk -pg 1
+preplace inst a5gx_starter_fpga_bup_qsys -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst a5gx_starter_fpga_bup_qsys.sgdma_tx -pg 1 -lvl 1 -y 900
+preplace inst a5gx_starter_fpga_bup_qsys.sys_clk_timer -pg 1 -lvl 7 -y 690
+preplace inst a5gx_starter_fpga_bup_qsys.jtag_uart_0 -pg 1 -lvl 7 -y 590
+preplace inst a5gx_starter_fpga_bup_qsys.high_res_timer -pg 1 -lvl 7 -y 890
+preplace inst a5gx_starter_fpga_bup_qsys.ext_flash.tda -pg 1
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)tse_mac.mac_mdio_connection,(SLAVE)a5gx_starter_fpga_bup_qsys.tse_mac_mac_mdio_connection) 1 0 2 NJ 1070 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)enet_pll.reset,(SLAVE)a5gx_starter_fpga_bup_qsys.enet_pll_reset) 1 0 7 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(MASTER)a5gx_starter_fpga_bup_qsys.enet_pll_outclk2,(MASTER)enet_pll.outclk2) 1 7 1 NJ
+preplace netloc INTERCONNECT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)sgdma_rx.csr,(MASTER)sgdma_tx.descriptor_read,(SLAVE)sgdma_tx.csr,(SLAVE)ext_flash.uas,(MASTER)cpu.data_master,(MASTER)sgdma_rx.descriptor_read,(SLAVE)tse_mac.control_port,(SLAVE)onchip_ram.s1,(MASTER)cpu.instruction_master,(MASTER)sgdma_rx.m_write,(SLAVE)onchip_ram.s2,(SLAVE)descriptor_memory.s1,(MASTER)sgdma_tx.m_read,(SLAVE)pb_cpu_to_io.s0,(MASTER)sgdma_tx.descriptor_write,(MASTER)sgdma_rx.descriptor_write,(SLAVE)cpu.jtag_debug_module) 1 0 7 250 1030 500 940 950 1080 1190 1120 1500 1080 1760 1080 1920
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)tse_mac.mac_misc_connection,(SLAVE)a5gx_starter_fpga_bup_qsys.tse_mac_mac_misc_connection) 1 0 2 NJ 1090 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.clk,(SLAVE)clkin_50.clk_in) 1 0 5 NJ 870 NJ 870 NJ 870 NJ 870 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.tse_mac_mac_status_connection,(SLAVE)tse_mac.mac_status_connection) 1 0 2 NJ 1130 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.tse_mac_mac_rgmii_connection,(SLAVE)tse_mac.mac_rgmii_connection) 1 0 2 NJ 1110 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)button_pio.external_connection,(SLAVE)a5gx_starter_fpga_bup_qsys.button_pio_out) 1 0 7 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ
+preplace netloc FAN_OUT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)sgdma_rx.csr_irq,(SLAVE)sgdma_tx.csr_irq,(SLAVE)sys_clk_timer.irq,(SLAVE)high_res_timer.irq,(SLAVE)jtag_uart_0.irq,(MASTER)cpu.d_irq) 1 0 7 290 1010 NJ 1300 930 1120 NJ 1080 1480 1060 NJ 1060 1920
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.enet_pll_locked,(SLAVE)enet_pll.locked) 1 0 7 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ
+preplace netloc POINT_TO_POINT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(MASTER)ext_flash.tcm,(SLAVE)cfi_flash_atb_bridge_0.tcs) 1 6 1 1980
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(MASTER)a5gx_starter_fpga_bup_qsys.enet_pll_outclk1,(MASTER)enet_pll.outclk1) 1 7 1 NJ
+preplace netloc FAN_OUT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)lcd.control_slave,(SLAVE)sys_clk_timer.s1,(MASTER)pb_cpu_to_io.m0,(SLAVE)high_res_timer.s1,(SLAVE)led_pio.s1,(SLAVE)button_pio.s1,(SLAVE)sysid.control_slave,(SLAVE)dipsw_pio.s1,(SLAVE)jtag_uart_0.avalon_jtag_slave) 1 6 1 1960
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.led_pio_out,(SLAVE)led_pio.external_connection) 1 0 7 NJ 520 NJ 520 NJ 520 NJ 520 NJ 520 NJ 520 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.tse_mac_pcs_mac_tx_clock_connection,(SLAVE)tse_mac.pcs_mac_tx_clock_connection) 1 0 2 NJ 1170 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.merged_resets_in_reset,(SLAVE)merged_resets.in_reset) 1 0 4 NJ 890 NJ 890 NJ 890 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.dipsw_pio_out_1,(SLAVE)dipsw_pio.external_connection) 1 0 7 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ
+preplace netloc POINT_TO_POINT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(MASTER)tse_mac.receive,(SLAVE)sgdma_rx.in) 1 2 1 910
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(MASTER)enet_pll.outclk0,(MASTER)a5gx_starter_fpga_bup_qsys.enet_pll_outclk0) 1 7 1 NJ
+preplace netloc INTERCONNECT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)descriptor_memory.reset1,(SLAVE)led_pio.reset,(SLAVE)high_res_timer.reset,(SLAVE)sysid.reset,(MASTER)cpu.jtag_debug_module_reset,(SLAVE)clkin_50.clk_in_reset,(MASTER)merged_resets.out_reset,(SLAVE)onchip_ram.reset2,(SLAVE)sys_clk_timer.reset,(SLAVE)tse_mac.reset_connection,(SLAVE)cfi_flash_atb_bridge_0.reset,(SLAVE)ext_flash.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)sgdma_tx.reset,(SLAVE)sgdma_rx.reset,(SLAVE)lcd.reset,(SLAVE)onchip_ram.reset1,(SLAVE)button_pio.reset,(MASTER)clkin_50.clk_reset,(SLAVE)cpu.reset_n,(SLAVE)pb_cpu_to_io.reset,(SLAVE)dipsw_pio.reset) 1 0 7 270 1190 540 980 890 1100 1210 1100 1520 1100 1720 960 1940
+preplace netloc POINT_TO_POINT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)tse_mac.transmit,(MASTER)sgdma_tx.out) 1 1 1 520
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.lcd_external,(SLAVE)lcd.external) 1 0 7 NJ 360 NJ 360 NJ 360 NJ 360 NJ 360 NJ 360 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.cfi_flash_atb_bridge_0_out,(SLAVE)cfi_flash_atb_bridge_0.out) 1 0 7 NJ 820 NJ 820 NJ 820 NJ 820 NJ 820 NJ 820 NJ
+preplace netloc EXPORT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)a5gx_starter_fpga_bup_qsys.tse_mac_pcs_mac_rx_clock_connection,(SLAVE)tse_mac.pcs_mac_rx_clock_connection) 1 0 2 NJ 1150 NJ
+preplace netloc FAN_OUT<net_container>a5gx_starter_fpga_bup_qsys</net_container>(SLAVE)tse_mac.control_port_clock_connection,(SLAVE)pb_cpu_to_io.clk,(SLAVE)ext_flash.clk,(SLAVE)cpu.clk,(SLAVE)sgdma_tx.clk,(SLAVE)tse_mac.receive_clock_connection,(SLAVE)onchip_ram.clk2,(SLAVE)sysid.clk,(SLAVE)dipsw_pio.clk,(SLAVE)led_pio.clk,(SLAVE)button_pio.clk,(SLAVE)lcd.clk,(SLAVE)tse_mac.transmit_clock_connection,(SLAVE)sgdma_rx.clk,(MASTER)clkin_50.clk,(SLAVE)cfi_flash_atb_bridge_0.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)enet_pll.refclk,(SLAVE)sys_clk_timer.clk,(SLAVE)high_res_timer.clk,(SLAVE)descriptor_memory.clk1,(SLAVE)onchip_ram.clk1) 1 0 7 230 1050 560 960 970 940 1230 940 NJ 940 1740 800 2000
+levelinfo -pg 1 0 200 2350
+levelinfo -hier a5gx_starter_fpga_bup_qsys 210 320 760 1000 1260 1550 1820 2070 2220
