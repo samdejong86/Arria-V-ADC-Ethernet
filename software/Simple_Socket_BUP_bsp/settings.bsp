@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>ucosii</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Apr 24, 2018 8:53:37 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1524585217137</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>/home/srdejong/BUP_updated/software/Simple_Socket_BUP_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>Apr 24, 2018 2:23:44 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1524605024588</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>/home/srdejong/Arria-V-ADC-Ethernet/software/Simple_Socket_BUP_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../a5gx_starter_fpga_bup_qsys.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
