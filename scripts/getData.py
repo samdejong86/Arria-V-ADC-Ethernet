@@ -14,9 +14,9 @@ parser.add_argument('-f','--filename', help='Name of data file', default="ETHERN
 parser.add_argument('-n','--noGraph', help='Suppress graphical output', action='store_true', required=False)
 parser.add_argument('-r','--freq'   , help='Sampling frequency in Megahertz (default: %(default)s)',     default=40, required=False)
 
-parser.add_argument('-t','--trigSource', help='Toggle trigger source', action='store_true', required=False)
-parser.add_argument('-s','--trigSlope', help='Toggle trigger slope', action='store_true', required=False)
-parser.add_argument('-d','--delay', help='Toggle trigger delay', action='store_true', required=False)
+parser.add_argument('-t','--trigSource', help='Set trigger source (self or ext)', default='self', required=False)
+parser.add_argument('-s','--trigSlope', help='Set trigger slope (pos or neg)', default='pos', required=False)
+parser.add_argument('-d','--delay', help='Set delay (on or off)', default='on', required=False)
 
 
 args = parser.parse_args()
@@ -26,18 +26,18 @@ a = tn.read_until("return:".encode('ascii'))
 
 b=''
 
-if(args.trigSource):
-    tn.write("triggersource\n".encode('ascii'))
-    b=tn.read_until("source".encode('ascii'))
+trigSourceCommand = "TRIG:SOURCE:"+args.trigSource+"\n"
+trigSlopeCommand = "TRIG:SLOPE:"+args.trigSlope+"\n"
+delayCommand = "DELAY:"+args.delay+"\n"
 
-if(args.delay):
-    tn.write("delay\n".encode('ascii'))
-    b=tn.read_until("delay".encode('ascii'))
+tn.write(trigSourceCommand.encode('ascii'))
+b=tn.read_until("trigger".encode('ascii'))
 
+tn.write(delayCommand.encode('ascii'))
+b=tn.read_until("delay".encode('ascii'))
 
-if(args.trigSlope):
-    tn.write("triggerslope\n".encode('ascii'))
-    b=tn.read_until("slope".encode('ascii'))
+tn.write(trigSlopeCommand.encode('ascii'))
+b=tn.read_until("trigger".encode('ascii'))
 
 
 # get data from the socket
@@ -68,7 +68,7 @@ tn.write("quit\n".encode('ascii'))
 
 if args.save:
     with open(args.filename, 'w') as f:
-	    f.write(str(wavenum)+"\n")
+	    #f.write(str(waveNum)+"\n")
 	    for i in range(len(xx)):
 		    f.write(str(xx[i]) + "\t" + str(yy[i]) + "\n")
 

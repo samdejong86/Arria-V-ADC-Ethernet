@@ -21,3 +21,4 @@ simulation/*
 *.log
 *.o
 unsaved/*
+*.elf

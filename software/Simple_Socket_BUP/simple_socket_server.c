@@ -303,6 +303,113 @@ void sss_exec_command(SSSConn* conn)
 
    }
 
+   alt_u8 startValue = IORD_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE);
+
+   alt_u8 endValue = startValue;
+
+   if(strstr(text_buf, "acquire") != NULL){
+	   endValue ^= (-1 ^ endValue) & (1 << 0);
+
+
+	   IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, endValue);
+
+
+	   char  tx_buf_data[SSS_TX_BUF_SIZE];
+	   char *tx_wr_pos_data = tx_buf_data;
+
+
+
+	   //loop over the waveform
+	   for(alt_u16 i=1; i<=1000; i++){
+
+		   //request the ith sample of the waveform
+		   IOWR_ALTERA_AVALON_PIO_DATA(SAMPLENUM_BASE, i);
+
+		   //usleep(10);
+
+		   alt_u16 sample = IORD_ALTERA_AVALON_PIO_DATA(WAVESAMPLE_BASE);
+
+		   //printf("%d\t", i);
+		   //printf("%d\n", sample);
+
+		   tx_wr_pos_data += sprintf(tx_wr_pos_data, "%d\n", sample);
+
+		   //send data every 100 samples.
+		   if(i%100==0){
+			   send(conn->fd, tx_buf_data, tx_wr_pos_data - tx_buf_data, 0);
+
+			   memset(tx_buf_data, 0, sizeof tx_buf_data);
+			   tx_wr_pos_data = tx_buf_data;
+
+		   }
+
+	   }
+	   IOWR_ALTERA_AVALON_PIO_DATA(SAMPLENUM_BASE, 1001);
+	   //usleep(10);
+	   alt_u16 waveNum = IORD_ALTERA_AVALON_PIO_DATA(WAVESAMPLE_BASE);
+	   //printf("%d\n", waveNum);
+
+
+	   IOWR_ALTERA_AVALON_PIO_DATA(SAMPLENUM_BASE, 0);
+
+	   memset(tx_buf_data, 0, sizeof tx_buf_data);
+	   tx_wr_pos_data = tx_buf_data;
+
+	   tx_wr_pos_data += sprintf(tx_wr_pos_data, "%d\ncomplete\n",waveNum);
+
+	   send(conn->fd, tx_buf_data, tx_wr_pos_data - tx_buf_data, 0);
+
+	   //reset the control pio
+
+	   endValue ^= (-0 ^ endValue) & (1 << 0);
+   } else if( strstr(text_buf, "delay")) {
+	   if ( strstr(text_buf, ":on")){
+		   tx_wr_pos += sprintf(tx_wr_pos, "Enabling delay\n");
+		   endValue ^= (-1 ^ endValue) & (1 << 3);
+
+	   } else if ( strstr(text_buf, ":off")){
+		   tx_wr_pos += sprintf(tx_wr_pos, "Disabling delay\n");
+		   endValue ^= (-0 ^ endValue) & (1 << 3);
+	   }
+   } else if( strstr(text_buf, "trig")) {
+	   if( strstr(text_buf, ":source")) {
+	   	   if ( strstr(text_buf, ":self")){
+			   tx_wr_pos += sprintf(tx_wr_pos, "Self trigger\n");
+	   		   endValue ^= (-1 ^ endValue) & (1 << 1);
+
+	   	   } else if ( strstr(text_buf, ":ext")){
+			   tx_wr_pos += sprintf(tx_wr_pos, "External trigger\n");
+	   		   endValue ^= (-0 ^ endValue) & (1 << 1);
+	   	   }
+	   } else if( strstr(text_buf, ":slope")) {
+		   if ( strstr(text_buf, ":pos")){
+			   tx_wr_pos += sprintf(tx_wr_pos, "Positive trigger\n");
+			   endValue ^= (-1 ^ endValue) & (1 << 2);
+
+		   } else if ( strstr(text_buf, ":neg")){
+			   tx_wr_pos += sprintf(tx_wr_pos, "negative trigger\n");
+			   endValue ^= (-0 ^ endValue) & (1 << 2);
+		   }
+	   }
+   } else if ( strstr(text_buf, "quit") != NULL){
+	   tx_wr_pos += sprintf(tx_wr_pos,"Terminating connection.\n\n\r");
+	   conn->close = 1;
+   } else if ( strstr(text_buf, "*rst") != NULL){
+	   tx_wr_pos += sprintf(tx_wr_pos, "Resetting\n");
+	   endValue=0;
+
+   }
+
+
+
+   IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, endValue);
+
+
+
+
+
+   /*
+
    alt_u8 message = 'N';
 
    if(strstr(text_buf, "acquire") != NULL){
@@ -343,7 +450,7 @@ void sss_exec_command(SSSConn* conn)
 		   //request the ith sample of the waveform
 		   IOWR_ALTERA_AVALON_PIO_DATA(SAMPLENUM_BASE, i);
 
-		   usleep(1);
+		   //usleep(10);
 
 		   alt_u16 sample = IORD_ALTERA_AVALON_PIO_DATA(WAVESAMPLE_BASE);
 
@@ -363,7 +470,7 @@ void sss_exec_command(SSSConn* conn)
 
 	   }
 	   IOWR_ALTERA_AVALON_PIO_DATA(SAMPLENUM_BASE, 1001);
-	   usleep(1);
+	   //usleep(10);
 	   alt_u16 waveNum = IORD_ALTERA_AVALON_PIO_DATA(WAVESAMPLE_BASE);
 	   //printf("%d\n", waveNum);
 
@@ -381,15 +488,32 @@ void sss_exec_command(SSSConn* conn)
 
    } else if(message!='N'){
 	   printf("sending message\n");
+
+	   //printf("message=%d\n", message);
+
 	   IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, message);
+
+
+
+	   //printf("%d\n", test);
+
    }
+
+   alt_u8 n=0;
+
+   int bit=4;
+   int val=1;
+
+   n ^= (-val ^ n) & (1 << bit);
+
+   printf("%d\n", n);
 
 
    if(strstr(text_buf, "sam") != NULL){
 	   printf("Hello Sam!");
    }
 
-
+*/
 
   send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);  
   

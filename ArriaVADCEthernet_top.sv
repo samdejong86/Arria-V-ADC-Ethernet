@@ -199,6 +199,8 @@ wire src1;
 wire slp1;
 wire del1;
 
+/*
+
 flipSwitch trigsrcFlip(
 	.clk(ethModuleClk), 
 	.char(adcControl), 
@@ -222,7 +224,19 @@ flipSwitch delayFlip(
 	.trigChar(8'b01000100), 
 	.out(delay)
 	);
+	
+*/	
 
+
+assign delay = adcControl[3];
+assign trigSlope = adcControl[2];
+assign trigSource = adcControl[1];
+wire acquireRequest;
+assign acquireRequest = adcControl[0];
+
+
+
+	
 	
 
 
@@ -231,7 +245,7 @@ wire [15:0] lastwavenum;
 		
 always @(posedge ethModuleClk) begin
 
-	if(adcControl==8'b01000001&&waveNumber!=lastwavenum)    //acquire  ('A')
+	if(acquireRequest==1&&waveNumber!=lastwavenum)    //acquire  ('A')
 		acquire=1;
 	else
 		acquire=0;
