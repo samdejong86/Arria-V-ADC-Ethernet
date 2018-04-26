@@ -19,6 +19,7 @@ derive_pll_clocks -create_base_clocks
 set altera_reserved_tck { altera_reserved_tck }
 #set clkin_50_fpga       { clkin_50_fpga }
 create_clock -period 20.00 -name clkin_50  [ get_ports clkin_50 ]
+create_clock -period 20.00 -name clkin_50_adc  [ get_ports clkin_50_adc ]
 
 #
 # these are the generated clocks from jtag and plls that we care about
@@ -121,9 +122,9 @@ set_input_delay   -clock [ get_clocks $altera_reserved_tck ] 10 [ get_ports alte
 set_output_delay  -clock [ get_clocks $altera_reserved_tck ] 10 [ get_ports altera_reserved_tdo ]
 
 # user pb, dipsw and led
-set_input_delay   -clock [ get_clocks clkin_50 ] 2   [ get_ports {user_pb[*]} ]
-set_input_delay   -clock [ get_clocks clkin_50 ] 2   [ get_ports {user_dipsw[*]} ]
-set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {user_led[*]} ]
+#set_input_delay   -clock [ get_clocks clkin_50 ] 2   [ get_ports {user_pb[*]} ]
+#set_input_delay   -clock [ get_clocks clkin_50 ] 2   [ get_ports {user_dipsw[*]} ]
+#set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {user_led[*]} ]
 set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {lcd_*} ]
 set_input_delay   -clock [ get_clocks clkin_50 ] 2   [ get_ports {lcd_data[*]} ]
 

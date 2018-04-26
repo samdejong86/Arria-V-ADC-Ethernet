@@ -43,6 +43,8 @@
 #ifndef __SIMPLE_SOCKET_SERVER_H__
 #define __SIMPLE_SOCKET_SERVER_H__
 
+
+
 #if !defined (ALT_INICHE)
   #error The Simple Socket Server example requires the 
   #error NicheStack TCP/IP Stack Software Component. Please see the Nichestack

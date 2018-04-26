@@ -60,8 +60,8 @@ set_instance_assignment -name PLL_COMPENSATION_MODE NORMAL -to "*a5gx_starter_fp
 set_instance_assignment -name PLL_BANDWIDTH_PRESET AUTO -to "*a5gx_starter_fpga_bup_qsys_enet_pll*|altera_pll:altera_pll_i*|*"
 set_instance_assignment -name PLL_AUTO_RESET OFF -to "*a5gx_starter_fpga_bup_qsys_enet_pll*|altera_pll:altera_pll_i*|*"
 set_location_assignment PIN_A16 -to clkin_50
-set_location_assignment PIN_AH17 -to clkin_125
-set_location_assignment PIN_AG17 -to "clkin_125(n)"
+set_location_assignment PIN_AH17 -to clkin_125 -disable
+set_location_assignment PIN_AG17 -to "clkin_125(n)" -disable
 set_location_assignment PIN_D5 -to cpu_resetn
 set_location_assignment PIN_AD12 -to enet_gtx_clk
 set_location_assignment PIN_AJ11 -to enet_mdc
@@ -73,22 +73,22 @@ set_location_assignment PIN_AF13 -to enet_rx_d[1]
 set_location_assignment PIN_AE12 -to enet_rx_d[2]
 set_location_assignment PIN_AE13 -to enet_rx_d[3]
 set_location_assignment PIN_AB13 -to enet_rx_dv
-set_location_assignment PIN_AP14 -to enet_rx_p
-set_location_assignment PIN_AN14 -to "enet_rx_p(n)"
+set_location_assignment PIN_AP14 -to enet_rx_p -disable
+set_location_assignment PIN_AN14 -to "enet_rx_p(n)" -disable
 set_location_assignment PIN_AC11 -to enet_tx_d[0]
 set_location_assignment PIN_AC12 -to enet_tx_d[1]
 set_location_assignment PIN_AC13 -to enet_tx_d[2]
 set_location_assignment PIN_AB11 -to enet_tx_d[3]
 set_location_assignment PIN_AB12 -to enet_tx_en
-set_location_assignment PIN_AP13 -to enet_tx_p
-set_location_assignment PIN_AN12 -to "enet_tx_p(n)"
+set_location_assignment PIN_AP13 -to enet_tx_p -disable
+set_location_assignment PIN_AN12 -to "enet_tx_p(n)" -disable
 set_location_assignment PIN_AJ20 -to flash_advn
 set_location_assignment PIN_AK21 -to flash_cen[0]
 set_location_assignment PIN_AK20 -to flash_cen[1]
 set_location_assignment PIN_AJ22 -to flash_clk
 set_location_assignment PIN_AL22 -to flash_oen
-set_location_assignment PIN_AH20 -to flash_rdybsyn[0]
-set_location_assignment PIN_AG20 -to flash_rdybsyn[1]
+set_location_assignment PIN_AH20 -to flash_rdybsyn[0] -disable
+set_location_assignment PIN_AG20 -to flash_rdybsyn[1] -disable
 set_location_assignment PIN_AH22 -to flash_resetn
 set_location_assignment PIN_AH21 -to flash_wen
 set_location_assignment PIN_AP22 -to fm_a[0]
@@ -134,22 +134,22 @@ set_location_assignment PIN_AH26 -to fm_d[12]
 set_location_assignment PIN_AJ26 -to fm_d[13]
 set_location_assignment PIN_AK27 -to fm_d[14]
 set_location_assignment PIN_AK26 -to fm_d[15]
-set_location_assignment PIN_AL27 -to fm_d[16]
-set_location_assignment PIN_AL28 -to fm_d[17]
-set_location_assignment PIN_AL29 -to fm_d[18]
-set_location_assignment PIN_AE29 -to fm_d[19]
-set_location_assignment PIN_AM31 -to fm_d[20]
-set_location_assignment PIN_AM29 -to fm_d[21]
-set_location_assignment PIN_AM28 -to fm_d[22]
-set_location_assignment PIN_AL26 -to fm_d[23]
-set_location_assignment PIN_AL25 -to fm_d[24]
-set_location_assignment PIN_AM26 -to fm_d[25]
-set_location_assignment PIN_AM25 -to fm_d[26]
-set_location_assignment PIN_AN26 -to fm_d[27]
-set_location_assignment PIN_AP28 -to fm_d[28]
-set_location_assignment PIN_AP27 -to fm_d[29]
-set_location_assignment PIN_AP26 -to fm_d[30]
-set_location_assignment PIN_AP25 -to fm_d[31]
+set_location_assignment PIN_AL27 -to fm_d[16] -disable
+set_location_assignment PIN_AL28 -to fm_d[17] -disable
+set_location_assignment PIN_AL29 -to fm_d[18] -disable
+set_location_assignment PIN_AE29 -to fm_d[19] -disable
+set_location_assignment PIN_AM31 -to fm_d[20] -disable
+set_location_assignment PIN_AM29 -to fm_d[21] -disable
+set_location_assignment PIN_AM28 -to fm_d[22] -disable
+set_location_assignment PIN_AL26 -to fm_d[23] -disable
+set_location_assignment PIN_AL25 -to fm_d[24] -disable
+set_location_assignment PIN_AM26 -to fm_d[25] -disable
+set_location_assignment PIN_AM25 -to fm_d[26] -disable
+set_location_assignment PIN_AN26 -to fm_d[27] -disable
+set_location_assignment PIN_AP28 -to fm_d[28] -disable
+set_location_assignment PIN_AP27 -to fm_d[29] -disable
+set_location_assignment PIN_AP26 -to fm_d[30] -disable
+set_location_assignment PIN_AP25 -to fm_d[31] -disable
 set_location_assignment PIN_B18 -to lcd_d_cn
 set_location_assignment PIN_C19 -to lcd_data[0]
 set_location_assignment PIN_D19 -to lcd_data[1]
@@ -161,41 +161,41 @@ set_location_assignment PIN_E18 -to lcd_data[6]
 set_location_assignment PIN_F19 -to lcd_data[7]
 set_location_assignment PIN_B17 -to lcd_en
 set_location_assignment PIN_C17 -to lcd_wen
-set_location_assignment PIN_AF19 -to sram_adsp_n
-set_location_assignment PIN_AE19 -to sram_adv_n
-set_location_assignment PIN_AP19 -to sram_begintransfer_n
-set_location_assignment PIN_AM17 -to sram_byteenable_n[0]
-set_location_assignment PIN_AM19 -to sram_byteenable_n[1]
-set_location_assignment PIN_AN17 -to sram_byteenable_n[2]
-set_location_assignment PIN_AN18 -to sram_byteenable_n[3]
-set_location_assignment PIN_AL19 -to sram_chipselect_n
-set_location_assignment PIN_AL18 -to sram_clk
-set_location_assignment PIN_AF22 -to sram_gw_n
-set_location_assignment PIN_AG21 -to sram_mode
-set_location_assignment PIN_AL17 -to sram_outputenable_n
-set_location_assignment PIN_AP17 -to sram_write_n
-set_location_assignment PIN_AD21 -to sram_zz
-set_location_assignment PIN_D15 -to user_dipsw[0]
-set_location_assignment PIN_D14 -to user_dipsw[1]
-set_location_assignment PIN_D13 -to user_dipsw[2]
-set_location_assignment PIN_E15 -to user_dipsw[3]
-set_location_assignment PIN_C16 -to user_led[0]
-set_location_assignment PIN_C14 -to user_led[1]
-set_location_assignment PIN_C13 -to user_led[2]
-set_location_assignment PIN_D16 -to user_led[3]
-set_location_assignment PIN_A14 -to user_pb[0]
-set_location_assignment PIN_B15 -to user_pb[1]
-set_location_assignment PIN_B14 -to user_pb[2]
-set_instance_assignment -name IO_STANDARD LVDS -to clkin_125
-set_instance_assignment -name IO_STANDARD LVDS -to enet_rx_p
-set_instance_assignment -name IO_STANDARD LVDS -to enet_tx_p
+set_location_assignment PIN_AF19 -to sram_adsp_n -disable
+set_location_assignment PIN_AE19 -to sram_adv_n -disable
+set_location_assignment PIN_AP19 -to sram_begintransfer_n -disable
+set_location_assignment PIN_AM17 -to sram_byteenable_n[0] -disable
+set_location_assignment PIN_AM19 -to sram_byteenable_n[1] -disable
+set_location_assignment PIN_AN17 -to sram_byteenable_n[2] -disable
+set_location_assignment PIN_AN18 -to sram_byteenable_n[3] -disable
+set_location_assignment PIN_AL19 -to sram_chipselect_n -disable
+set_location_assignment PIN_AL18 -to sram_clk -disable
+set_location_assignment PIN_AF22 -to sram_gw_n -disable
+set_location_assignment PIN_AG21 -to sram_mode -disable
+set_location_assignment PIN_AL17 -to sram_outputenable_n -disable
+set_location_assignment PIN_AP17 -to sram_write_n -disable
+set_location_assignment PIN_AD21 -to sram_zz -disable
+set_location_assignment PIN_D15 -to user_dipsw[0] -disable
+set_location_assignment PIN_D14 -to user_dipsw[1] -disable
+set_location_assignment PIN_D13 -to user_dipsw[2] -disable
+set_location_assignment PIN_E15 -to user_dipsw[3] -disable
+set_location_assignment PIN_C16 -to user_led[0] -disable
+set_location_assignment PIN_C14 -to user_led[1] -disable
+set_location_assignment PIN_C13 -to user_led[2] -disable
+set_location_assignment PIN_D16 -to user_led[3] -disable
+set_location_assignment PIN_A14 -to user_pb[0] -disable
+set_location_assignment PIN_B15 -to user_pb[1] -disable
+set_location_assignment PIN_B14 -to user_pb[2] -disable
+set_instance_assignment -name IO_STANDARD LVDS -to clkin_125 -disable
+set_instance_assignment -name IO_STANDARD LVDS -to enet_rx_p -disable
+set_instance_assignment -name IO_STANDARD LVDS -to enet_tx_p -disable
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_advn
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_cen[0]
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_cen[1]
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_clk
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_oen
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_rdybsyn[0]
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_rdybsyn[1]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_rdybsyn[0] -disable
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_rdybsyn[1] -disable
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_resetn
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to flash_wen
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "10 MHz" -to fm_a[0]
@@ -299,7 +299,6 @@ set_global_assignment -name USE_SIGNALTAP_FILE ArriaVADCEthernet_top.stp
 set_global_assignment -name SIGNALTAP_FILE ArriaVADCEthernet_top.stp
 set_global_assignment -name SYSTEMVERILOG_FILE getSample.sv
 set_global_assignment -name QIP_FILE ADC_Mux.qip
-set_global_assignment -name VERILOG_FILE flipSwitch.v
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id nios
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id nios
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id nios
@@ -314,8 +313,9 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id nios
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to nios|gnd -section_id nios
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to nios|gnd -section_id nios
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to nios|vcc -section_id nios
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to nios|gnd -section_id nios
@@ -551,13 +551,14 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to adc|vcc -section_id adc
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to nios|gnd -section_id nios
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to nios|vcc -section_id nios
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "adc_pll:adc_pll|outclk_4" -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to nios|gnd -section_id nios
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to nios|vcc -section_id nios
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to nios|vcc -section_id nios
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to adc|gnd -section_id adc
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to adc|gnd -section_id adc
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to adc|gnd -section_id adc
@@ -567,8 +568,9 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to adc|gnd -section_id adc
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to adc|gnd -section_id adc
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to adc|gnd -section_id adc
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to nios|gnd -section_id nios
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to nios|gnd -section_id nios
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to nios|vcc -section_id nios
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[88] -to "trigger:trigModuleExt|ADC_IN[0]" -section_id adc
@@ -1846,12 +1848,8 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=525"
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=525" -section_id nios
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id nios
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=1596" -section_id nios
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to nios|gnd -section_id nios
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to nios|vcc -section_id nios
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to nios|gnd -section_id nios
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to nios|vcc -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to nios|vcc -section_id nios
@@ -1859,5 +1857,6 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to nios|gnd -section_id nios
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to nios|vcc -section_id nios
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1,sld_reserved_ArriaVADCEthernet_nios_2_e991," -section_id nios
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "adc_pll:adc_pll|outclk_0" -section_id nios
 set_global_assignment -name SLD_FILE db/ArriaVADCEthernet_top_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

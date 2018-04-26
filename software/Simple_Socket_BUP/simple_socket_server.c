@@ -197,11 +197,13 @@ void sss_send_menu(SSSConn* conn)
   char *tx_wr_pos = tx_buf;
 
   tx_wr_pos += sprintf(tx_wr_pos,"=================================\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"Nios II Simple Socket Server Menu\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"ADC Socket Server Menu\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"=================================\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"0-7: Toggle board LEDs D0 - D7\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"S: 7-Segment LED Light Show\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"Q: Terminate session\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"ACQUIRE      - output most recent trigger\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"TRIG:SLOPE:  - Set trigger slope: POS or NEG\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"TRIG:SOURCE: - Set trigger source: SELF or EXT\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"DELAY:       - Set delay: ON or OFF\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"QUIT         - quit \n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"=================================\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"Enter your choice & press return:\n\r");
 
@@ -277,9 +279,6 @@ void sss_exec_command(SSSConn* conn)
    char text_buf[SSS_TX_BUF_SIZE];
    char *text = text_buf;
 
-   //INT8U error_code;
-
- 
    /*
     * "SSSCommand" is declared static so that the data will reside 
     * in the BSS segment. This is done because a pointer to the data in 
@@ -293,14 +292,9 @@ void sss_exec_command(SSSConn* conn)
    
    SSSCommand = CMD_LEDS_BIT_0_TOGGLE;
 
-
-
-   while(bytes_to_process--)
-   {
+   while(bytes_to_process--) {
       SSSCommand = tolower(*(conn->rx_rd_pos++));
-
 	  text += sprintf(text,"%c",(char)SSSCommand);
-
    }
 
    alt_u8 startValue = IORD_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE);
@@ -316,8 +310,6 @@ void sss_exec_command(SSSConn* conn)
 
 	   char  tx_buf_data[SSS_TX_BUF_SIZE];
 	   char *tx_wr_pos_data = tx_buf_data;
-
-
 
 	   //loop over the waveform
 	   for(alt_u16 i=1; i<=1000; i++){
@@ -398,122 +390,33 @@ void sss_exec_command(SSSConn* conn)
 	   tx_wr_pos += sprintf(tx_wr_pos, "Resetting\n");
 	   endValue=0;
 
-   }
-
-
-
-   IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, endValue);
-
-
-
-
-
-   /*
-
-   alt_u8 message = 'N';
-
-   if(strstr(text_buf, "acquire") != NULL){
-	   message = 'A';
-
-   } else if( strstr(text_buf, "delay") != NULL){
-	   printf("Sending delay signal\n");
-	   tx_wr_pos += sprintf(tx_wr_pos, "Toggling delay\n");
-	   message = 'D';
-
-
-   } else if( strstr(text_buf, "triggerslope") != NULL){
-	   printf("Sending trigger slope signal\n");
-	   tx_wr_pos += sprintf(tx_wr_pos, "Toggling trigger slope\n");
-	   message = 'S';
-   } else if( strstr(text_buf, "triggersource") != NULL){
-  	   printf("Sending trigger source signal\n");
-	   tx_wr_pos += sprintf(tx_wr_pos, "Toggling trigger source\n");
-	   message = 'T';
-   } else if ( strstr(text_buf, "quit") != NULL){
-	   tx_wr_pos += sprintf(tx_wr_pos,"Terminating connection.\n\n\r");
-	   conn->close = 1;
-   }
-
-
-   if(message=='A'){
-	   //send the acquire signal
-	   IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, message);
-
-	   char  tx_buf_data[SSS_TX_BUF_SIZE];
-	   char *tx_wr_pos_data = tx_buf_data;
-
-
-
-	   //loop over the waveform
-	   for(alt_u16 i=1; i<=1000; i++){
-
-		   //request the ith sample of the waveform
-		   IOWR_ALTERA_AVALON_PIO_DATA(SAMPLENUM_BASE, i);
-
-		   //usleep(10);
-
-		   alt_u16 sample = IORD_ALTERA_AVALON_PIO_DATA(WAVESAMPLE_BASE);
-
-		   //printf("%d\t", i);
-		   //printf("%d\n", sample);
-
-		   tx_wr_pos_data += sprintf(tx_wr_pos_data, "%d\n", sample);
-
-		   //send data every 100 samples.
-		   if(i%100==0){
-			   send(conn->fd, tx_buf_data, tx_wr_pos_data - tx_buf_data, 0);
-
-			   memset(tx_buf_data, 0, sizeof tx_buf_data);
-			   tx_wr_pos_data = tx_buf_data;
-
-		   }
-
+   } else if ( strstr(text_buf, "status") != NULL){
+	   if((startValue >> 1) & 1){
+		   tx_wr_pos += sprintf(tx_wr_pos, "Self Trigger\n");
+	   } else {
+		   tx_wr_pos += sprintf(tx_wr_pos, "External Trigger\n");
 	   }
-	   IOWR_ALTERA_AVALON_PIO_DATA(SAMPLENUM_BASE, 1001);
-	   //usleep(10);
-	   alt_u16 waveNum = IORD_ALTERA_AVALON_PIO_DATA(WAVESAMPLE_BASE);
-	   //printf("%d\n", waveNum);
 
-	   memset(tx_buf_data, 0, sizeof tx_buf_data);
-	   tx_wr_pos_data = tx_buf_data;
+	   if((startValue >> 2) & 1){
+		   tx_wr_pos += sprintf(tx_wr_pos, "Positive Trigger\n");
+	   } else {
+		   tx_wr_pos += sprintf(tx_wr_pos, "Negative Trigger\n");
+	   }
 
-	   tx_wr_pos_data += sprintf(tx_wr_pos_data, "%d\ncomplete\n",waveNum);
+	   if((startValue >> 3) & 1){
+		   tx_wr_pos += sprintf(tx_wr_pos, "Delay enabled\n");
+	   } else {
+		   tx_wr_pos += sprintf(tx_wr_pos, "Delay disabled\n");
+	   }
 
-	   send(conn->fd, tx_buf_data, tx_wr_pos_data - tx_buf_data, 0);
-
-	   //reset the control pio
-	   message=0;
-	   IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, message);
-
-
-   } else if(message!='N'){
-	   printf("sending message\n");
-
-	   //printf("message=%d\n", message);
-
-	   IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, message);
-
-
-
-	   //printf("%d\n", test);
+	   tx_wr_pos += sprintf(tx_wr_pos, "done\n");
 
    }
 
-   alt_u8 n=0;
-
-   int bit=4;
-   int val=1;
-
-   n ^= (-val ^ n) & (1 << bit);
-
-   printf("%d\n", n);
 
 
-   if(strstr(text_buf, "sam") != NULL){
-	   printf("Hello Sam!");
-   }
+  IOWR_ALTERA_AVALON_PIO_DATA(ADC_CONTROL_BASE, endValue);
 
-*/
 
   send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);  
   

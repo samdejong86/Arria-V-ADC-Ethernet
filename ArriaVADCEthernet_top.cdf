@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(5AGXFB3H4F35) Path("/home/srdejong/ArriaVADCEthernet/output_files/") File("ArriaVADCEthernet_top.sof") MfrSpec(OpMask(1));
+		Device PartName(5AGXFB3H4F35) Path("/home/srdejong/Arria-V-ADC-Ethernet/output_files/") File("ArriaVADCEthernet_top.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

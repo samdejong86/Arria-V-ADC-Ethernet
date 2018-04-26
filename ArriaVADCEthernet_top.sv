@@ -28,9 +28,6 @@ module ArriaVADCEthernet_top
    output               lcd_en,
    output               lcd_d_cn,  
    
-   input    [  3 : 0 ]  user_dipsw,
-   input    [  2 : 0 ]  user_pb,
-   output   [  3 : 0 ]  user_led,
 	
 	input						ada_dco,
 	input						adb_dco,
@@ -133,8 +130,8 @@ wire [15:0] SampleNum;
         .cfi_flash_atb_bridge_0_out_tcm_data_out         (fm_d),        
         .cfi_flash_atb_bridge_0_out_tcm_chipselect_n_out (flash_cen), 
 
-        .enet_pll_locked_export                          (!cpu_resetn),                 
-        .enet_pll_reset_reset                            (locked_from_the_enet_pll),   
+        .enet_pll_locked_export                          (locked_from_the_enet_pll),                 
+        .enet_pll_reset_reset                            (!cpu_resetn),   
 
         .tse_mac_mac_status_connection_ena_10            (ena_10_from_the_tse_mac),
         .tse_mac_mac_status_connection_eth_mode          (eth_mode_from_the_tse_mac),
@@ -158,7 +155,7 @@ wire [15:0] SampleNum;
 
 	assign ada_oe = 1'b0;
 	assign adb_oe = 1'b0;
-	assign ada_sclk = 1'b0;
+	assign ad_sclk = 1'b0;
 	assign ad_sdio = 1'b1;
 	assign ada_spi_cs = 1'b1;
 	assign adb_spi_cs = 1'b1;
@@ -168,7 +165,6 @@ wire						      sys_clk;
 wire						      sys_clk_90deg;
 wire						      sys_clk_180deg;
 wire						      sys_clk_270deg;
-wire								ethModuleClk;
 wire						      pll_locked;	
 
 
@@ -186,8 +182,8 @@ adc_pll		adc_pll(
 		.outclk_1(sys_clk_90deg),
 		.outclk_2(sys_clk_180deg),
 		.outclk_3(sys_clk_270deg),
-		.outclk_4(ethModuleClk),
-		.locked(pll_locked)
+		.locked(pll_locked),
+		.rst(reset_n)
 		);
 
 reg delay;
@@ -199,34 +195,6 @@ wire src1;
 wire slp1;
 wire del1;
 
-/*
-
-flipSwitch trigsrcFlip(
-	.clk(ethModuleClk), 
-	.char(adcControl), 
-	.trigChar(8'b01010100), 
-	.out(trigSource)
-	);
-		
-	
-	
-flipSwitch trigslpFlip(
-	.clk(ethModuleClk), 
-	.char(adcControl), 
-	.trigChar(8'b01010011), 
-	.out(trigSlope)
-	);
-	
-
-flipSwitch delayFlip(
-	.clk(ethModuleClk), 
-	.char(adcControl), 
-	.trigChar(8'b01000100), 
-	.out(delay)
-	);
-	
-*/	
-
 
 assign delay = adcControl[3];
 assign trigSlope = adcControl[2];
@@ -235,15 +203,10 @@ wire acquireRequest;
 assign acquireRequest = adcControl[0];
 
 
-
-	
-	
-
-
 wire [15:0] waveNumber;	
 wire [15:0] lastwavenum;
 		
-always @(posedge ethModuleClk) begin
+always @(posedge sys_clk) begin
 
 	if(acquireRequest==1&&waveNumber!=lastwavenum)    //acquire  ('A')
 		acquire=1;
@@ -299,14 +262,6 @@ ADC_Mux	triggerSlopeMux (
 	);
 	
 	
-/*	
-ADC_Mux	TriggerSourceMux (
-	.data0x ( a2da_data ),
-	.data1x ( a2db_data ),
-	.sel ( trigSource ),
-	.result ( trigSourceData )
-	);
-*/
 
 assign trigger = (trigSource) ? triggerSelf:triggerExt;
 	
@@ -350,7 +305,7 @@ waveformGenerator waveGen(
 
 	
 getSample samplerModule(
-	.clk(ethModuleClk), 
+	.clk(sys_clk), 
 	.sampleNum(SampleNum), 
 	.waveform(waveform), 
 	.wavenum(waveNumber), 

@@ -12,7 +12,6 @@ module adc_pll (
 		output wire  outclk_1, // outclk1.clk
 		output wire  outclk_2, // outclk2.clk
 		output wire  outclk_3, // outclk3.clk
-		output wire  outclk_4, // outclk4.clk
 		output wire  locked    //  locked.export
 	);
 
@@ -23,7 +22,6 @@ module adc_pll (
 		.outclk_1 (outclk_1), // outclk1.clk
 		.outclk_2 (outclk_2), // outclk2.clk
 		.outclk_3 (outclk_3), // outclk3.clk
-		.outclk_4 (outclk_4), // outclk4.clk
 		.locked   (locked)    //  locked.export
 	);
 
@@ -58,7 +56,7 @@ endmodule
 // Retrieval info: 	<generic name="debug_print_output" value="false" />
 // Retrieval info: 	<generic name="debug_use_rbc_taf_method" value="false" />
 // Retrieval info: 	<generic name="device_family" value="Arria V" />
-// Retrieval info: 	<generic name="device" value="Unknown" />
+// Retrieval info: 	<generic name="device" value="5AGTFC7H3F35I3" />
 // Retrieval info: 	<generic name="gui_device_speed_grade" value="1" />
 // Retrieval info: 	<generic name="gui_pll_mode" value="Integer-N PLL" />
 // Retrieval info: 	<generic name="gui_reference_clock_frequency" value="50.0" />
@@ -69,7 +67,7 @@ endmodule
 // Retrieval info: 	<generic name="gui_dsm_out_sel" value="1st_order" />
 // Retrieval info: 	<generic name="gui_use_locked" value="true" />
 // Retrieval info: 	<generic name="gui_en_adv_params" value="false" />
-// Retrieval info: 	<generic name="gui_number_of_clocks" value="5" />
+// Retrieval info: 	<generic name="gui_number_of_clocks" value="4" />
 // Retrieval info: 	<generic name="gui_multiply_factor" value="1" />
 // Retrieval info: 	<generic name="gui_frac_multiply_factor" value="1" />
 // Retrieval info: 	<generic name="gui_divide_factor_n" value="1" />
