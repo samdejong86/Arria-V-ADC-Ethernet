@@ -203,6 +203,7 @@ void sss_send_menu(SSSConn* conn)
   tx_wr_pos += sprintf(tx_wr_pos,"TRIG:SLOPE:  - Set trigger slope: POS or NEG\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"TRIG:SOURCE: - Set trigger source: SELF or EXT\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"DELAY:       - Set delay: ON or OFF\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"MENU         - display this menu \n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"QUIT         - quit \n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"=================================\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"Enter your choice & press return:\n\r");
@@ -410,6 +411,8 @@ void sss_exec_command(SSSConn* conn)
 	   }
 
 	   tx_wr_pos += sprintf(tx_wr_pos, "done\n");
+   } else if ( strstr(text_buf, "menu") != NULL){
+	   sss_send_menu(conn);
 
    }
 
