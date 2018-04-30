@@ -16,6 +16,7 @@ Please feel free to use and modify this, but keep the above information. Thanks!
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
+from matplotlib.widgets import Button
 import argparse
 import re
 import sys
@@ -62,40 +63,34 @@ if not args.keep:
     b=tn.read_until("trigger".encode('ascii'))
 
 print("Device settings:")
+
 tn.write("status\n".encode('ascii'))
 status=tn.read_until("done".encode('ascii'))
-
 status = re.sub('done', '', status.decode("utf-8"))
+bin='{0:04b}'.format(int(status))
 
-print(status)
+if bin[0] == '1':
+    print("Delay enabled")
+else:
+    print("Delay disabled")
+
+if bin[1] == '1':
+    print("Positive Trigger")
+else:
+    print("Negative Trigger")
+
+if bin[2] == '1':
+    print("Self Trigger")
+else:
+    print("External Trigger")
+    
+
 
     
 sampleFreq=float(args.freq)/1000
 
-
-# First set up the figure, the axis, and the plot element we want to animate
-fig = plt.figure()
-ax = plt.axes(xlim=(0, 1000/sampleFreq), ylim=(000, 16000))
-#line=ax.plot([],[],lw=2, marker='',color='black')[0]
-lines = []
-
-lobj = ax.plot([], [], 'r-', animated=True)[0]
-wNum_text = ax.text(0.02, 0.95, '', transform=ax.transAxes)
-
-lines.append(lobj)
-lines.append(wNum_text)
-
-# initialization function: plot the background of each frame
-def init():
-    for i in range(1):
-        lines[i].set_data([],[])
-    lines[1].set_text(" ")
-    return lines
-
-waveNumber=0
-
 # animation function.  This is called sequentially
-def animate(i):
+def update_hist(num, data):
     tn.write("acquire\n".encode('ascii'))
     rawdata = tn.read_until("complete".encode('ascii'))
 
@@ -110,26 +105,95 @@ def animate(i):
     y = list(map(int, data))
     x=list(range(0,len(data)))
     x = [k*1/sampleFreq for k in x]
+
+    tn.write("status\n".encode('ascii'))
+    status=tn.read_until("done".encode('ascii'))
+    status = re.sub('done', '', status.decode("utf-8"))
+    bin='{0:04b}'.format(int(status))
+
+    status=''
+
+    if bin[0] == '1':
+        status +='Delayed,'
+    else:
+        status +='Not Delayed,'
+        
+    if bin[1] == '1':
+        status += ' Positive '
+    else:
+        status += ' Negative ' 
+            
+    if bin[2] == '1':
+        status += 'Self Trigger'
+    else:
+        status += 'External Trigger'
    
 
-       
-    lines[0].set_data(x,y)       
-    lines[1].set_text("wave number = "+str(wavenum))
-    
+    plt2.cla()
+    plt2.plot(x,y, label=status)
+    plt.xlabel("Time (ns)")
+    plt.ylabel("ADC counts (AU)")
+    plt.legend(loc='upper right')
 
+fig = plt.figure()
 
-
-    return lines
+number_of_frames = 10
+data=[]
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
-anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=200, interval=20, blit=True)
+anim = animation.FuncAnimation(fig, update_hist,number_of_frames,fargs=(data,))
 
 if args.movie:
     anim.save(args.filename, metadata={'artist':'Sam'})
 
-plt.xlabel("Time (ns)")
-plt.ylabel("ADC counts (AU)")
+
+
+nf=0
+#reset button action
+class Index(object):
+    ind=0
+    def delay(self,event):
+        Command = "DELAY:TOGGLE\n"
+        tn.write(Command.encode('ascii'))
+        b=tn.read_until("delay".encode('ascii'))
+
+    def source(self, event):
+        Command = "TRIG:SOURCE:TOGGLE\n"
+        tn.write(Command.encode('ascii'))
+        b=tn.read_until("trigger".encode('ascii'))
+        
+    def slope(self, event):
+        Command = "TRIG:SLOPE:TOGGLE\n"
+        tn.write(Command.encode('ascii'))
+        b=tn.read_until("trigger".encode('ascii'))
+        
+        
+#divide plot into graph and button    
+button1 = plt.subplot2grid((12, 12), (11, 8), colspan=4) #button
+button2 = plt.subplot2grid((12, 12), (11, 4), colspan=4) #button
+button3 = plt.subplot2grid((12, 12), (11, 0), colspan=4) #button
+plt2 =plt.subplot2grid((7, 7), (0, 0), colspan=7, rowspan=5) #graph
+
+#reset button
+callback=Index()
+bdelay = Button(button1, 'Toggle Delay')
+bdelay.on_clicked(callback.delay)
+
+btrigSource = Button(button2, 'Toggle Trig Source')
+btrigSource.on_clicked(callback.source)
+
+btrigSlope = Button(button3, 'Toggle Trig Slope')
+btrigSlope.on_clicked(callback.slope)
+
+
+
+
+
+
+
+
+
+
 plt.show()
 
 
