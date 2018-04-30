@@ -50,10 +50,24 @@ if not args.keep:
 print("Device settings:")
 tn.write("status\n".encode('ascii'))
 status=tn.read_until("done".encode('ascii'))
-
 status = re.sub('done', '', status.decode("utf-8"))
+bin='{0:04b}'.format(int(status))
 
-print(status)
+if bin[0] == '1':
+    print("Delay enabled")
+else:
+    print("Delay disabled")
+
+if bin[1] == '1':
+    print("Positive Trigger")
+else:
+    print("Negative Trigger")
+
+if bin[2] == '1':
+    print("Self Trigger")
+else:
+    print("External Trigger")
+    
 
     
 # get data from the socket
