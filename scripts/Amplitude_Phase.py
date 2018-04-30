@@ -44,7 +44,7 @@ a = tn.read_until("return:".encode('ascii'))
 
 tn.write("DELAY:OFF\n".encode('ascii'));
 b=tn.read_until("delay".encode('ascii'))
-tn.write("TRIG:SLOPE:NEG\n".encode('ascii'))
+tn.write("TRIG:SLOPE:POS\n".encode('ascii'))
 b=tn.read_until("trigger".encode('ascii'))
 tn.write("TRIG:SOURCE:EXT\n".encode('ascii'))
 b=tn.read_until("trigger".encode('ascii'))
