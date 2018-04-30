@@ -363,7 +363,12 @@ void sss_exec_command(SSSConn* conn)
 	   } else if ( strstr(text_buf, ":off")){
 		   tx_wr_pos += sprintf(tx_wr_pos, "Disabling delay\n");
 		   endValue ^= (-0 ^ endValue) & (1 << 3);
+	   } else if ( strstr(text_buf, ":toggle")){
+		   tx_wr_pos += sprintf(tx_wr_pos, "Toggling delay\n");
+		   endValue ^= 1 << 3;
 	   }
+
+
    } else if( strstr(text_buf, "trig")) {
 	   if( strstr(text_buf, ":source")) {
 	   	   if ( strstr(text_buf, ":self")){
@@ -373,7 +378,10 @@ void sss_exec_command(SSSConn* conn)
 	   	   } else if ( strstr(text_buf, ":ext")){
 			   tx_wr_pos += sprintf(tx_wr_pos, "External trigger\n");
 	   		   endValue ^= (-0 ^ endValue) & (1 << 1);
-	   	   }
+	   	   } else if ( strstr(text_buf, ":toggle")){
+			   	tx_wr_pos += sprintf(tx_wr_pos, "Toggling trigger source\n");
+			   	endValue ^= 1 << 1;
+		   }
 	   } else if( strstr(text_buf, ":slope")) {
 		   if ( strstr(text_buf, ":pos")){
 			   tx_wr_pos += sprintf(tx_wr_pos, "Positive trigger\n");
@@ -382,6 +390,9 @@ void sss_exec_command(SSSConn* conn)
 		   } else if ( strstr(text_buf, ":neg")){
 			   tx_wr_pos += sprintf(tx_wr_pos, "negative trigger\n");
 			   endValue ^= (-0 ^ endValue) & (1 << 2);
+		   } else if ( strstr(text_buf, ":toggle")){
+			   tx_wr_pos += sprintf(tx_wr_pos, "Toggling trigger slope\n");
+			   endValue ^= 1 << 2;
 		   }
 	   }
    } else if ( strstr(text_buf, "quit") != NULL){
@@ -392,25 +403,8 @@ void sss_exec_command(SSSConn* conn)
 	   endValue=0;
 
    } else if ( strstr(text_buf, "status") != NULL){
-	   if((startValue >> 1) & 1){
-		   tx_wr_pos += sprintf(tx_wr_pos, "Self Trigger\n");
-	   } else {
-		   tx_wr_pos += sprintf(tx_wr_pos, "External Trigger\n");
-	   }
+	   tx_wr_pos += sprintf(tx_wr_pos, "%ddone\n", startValue);
 
-	   if((startValue >> 2) & 1){
-		   tx_wr_pos += sprintf(tx_wr_pos, "Positive Trigger\n");
-	   } else {
-		   tx_wr_pos += sprintf(tx_wr_pos, "Negative Trigger\n");
-	   }
-
-	   if((startValue >> 3) & 1){
-		   tx_wr_pos += sprintf(tx_wr_pos, "Delay enabled\n");
-	   } else {
-		   tx_wr_pos += sprintf(tx_wr_pos, "Delay disabled\n");
-	   }
-
-	   tx_wr_pos += sprintf(tx_wr_pos, "done\n");
    } else if ( strstr(text_buf, "menu") != NULL){
 	   sss_send_menu(conn);
 
