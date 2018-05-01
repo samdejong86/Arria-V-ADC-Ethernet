@@ -62,29 +62,6 @@ if not args.keep:
     tn.write(trigSlopeCommand.encode('ascii'))
     b=tn.read_until("trigger".encode('ascii'))
 
-print("Device settings:")
-
-tn.write("status\n".encode('ascii'))
-status=tn.read_until("done".encode('ascii'))
-status = re.sub('done', '', status.decode("utf-8"))
-bin='{0:04b}'.format(int(status))
-
-if bin[0] == '1':
-    print("Delay enabled")
-else:
-    print("Delay disabled")
-
-if bin[1] == '1':
-    print("Positive Trigger")
-else:
-    print("Negative Trigger")
-
-if bin[2] == '1':
-    print("Self Trigger")
-else:
-    print("External Trigger")
-    
-
 
     
 sampleFreq=float(args.freq)/1000
@@ -127,13 +104,18 @@ def update_hist(num, data):
         status += 'Self Trigger'
     else:
         status += 'External Trigger'
-   
+
+
+    
 
     plt2.cla()
-    plt2.plot(x,y, label=status)
+    plt.title(status, loc='left')
+    plt2.plot(x,y, color='red', label='Wave Number='+str(wavenum))
     plt.xlabel("Time (ns)")
     plt.ylabel("ADC counts (AU)")
     plt.legend(loc='upper right')
+    plt.ylim(0, 16383);
+    plt.xlim(0, max(x));
 
 fig = plt.figure()
 
@@ -169,10 +151,10 @@ class Index(object):
         
         
 #divide plot into graph and button    
-button1 = plt.subplot2grid((12, 12), (11, 8), colspan=4) #button
-button2 = plt.subplot2grid((12, 12), (11, 4), colspan=4) #button
-button3 = plt.subplot2grid((12, 12), (11, 0), colspan=4) #button
-plt2 =plt.subplot2grid((7, 7), (0, 0), colspan=7, rowspan=5) #graph
+button1 = plt.subplot2grid((15, 12), (14, 8), colspan=4) #button
+button2 = plt.subplot2grid((15, 12), (14, 4), colspan=4) #button
+button3 = plt.subplot2grid((15, 12), (14, 0), colspan=4) #button
+plt2 =plt.subplot2grid((15, 12), (0, 0), colspan=12, rowspan=12) #graph
 
 #reset button
 callback=Index()
