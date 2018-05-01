@@ -1,4 +1,5 @@
 	a5gx_starter_fpga_bup_qsys u0 (
+		.adc_control_out_export                          (<connected-to-adc_control_out_export>),                          //                     adc_control_out.export
 		.cfi_flash_atb_bridge_0_out_tcm_address_out      (<connected-to-cfi_flash_atb_bridge_0_out_tcm_address_out>),      //          cfi_flash_atb_bridge_0_out.tcm_address_out
 		.cfi_flash_atb_bridge_0_out_tcm_read_n_out       (<connected-to-cfi_flash_atb_bridge_0_out_tcm_read_n_out>),       //                                    .tcm_read_n_out
 		.cfi_flash_atb_bridge_0_out_tcm_write_n_out      (<connected-to-cfi_flash_atb_bridge_0_out_tcm_write_n_out>),      //                                    .tcm_write_n_out
@@ -15,6 +16,7 @@
 		.lcd_external_data                               (<connected-to-lcd_external_data>),                               //                                    .data
 		.lcd_external_E                                  (<connected-to-lcd_external_E>),                                  //                                    .E
 		.merged_resets_in_reset_reset_n                  (<connected-to-merged_resets_in_reset_reset_n>),                  //              merged_resets_in_reset.reset_n
+		.samplenum_out_export                            (<connected-to-samplenum_out_export>),                            //                       samplenum_out.export
 		.tse_mac_mac_mdio_connection_mdc                 (<connected-to-tse_mac_mac_mdio_connection_mdc>),                 //         tse_mac_mac_mdio_connection.mdc
 		.tse_mac_mac_mdio_connection_mdio_in             (<connected-to-tse_mac_mac_mdio_connection_mdio_in>),             //                                    .mdio_in
 		.tse_mac_mac_mdio_connection_mdio_out            (<connected-to-tse_mac_mac_mdio_connection_mdio_out>),            //                                    .mdio_out
@@ -29,8 +31,6 @@
 		.tse_mac_mac_status_connection_ena_10            (<connected-to-tse_mac_mac_status_connection_ena_10>),            //                                    .ena_10
 		.tse_mac_pcs_mac_rx_clock_connection_clk         (<connected-to-tse_mac_pcs_mac_rx_clock_connection_clk>),         // tse_mac_pcs_mac_rx_clock_connection.clk
 		.tse_mac_pcs_mac_tx_clock_connection_clk         (<connected-to-tse_mac_pcs_mac_tx_clock_connection_clk>),         // tse_mac_pcs_mac_tx_clock_connection.clk
-		.adc_control_out_export                          (<connected-to-adc_control_out_export>),                          //                     adc_control_out.export
-		.samplenum_out_export                            (<connected-to-samplenum_out_export>),                            //                       samplenum_out.export
 		.wavesample_in_export                            (<connected-to-wavesample_in_export>)                             //                       wavesample_in.export
 	);
 

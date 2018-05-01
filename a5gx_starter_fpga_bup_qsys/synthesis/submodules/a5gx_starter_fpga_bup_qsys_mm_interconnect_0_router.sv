@@ -222,13 +222,13 @@ module a5gx_starter_fpga_bup_qsys_mm_interconnect_0_router
 
     // ( 0x8003400 .. 0x8003440 )
     if ( {address[RG:PAD4],{PAD4{1'b0}}} == 28'h8003400   ) begin
-            src_channel = 9'b000000010;
+            src_channel = 9'b000000100;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 6;
     end
 
     // ( 0x8003440 .. 0x8003480 )
     if ( {address[RG:PAD5],{PAD5{1'b0}}} == 28'h8003440   ) begin
-            src_channel = 9'b000000100;
+            src_channel = 9'b000000010;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
     end
 

@@ -3,7 +3,7 @@
 # Machine generated for CPU 'cpu' in SOPC Builder design 'a5gx_starter_fpga_bup_qsys'
 # SOPC Builder design path: ../../a5gx_starter_fpga_bup_qsys.sopcinfo
 #
-# Generated: Mon Apr 23 08:47:55 PDT 2018
+# Generated: Tue May 01 13:33:28 PDT 2018
 
 # DO NOT MODIFY THIS FILE
 #

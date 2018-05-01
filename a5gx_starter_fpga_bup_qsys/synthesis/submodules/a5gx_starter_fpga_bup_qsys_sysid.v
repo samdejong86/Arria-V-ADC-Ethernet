@@ -49,7 +49,7 @@ module a5gx_starter_fpga_bup_qsys_sysid (
 
   wire    [ 31: 0] readdata;
   //control_slave, which is an e_avalon_slave
-  assign readdata = address ? 1524509845 : 4207856382;
+  assign readdata = address ? 1525206587 : 4207856382;
 
 endmodule
 

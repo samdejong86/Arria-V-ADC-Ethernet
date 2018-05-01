@@ -28,28 +28,50 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <malloc.h>
+#include "sys/alt_warning.h"
 #include "sys/alt_cache.h"
 #include "system.h"
 
-#ifdef NIOS2_MMU_PRESENT
-/* Convert KERNEL region address to IO region address */
-#define BYPASS_DCACHE_MASK   (0x1 << 29)
-#else
-/* Set bit 31 of address to bypass D-cache */
-#define BYPASS_DCACHE_MASK   (0x1 << 31)
-#endif
-
 /*
  * Allocate a block of uncached memory.
+ * Return pointer to the block of memory or NULL if can't allocate it.
  */
 
-volatile void* alt_uncached_malloc (size_t size)
+volatile void* 
+alt_uncached_malloc(size_t size)
 {
+#if ALT_CPU_DCACHE_SIZE > 0
+#ifdef ALT_CPU_DCACHE_BYPASS_MASK
+
   void* ptr;
 
-  ptr = malloc (size);
+  /* Round up size to an integer number of data cache lines. Required to guarantee that
+   * cacheable and non-cacheable data won't be mixed on the same cache line. */ 
+  const size_t num_lines = (size + ALT_CPU_DCACHE_LINE_SIZE - 1) / ALT_CPU_DCACHE_LINE_SIZE;
+  const size_t aligned_size = num_lines * ALT_CPU_DCACHE_LINE_SIZE;
 
-  alt_dcache_flush (ptr, size);
+  /* Use memalign() Newlib routine to allocate starting on a data cache aligned address.
+   * Required to guarantee that cacheable and non-cacheable data won't be mixed on the
+   * same cache line. */ 
+  ptr = memalign(ALT_CPU_DCACHE_LINE_SIZE, aligned_size);
 
-  return ptr ? (volatile void*) (((alt_u32) ptr) | BYPASS_DCACHE_MASK) : NULL;
+  if (ptr == NULL) {
+    return NULL; /* Out of memory */
+  }
+
+  /* Ensure that the memory region isn't in the data cache. */
+  alt_dcache_flush(ptr, aligned_size);
+
+  return (volatile void*) (((alt_u32)ptr) | ALT_CPU_DCACHE_BYPASS_MASK);
+
+#else /* No address mask option enabled. */
+  /* Generate a link time error, should this function ever be called. */
+  ALT_LINK_ERROR("alt_uncached_malloc() is not available because CPU is not configured to use bit 31 of address to bypass data cache");
+  return NULL;
+#endif /* No address mask option enabled. */
+#else /* No data cache */
+  /* Just use regular malloc. */
+  return malloc(size);
+#endif /* No data cache */
 }

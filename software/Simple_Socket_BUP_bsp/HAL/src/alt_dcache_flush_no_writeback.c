@@ -34,21 +34,6 @@
 #include "alt_types.h"
 #include "sys/alt_cache.h" 
 
-/*
- * The INITDA instruction was added to Nios II in the 8.0 release.
- *
- * The INITDA instruction has one of the following possible behaviors 
- * depending on the processor configuration:
- *  1) Flushes a line by address but does NOT write back dirty data.
- *     Occurs when a data cache is present that supports INITDA.
- *     The macro NIOS2_INITDA_SUPPORTED is defined in system.h.
- *  2) Takes an unimplemented instruction exception.
- *     Occurs when a data cache is present that doesn't support INITDA.
- *  3) Performs no operation
- *     Occurs when there is no data cache present.
- *     The macro NIOS2_DCACHE_SIZE is 0 in system.h.
- */ 
-
 #define ALT_FLUSH_DATA_NO_WRITEBACK(i) \
   __asm__ volatile ("initda (%0)" :: "r" (i));
 
@@ -63,8 +48,6 @@
 
 void alt_dcache_flush_no_writeback (void* start, alt_u32 len)
 {
-#if defined(NIOS2_INITDA_SUPPORTED)
-
   char* i;
   char* end = ((char*) start) + len; 
 
@@ -83,6 +66,4 @@ void alt_dcache_flush_no_writeback (void* start, alt_u32 len)
   {
     ALT_FLUSH_DATA_NO_WRITEBACK(i);
   }
-
-#endif /* NIOS2_INITDA_SUPPORTED */
 }

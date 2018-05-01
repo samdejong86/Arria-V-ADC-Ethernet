@@ -28,23 +28,28 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "sys/alt_warning.h"
 #include "sys/alt_cache.h"
 #include "system.h"
 
-#ifdef NIOS2_MMU_PRESENT
-/* Convert KERNEL region address to IO region address */
-#define BYPASS_DCACHE_MASK   (0x1 << 29)
-#else
-/* Set bit 31 of address to bypass D-cache */
-#define BYPASS_DCACHE_MASK   (0x1 << 31)
-#endif
-
 /*
- * Convert a pointer to a block of uncached memory, into a block of
- * cached memory.
+ * Convert a pointer to a block of uncached memory into a block of cached memory.
+ * Return a pointer that should be used to access the cached memory.
  */
 
-void* alt_remap_cached (volatile void* ptr, alt_u32 len)
+void* 
+alt_remap_cached(volatile void* ptr, alt_u32 len)
 {
-  return (void*) (((alt_u32) ptr) & ~BYPASS_DCACHE_MASK);
+#if ALT_CPU_DCACHE_SIZE > 0
+#ifdef ALT_CPU_DCACHE_BYPASS_MASK
+  return (void*) (((alt_u32)ptr) & ~ALT_CPU_DCACHE_BYPASS_MASK);
+#else /* No address mask option enabled. */
+  /* Generate a link time error, should this function ever be called. */
+  ALT_LINK_ERROR("alt_remap_cached() is not available because CPU is not configured to use bit 31 of address to bypass data cache");
+  return NULL;
+#endif /* No address mask option enabled. */
+#else /* No data cache */
+  /* Nothing needs to be done to the pointer. */
+  return (void*) ptr;
+#endif /* No data cache */
 }

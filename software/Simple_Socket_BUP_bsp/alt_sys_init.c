@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'a5gx_starter_fpga_bup_qsys'
  * SOPC Builder design path: ../../a5gx_starter_fpga_bup_qsys.sopcinfo
  *
- * Generated: Mon Apr 23 08:47:55 PDT 2018
+ * Generated: Tue May 01 13:33:28 PDT 2018
  */
 
 /*
@@ -58,7 +58,7 @@
  * Device headers
  */
 
-#include "altera_nios2_qsys_irq.h"
+#include "altera_nios2_gen2_irq.h"
 #include "altera_avalon_jtag_uart.h"
 #include "altera_avalon_lcd_16207.h"
 #include "altera_avalon_sgdma.h"
@@ -70,7 +70,7 @@
  * Allocate the device storage
  */
 
-ALTERA_NIOS2_QSYS_IRQ_INSTANCE ( CPU, cpu);
+ALTERA_NIOS2_GEN2_IRQ_INSTANCE ( CPU, cpu);
 ALTERA_AVALON_JTAG_UART_INSTANCE ( JTAG_UART_0, jtag_uart_0);
 ALTERA_AVALON_LCD_16207_INSTANCE ( LCD, lcd);
 ALTERA_AVALON_SGDMA_INSTANCE ( SGDMA_RX, sgdma_rx);
@@ -90,7 +90,7 @@ ALTERA_ETH_TSE_INSTANCE ( TSE_MAC, tse_mac);
 
 void alt_irq_init ( const void* base )
 {
-    ALTERA_NIOS2_QSYS_IRQ_INIT ( CPU, cpu);
+    ALTERA_NIOS2_GEN2_IRQ_INIT ( CPU, cpu);
     alt_irq_cpu_enable_interrupts();
 }
 

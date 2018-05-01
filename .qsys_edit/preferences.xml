@@ -9,8 +9,8 @@
    <description preferredWidth="143" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library" />
- <window width="1319" height="1148" x="65" y="52" />
+ <library expandedCategories="Library,Project" />
+ <window width="1678" height="1148" x="242" y="52" />
  <generation greybox="1" />
  <hdlexample language="VERILOG" />
 </preferences>

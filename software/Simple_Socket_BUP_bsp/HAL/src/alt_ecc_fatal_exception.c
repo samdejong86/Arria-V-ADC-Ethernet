@@ -31,6 +31,7 @@
 ******************************************************************************/
 #include "io.h"
 #include "sys/alt_exceptions.h"
+#include "sys/alt_cache.h"
 
 /*
  * This file implements support for calling a user-registered handler
@@ -64,10 +65,11 @@ __asm__( "\n\t.globl alt_exception" );
 void 
 alt_ecc_fatal_exception_register(alt_u32 handler)
 {
+    alt_exception_ecc_fatal_handler = handler;
+
     /* 
-     * Use IOWR to make sure this bypasses the data cache.
-     * This is required because the exception handler uses ldwio
-     * to read this value.
+     * Flush this from the cache. Required because the exception handler uses ldwio
+     * to read this value to avoid trigger another data cache ECC error exception.
      */
-    IOWR(&alt_exception_ecc_fatal_handler, 0, handler);
+    alt_dcache_flush(&alt_exception_ecc_fatal_handler, sizeof(alt_exception_ecc_fatal_handler));
 }

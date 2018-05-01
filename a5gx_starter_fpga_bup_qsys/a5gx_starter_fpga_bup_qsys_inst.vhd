@@ -1,5 +1,6 @@
 	component a5gx_starter_fpga_bup_qsys is
 		port (
+			adc_control_out_export                          : out   std_logic_vector(7 downto 0);                     -- export
 			cfi_flash_atb_bridge_0_out_tcm_address_out      : out   std_logic_vector(26 downto 0);                    -- tcm_address_out
 			cfi_flash_atb_bridge_0_out_tcm_read_n_out       : out   std_logic_vector(0 downto 0);                     -- tcm_read_n_out
 			cfi_flash_atb_bridge_0_out_tcm_write_n_out      : out   std_logic_vector(0 downto 0);                     -- tcm_write_n_out
@@ -16,6 +17,7 @@
 			lcd_external_data                               : inout std_logic_vector(7 downto 0)  := (others => 'X'); -- data
 			lcd_external_E                                  : out   std_logic;                                        -- E
 			merged_resets_in_reset_reset_n                  : in    std_logic                     := 'X';             -- reset_n
+			samplenum_out_export                            : out   std_logic_vector(15 downto 0);                    -- export
 			tse_mac_mac_mdio_connection_mdc                 : out   std_logic;                                        -- mdc
 			tse_mac_mac_mdio_connection_mdio_in             : in    std_logic                     := 'X';             -- mdio_in
 			tse_mac_mac_mdio_connection_mdio_out            : out   std_logic;                                        -- mdio_out
@@ -30,14 +32,13 @@
 			tse_mac_mac_status_connection_ena_10            : out   std_logic;                                        -- ena_10
 			tse_mac_pcs_mac_rx_clock_connection_clk         : in    std_logic                     := 'X';             -- clk
 			tse_mac_pcs_mac_tx_clock_connection_clk         : in    std_logic                     := 'X';             -- clk
-			adc_control_out_export                          : out   std_logic_vector(7 downto 0);                     -- export
-			samplenum_out_export                            : out   std_logic_vector(15 downto 0);                    -- export
 			wavesample_in_export                            : in    std_logic_vector(15 downto 0) := (others => 'X')  -- export
 		);
 	end component a5gx_starter_fpga_bup_qsys;
 
 	u0 : component a5gx_starter_fpga_bup_qsys
 		port map (
+			adc_control_out_export                          => CONNECTED_TO_adc_control_out_export,                          --                     adc_control_out.export
 			cfi_flash_atb_bridge_0_out_tcm_address_out      => CONNECTED_TO_cfi_flash_atb_bridge_0_out_tcm_address_out,      --          cfi_flash_atb_bridge_0_out.tcm_address_out
 			cfi_flash_atb_bridge_0_out_tcm_read_n_out       => CONNECTED_TO_cfi_flash_atb_bridge_0_out_tcm_read_n_out,       --                                    .tcm_read_n_out
 			cfi_flash_atb_bridge_0_out_tcm_write_n_out      => CONNECTED_TO_cfi_flash_atb_bridge_0_out_tcm_write_n_out,      --                                    .tcm_write_n_out
@@ -54,6 +55,7 @@
 			lcd_external_data                               => CONNECTED_TO_lcd_external_data,                               --                                    .data
 			lcd_external_E                                  => CONNECTED_TO_lcd_external_E,                                  --                                    .E
 			merged_resets_in_reset_reset_n                  => CONNECTED_TO_merged_resets_in_reset_reset_n,                  --              merged_resets_in_reset.reset_n
+			samplenum_out_export                            => CONNECTED_TO_samplenum_out_export,                            --                       samplenum_out.export
 			tse_mac_mac_mdio_connection_mdc                 => CONNECTED_TO_tse_mac_mac_mdio_connection_mdc,                 --         tse_mac_mac_mdio_connection.mdc
 			tse_mac_mac_mdio_connection_mdio_in             => CONNECTED_TO_tse_mac_mac_mdio_connection_mdio_in,             --                                    .mdio_in
 			tse_mac_mac_mdio_connection_mdio_out            => CONNECTED_TO_tse_mac_mac_mdio_connection_mdio_out,            --                                    .mdio_out
@@ -68,8 +70,6 @@
 			tse_mac_mac_status_connection_ena_10            => CONNECTED_TO_tse_mac_mac_status_connection_ena_10,            --                                    .ena_10
 			tse_mac_pcs_mac_rx_clock_connection_clk         => CONNECTED_TO_tse_mac_pcs_mac_rx_clock_connection_clk,         -- tse_mac_pcs_mac_rx_clock_connection.clk
 			tse_mac_pcs_mac_tx_clock_connection_clk         => CONNECTED_TO_tse_mac_pcs_mac_tx_clock_connection_clk,         -- tse_mac_pcs_mac_tx_clock_connection.clk
-			adc_control_out_export                          => CONNECTED_TO_adc_control_out_export,                          --                     adc_control_out.export
-			samplenum_out_export                            => CONNECTED_TO_samplenum_out_export,                            --                       samplenum_out.export
 			wavesample_in_export                            => CONNECTED_TO_wavesample_in_export                             --                       wavesample_in.export
 		);
 

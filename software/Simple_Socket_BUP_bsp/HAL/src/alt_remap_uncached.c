@@ -28,24 +28,27 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "sys/alt_warning.h"
 #include "sys/alt_cache.h"
 #include "system.h"
 
-#ifdef NIOS2_MMU_PRESENT
-/* Convert KERNEL region address to IO region address */
-#define BYPASS_DCACHE_MASK   (0x1 << 29)
-#else
-/* Set bit 31 of address to bypass D-cache */
-#define BYPASS_DCACHE_MASK   (0x1 << 31)
-#endif
-
 /*
- * Convert a pointer to a block of cached memory, into a block of
- * uncached memory.
+ * Convert a pointer to a block of cached memory into a block of uncached memory.
+ * Return a pointer that should be used to access the uncached memory.
+ *
+ * This routine was created for Nios II Gen1 cores which allow mixing cacheable and
+ * uncachable data in the same data cache line. So, they could take any memory region
+ * and make it uncached. However, Nios II Gen2 cores don't support mixing cacheable
+ * and uncachable data in the same data cache line so require the memory region to
+ * be aligned to a cache line boundary and must be an integer number of cache line
+ * bytes in size. So, software on a Nios II Gen2 core shouldn't really be using this
+ * function so it fails with a link error.
  */
 
-volatile void* alt_remap_uncached (void* ptr, alt_u32 len)
+volatile void* 
+alt_remap_uncached(void* ptr, alt_u32 len)
 {
-  alt_dcache_flush (ptr, len);
-  return (volatile void*) (((alt_u32) ptr) | BYPASS_DCACHE_MASK);
+  /* Generate a link time error, should this function ever be called. */
+  ALT_LINK_ERROR("alt_remap_uncached() is not available because Nios II Gen2 cores with data caches don't support mixing cacheable and uncacheable data on the same line.");
+  return NULL;
 }

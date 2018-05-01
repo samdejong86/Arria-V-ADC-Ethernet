@@ -57,7 +57,7 @@ module a5gx_starter_fpga_bup_qsys (
 	wire  [15:0] ext_flash_tcm_data_in;                                       // cfi_flash_atb_bridge_0:tcs_tcm_data_in -> ext_flash:tcm_data_in
 	wire  [31:0] cpu_data_master_readdata;                                    // mm_interconnect_0:cpu_data_master_readdata -> cpu:d_readdata
 	wire         cpu_data_master_waitrequest;                                 // mm_interconnect_0:cpu_data_master_waitrequest -> cpu:d_waitrequest
-	wire         cpu_data_master_debugaccess;                                 // cpu:jtag_debug_module_debugaccess_to_roms -> mm_interconnect_0:cpu_data_master_debugaccess
+	wire         cpu_data_master_debugaccess;                                 // cpu:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:cpu_data_master_debugaccess
 	wire  [27:0] cpu_data_master_address;                                     // cpu:d_address -> mm_interconnect_0:cpu_data_master_address
 	wire   [3:0] cpu_data_master_byteenable;                                  // cpu:d_byteenable -> mm_interconnect_0:cpu_data_master_byteenable
 	wire         cpu_data_master_read;                                        // cpu:d_read -> mm_interconnect_0:cpu_data_master_read
@@ -103,26 +103,26 @@ module a5gx_starter_fpga_bup_qsys (
 	wire         mm_interconnect_0_tse_mac_control_port_read;                 // mm_interconnect_0:tse_mac_control_port_read -> tse_mac:reg_rd
 	wire         mm_interconnect_0_tse_mac_control_port_write;                // mm_interconnect_0:tse_mac_control_port_write -> tse_mac:reg_wr
 	wire  [31:0] mm_interconnect_0_tse_mac_control_port_writedata;            // mm_interconnect_0:tse_mac_control_port_writedata -> tse_mac:reg_data_in
-	wire         mm_interconnect_0_sgdma_rx_csr_chipselect;                   // mm_interconnect_0:sgdma_rx_csr_chipselect -> sgdma_rx:csr_chipselect
-	wire  [31:0] mm_interconnect_0_sgdma_rx_csr_readdata;                     // sgdma_rx:csr_readdata -> mm_interconnect_0:sgdma_rx_csr_readdata
-	wire   [3:0] mm_interconnect_0_sgdma_rx_csr_address;                      // mm_interconnect_0:sgdma_rx_csr_address -> sgdma_rx:csr_address
-	wire         mm_interconnect_0_sgdma_rx_csr_read;                         // mm_interconnect_0:sgdma_rx_csr_read -> sgdma_rx:csr_read
-	wire         mm_interconnect_0_sgdma_rx_csr_write;                        // mm_interconnect_0:sgdma_rx_csr_write -> sgdma_rx:csr_write
-	wire  [31:0] mm_interconnect_0_sgdma_rx_csr_writedata;                    // mm_interconnect_0:sgdma_rx_csr_writedata -> sgdma_rx:csr_writedata
 	wire         mm_interconnect_0_sgdma_tx_csr_chipselect;                   // mm_interconnect_0:sgdma_tx_csr_chipselect -> sgdma_tx:csr_chipselect
 	wire  [31:0] mm_interconnect_0_sgdma_tx_csr_readdata;                     // sgdma_tx:csr_readdata -> mm_interconnect_0:sgdma_tx_csr_readdata
 	wire   [3:0] mm_interconnect_0_sgdma_tx_csr_address;                      // mm_interconnect_0:sgdma_tx_csr_address -> sgdma_tx:csr_address
 	wire         mm_interconnect_0_sgdma_tx_csr_read;                         // mm_interconnect_0:sgdma_tx_csr_read -> sgdma_tx:csr_read
 	wire         mm_interconnect_0_sgdma_tx_csr_write;                        // mm_interconnect_0:sgdma_tx_csr_write -> sgdma_tx:csr_write
 	wire  [31:0] mm_interconnect_0_sgdma_tx_csr_writedata;                    // mm_interconnect_0:sgdma_tx_csr_writedata -> sgdma_tx:csr_writedata
-	wire  [31:0] mm_interconnect_0_cpu_jtag_debug_module_readdata;            // cpu:jtag_debug_module_readdata -> mm_interconnect_0:cpu_jtag_debug_module_readdata
-	wire         mm_interconnect_0_cpu_jtag_debug_module_waitrequest;         // cpu:jtag_debug_module_waitrequest -> mm_interconnect_0:cpu_jtag_debug_module_waitrequest
-	wire         mm_interconnect_0_cpu_jtag_debug_module_debugaccess;         // mm_interconnect_0:cpu_jtag_debug_module_debugaccess -> cpu:jtag_debug_module_debugaccess
-	wire   [8:0] mm_interconnect_0_cpu_jtag_debug_module_address;             // mm_interconnect_0:cpu_jtag_debug_module_address -> cpu:jtag_debug_module_address
-	wire         mm_interconnect_0_cpu_jtag_debug_module_read;                // mm_interconnect_0:cpu_jtag_debug_module_read -> cpu:jtag_debug_module_read
-	wire   [3:0] mm_interconnect_0_cpu_jtag_debug_module_byteenable;          // mm_interconnect_0:cpu_jtag_debug_module_byteenable -> cpu:jtag_debug_module_byteenable
-	wire         mm_interconnect_0_cpu_jtag_debug_module_write;               // mm_interconnect_0:cpu_jtag_debug_module_write -> cpu:jtag_debug_module_write
-	wire  [31:0] mm_interconnect_0_cpu_jtag_debug_module_writedata;           // mm_interconnect_0:cpu_jtag_debug_module_writedata -> cpu:jtag_debug_module_writedata
+	wire         mm_interconnect_0_sgdma_rx_csr_chipselect;                   // mm_interconnect_0:sgdma_rx_csr_chipselect -> sgdma_rx:csr_chipselect
+	wire  [31:0] mm_interconnect_0_sgdma_rx_csr_readdata;                     // sgdma_rx:csr_readdata -> mm_interconnect_0:sgdma_rx_csr_readdata
+	wire   [3:0] mm_interconnect_0_sgdma_rx_csr_address;                      // mm_interconnect_0:sgdma_rx_csr_address -> sgdma_rx:csr_address
+	wire         mm_interconnect_0_sgdma_rx_csr_read;                         // mm_interconnect_0:sgdma_rx_csr_read -> sgdma_rx:csr_read
+	wire         mm_interconnect_0_sgdma_rx_csr_write;                        // mm_interconnect_0:sgdma_rx_csr_write -> sgdma_rx:csr_write
+	wire  [31:0] mm_interconnect_0_sgdma_rx_csr_writedata;                    // mm_interconnect_0:sgdma_rx_csr_writedata -> sgdma_rx:csr_writedata
+	wire  [31:0] mm_interconnect_0_cpu_debug_mem_slave_readdata;              // cpu:debug_mem_slave_readdata -> mm_interconnect_0:cpu_debug_mem_slave_readdata
+	wire         mm_interconnect_0_cpu_debug_mem_slave_waitrequest;           // cpu:debug_mem_slave_waitrequest -> mm_interconnect_0:cpu_debug_mem_slave_waitrequest
+	wire         mm_interconnect_0_cpu_debug_mem_slave_debugaccess;           // mm_interconnect_0:cpu_debug_mem_slave_debugaccess -> cpu:debug_mem_slave_debugaccess
+	wire   [8:0] mm_interconnect_0_cpu_debug_mem_slave_address;               // mm_interconnect_0:cpu_debug_mem_slave_address -> cpu:debug_mem_slave_address
+	wire         mm_interconnect_0_cpu_debug_mem_slave_read;                  // mm_interconnect_0:cpu_debug_mem_slave_read -> cpu:debug_mem_slave_read
+	wire   [3:0] mm_interconnect_0_cpu_debug_mem_slave_byteenable;            // mm_interconnect_0:cpu_debug_mem_slave_byteenable -> cpu:debug_mem_slave_byteenable
+	wire         mm_interconnect_0_cpu_debug_mem_slave_write;                 // mm_interconnect_0:cpu_debug_mem_slave_write -> cpu:debug_mem_slave_write
+	wire  [31:0] mm_interconnect_0_cpu_debug_mem_slave_writedata;             // mm_interconnect_0:cpu_debug_mem_slave_writedata -> cpu:debug_mem_slave_writedata
 	wire  [31:0] mm_interconnect_0_pb_cpu_to_io_s0_readdata;                  // pb_cpu_to_io:s0_readdata -> mm_interconnect_0:pb_cpu_to_io_s0_readdata
 	wire         mm_interconnect_0_pb_cpu_to_io_s0_waitrequest;               // pb_cpu_to_io:s0_waitrequest -> mm_interconnect_0:pb_cpu_to_io_s0_waitrequest
 	wire         mm_interconnect_0_pb_cpu_to_io_s0_debugaccess;               // mm_interconnect_0:pb_cpu_to_io_s0_debugaccess -> pb_cpu_to_io:s0_debugaccess
@@ -212,12 +212,12 @@ module a5gx_starter_fpga_bup_qsys (
 	wire  [31:0] mm_interconnect_1_adc_control_s1_writedata;                  // mm_interconnect_1:adc_control_s1_writedata -> adc_control:writedata
 	wire  [31:0] mm_interconnect_1_wavesample_s1_readdata;                    // waveSample:readdata -> mm_interconnect_1:waveSample_s1_readdata
 	wire   [1:0] mm_interconnect_1_wavesample_s1_address;                     // mm_interconnect_1:waveSample_s1_address -> waveSample:address
-	wire         irq_mapper_receiver0_irq;                                    // sgdma_tx:csr_irq -> irq_mapper:receiver0_irq
-	wire         irq_mapper_receiver1_irq;                                    // sgdma_rx:csr_irq -> irq_mapper:receiver1_irq
+	wire         irq_mapper_receiver0_irq;                                    // sgdma_rx:csr_irq -> irq_mapper:receiver0_irq
+	wire         irq_mapper_receiver1_irq;                                    // sgdma_tx:csr_irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                    // sys_clk_timer:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                    // high_res_timer:irq -> irq_mapper:receiver3_irq
 	wire         irq_mapper_receiver4_irq;                                    // jtag_uart_0:av_irq -> irq_mapper:receiver4_irq
-	wire  [31:0] cpu_d_irq_irq;                                               // irq_mapper:sender_irq -> cpu:d_irq
+	wire  [31:0] cpu_irq_irq;                                                 // irq_mapper:sender_irq -> cpu:irq
 	wire         tse_mac_receive_valid;                                       // tse_mac:ff_rx_dval -> avalon_st_adapter:in_0_valid
 	wire  [31:0] tse_mac_receive_data;                                        // tse_mac:ff_rx_data -> avalon_st_adapter:in_0_data
 	wire         tse_mac_receive_ready;                                       // avalon_st_adapter:in_0_ready -> tse_mac:ff_rx_rdy
@@ -234,9 +234,9 @@ module a5gx_starter_fpga_bup_qsys (
 	wire   [1:0] avalon_st_adapter_out_0_empty;                               // avalon_st_adapter:out_0_empty -> sgdma_rx:in_empty
 	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [adc_control:reset_n, avalon_st_adapter:in_rst_0_reset, cfi_flash_atb_bridge_0:reset, descriptor_memory:reset, ext_flash:reset_reset, high_res_timer:reset_n, jtag_uart_0:rst_n, lcd:reset_n, mm_interconnect_0:sgdma_tx_reset_reset_bridge_in_reset_reset, mm_interconnect_1:jtag_uart_0_reset_reset_bridge_in_reset_reset, onchip_ram:reset, onchip_ram:reset2, rst_translator:in_reset, sampleNum:reset_n, sgdma_rx:system_reset_n, sgdma_tx:system_reset_n, sys_clk_timer:reset_n, sysid:reset_n, tse_mac:reset, waveSample:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [descriptor_memory:reset_req, onchip_ram:reset_req, onchip_ram:reset_req2, rst_translator:reset_req_in]
-	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [cpu:reset_n, irq_mapper:reset, mm_interconnect_0:cpu_reset_n_reset_bridge_in_reset_reset, mm_interconnect_1:pb_cpu_to_io_reset_reset_bridge_in_reset_reset, pb_cpu_to_io:reset, rst_translator_001:in_reset]
+	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [cpu:reset_n, irq_mapper:reset, mm_interconnect_0:cpu_reset_reset_bridge_in_reset_reset, mm_interconnect_1:pb_cpu_to_io_reset_reset_bridge_in_reset_reset, pb_cpu_to_io:reset, rst_translator_001:in_reset]
 	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> [cpu:reset_req, rst_translator_001:reset_req_in]
-	wire         cpu_jtag_debug_module_reset_reset;                           // cpu:jtag_debug_module_resetrequest -> rst_controller_001:reset_in1
+	wire         cpu_debug_reset_request_reset;                               // cpu:debug_reset_request -> rst_controller_001:reset_in1
 
 	a5gx_starter_fpga_bup_qsys_adc_control adc_control (
 		.clk        (clk_clk),                                     //                 clk.clk
@@ -269,34 +269,34 @@ module a5gx_starter_fpga_bup_qsys (
 	);
 
 	a5gx_starter_fpga_bup_qsys_cpu cpu (
-		.clk                                   (clk_clk),                                             //                       clk.clk
-		.reset_n                               (~rst_controller_001_reset_out_reset),                 //                   reset_n.reset_n
-		.reset_req                             (rst_controller_001_reset_out_reset_req),              //                          .reset_req
-		.d_address                             (cpu_data_master_address),                             //               data_master.address
-		.d_byteenable                          (cpu_data_master_byteenable),                          //                          .byteenable
-		.d_read                                (cpu_data_master_read),                                //                          .read
-		.d_readdata                            (cpu_data_master_readdata),                            //                          .readdata
-		.d_waitrequest                         (cpu_data_master_waitrequest),                         //                          .waitrequest
-		.d_write                               (cpu_data_master_write),                               //                          .write
-		.d_writedata                           (cpu_data_master_writedata),                           //                          .writedata
-		.d_readdatavalid                       (cpu_data_master_readdatavalid),                       //                          .readdatavalid
-		.jtag_debug_module_debugaccess_to_roms (cpu_data_master_debugaccess),                         //                          .debugaccess
-		.i_address                             (cpu_instruction_master_address),                      //        instruction_master.address
-		.i_read                                (cpu_instruction_master_read),                         //                          .read
-		.i_readdata                            (cpu_instruction_master_readdata),                     //                          .readdata
-		.i_waitrequest                         (cpu_instruction_master_waitrequest),                  //                          .waitrequest
-		.i_readdatavalid                       (cpu_instruction_master_readdatavalid),                //                          .readdatavalid
-		.d_irq                                 (cpu_d_irq_irq),                                       //                     d_irq.irq
-		.jtag_debug_module_resetrequest        (cpu_jtag_debug_module_reset_reset),                   //   jtag_debug_module_reset.reset
-		.jtag_debug_module_address             (mm_interconnect_0_cpu_jtag_debug_module_address),     //         jtag_debug_module.address
-		.jtag_debug_module_byteenable          (mm_interconnect_0_cpu_jtag_debug_module_byteenable),  //                          .byteenable
-		.jtag_debug_module_debugaccess         (mm_interconnect_0_cpu_jtag_debug_module_debugaccess), //                          .debugaccess
-		.jtag_debug_module_read                (mm_interconnect_0_cpu_jtag_debug_module_read),        //                          .read
-		.jtag_debug_module_readdata            (mm_interconnect_0_cpu_jtag_debug_module_readdata),    //                          .readdata
-		.jtag_debug_module_waitrequest         (mm_interconnect_0_cpu_jtag_debug_module_waitrequest), //                          .waitrequest
-		.jtag_debug_module_write               (mm_interconnect_0_cpu_jtag_debug_module_write),       //                          .write
-		.jtag_debug_module_writedata           (mm_interconnect_0_cpu_jtag_debug_module_writedata),   //                          .writedata
-		.no_ci_readra                          ()                                                     // custom_instruction_master.readra
+		.clk                                 (clk_clk),                                           //                       clk.clk
+		.reset_n                             (~rst_controller_001_reset_out_reset),               //                     reset.reset_n
+		.reset_req                           (rst_controller_001_reset_out_reset_req),            //                          .reset_req
+		.d_address                           (cpu_data_master_address),                           //               data_master.address
+		.d_byteenable                        (cpu_data_master_byteenable),                        //                          .byteenable
+		.d_read                              (cpu_data_master_read),                              //                          .read
+		.d_readdata                          (cpu_data_master_readdata),                          //                          .readdata
+		.d_waitrequest                       (cpu_data_master_waitrequest),                       //                          .waitrequest
+		.d_write                             (cpu_data_master_write),                             //                          .write
+		.d_writedata                         (cpu_data_master_writedata),                         //                          .writedata
+		.d_readdatavalid                     (cpu_data_master_readdatavalid),                     //                          .readdatavalid
+		.debug_mem_slave_debugaccess_to_roms (cpu_data_master_debugaccess),                       //                          .debugaccess
+		.i_address                           (cpu_instruction_master_address),                    //        instruction_master.address
+		.i_read                              (cpu_instruction_master_read),                       //                          .read
+		.i_readdata                          (cpu_instruction_master_readdata),                   //                          .readdata
+		.i_waitrequest                       (cpu_instruction_master_waitrequest),                //                          .waitrequest
+		.i_readdatavalid                     (cpu_instruction_master_readdatavalid),              //                          .readdatavalid
+		.irq                                 (cpu_irq_irq),                                       //                       irq.irq
+		.debug_reset_request                 (cpu_debug_reset_request_reset),                     //       debug_reset_request.reset
+		.debug_mem_slave_address             (mm_interconnect_0_cpu_debug_mem_slave_address),     //           debug_mem_slave.address
+		.debug_mem_slave_byteenable          (mm_interconnect_0_cpu_debug_mem_slave_byteenable),  //                          .byteenable
+		.debug_mem_slave_debugaccess         (mm_interconnect_0_cpu_debug_mem_slave_debugaccess), //                          .debugaccess
+		.debug_mem_slave_read                (mm_interconnect_0_cpu_debug_mem_slave_read),        //                          .read
+		.debug_mem_slave_readdata            (mm_interconnect_0_cpu_debug_mem_slave_readdata),    //                          .readdata
+		.debug_mem_slave_waitrequest         (mm_interconnect_0_cpu_debug_mem_slave_waitrequest), //                          .waitrequest
+		.debug_mem_slave_write               (mm_interconnect_0_cpu_debug_mem_slave_write),       //                          .write
+		.debug_mem_slave_writedata           (mm_interconnect_0_cpu_debug_mem_slave_writedata),   //                          .writedata
+		.dummy_ci_port                       ()                                                   // custom_instruction_master.readra
 	);
 
 	a5gx_starter_fpga_bup_qsys_descriptor_memory descriptor_memory (
@@ -509,7 +509,7 @@ module a5gx_starter_fpga_bup_qsys (
 		.descriptor_write_address      (sgdma_rx_descriptor_write_address),         //                 .address
 		.descriptor_write_write        (sgdma_rx_descriptor_write_write),           //                 .write
 		.descriptor_write_writedata    (sgdma_rx_descriptor_write_writedata),       //                 .writedata
-		.csr_irq                       (irq_mapper_receiver1_irq),                  //          csr_irq.irq
+		.csr_irq                       (irq_mapper_receiver0_irq),                  //          csr_irq.irq
 		.in_startofpacket              (avalon_st_adapter_out_0_startofpacket),     //               in.startofpacket
 		.in_endofpacket                (avalon_st_adapter_out_0_endofpacket),       //                 .endofpacket
 		.in_data                       (avalon_st_adapter_out_0_data),              //                 .data
@@ -542,7 +542,7 @@ module a5gx_starter_fpga_bup_qsys (
 		.descriptor_write_address      (sgdma_tx_descriptor_write_address),         //                 .address
 		.descriptor_write_write        (sgdma_tx_descriptor_write_write),           //                 .write
 		.descriptor_write_writedata    (sgdma_tx_descriptor_write_writedata),       //                 .writedata
-		.csr_irq                       (irq_mapper_receiver0_irq),                  //          csr_irq.irq
+		.csr_irq                       (irq_mapper_receiver1_irq),                  //          csr_irq.irq
 		.m_read_readdata               (sgdma_tx_m_read_readdata),                  //           m_read.readdata
 		.m_read_readdatavalid          (sgdma_tx_m_read_readdatavalid),             //                 .readdatavalid
 		.m_read_waitrequest            (sgdma_tx_m_read_waitrequest),               //                 .waitrequest
@@ -637,119 +637,119 @@ module a5gx_starter_fpga_bup_qsys (
 	);
 
 	a5gx_starter_fpga_bup_qsys_mm_interconnect_0 mm_interconnect_0 (
-		.clkin_50_clk_clk                           (clk_clk),                                             //                         clkin_50_clk.clk
-		.cpu_reset_n_reset_bridge_in_reset_reset    (rst_controller_001_reset_out_reset),                  //    cpu_reset_n_reset_bridge_in_reset.reset
-		.sgdma_tx_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                      // sgdma_tx_reset_reset_bridge_in_reset.reset
-		.cpu_data_master_address                    (cpu_data_master_address),                             //                      cpu_data_master.address
-		.cpu_data_master_waitrequest                (cpu_data_master_waitrequest),                         //                                     .waitrequest
-		.cpu_data_master_byteenable                 (cpu_data_master_byteenable),                          //                                     .byteenable
-		.cpu_data_master_read                       (cpu_data_master_read),                                //                                     .read
-		.cpu_data_master_readdata                   (cpu_data_master_readdata),                            //                                     .readdata
-		.cpu_data_master_readdatavalid              (cpu_data_master_readdatavalid),                       //                                     .readdatavalid
-		.cpu_data_master_write                      (cpu_data_master_write),                               //                                     .write
-		.cpu_data_master_writedata                  (cpu_data_master_writedata),                           //                                     .writedata
-		.cpu_data_master_debugaccess                (cpu_data_master_debugaccess),                         //                                     .debugaccess
-		.cpu_instruction_master_address             (cpu_instruction_master_address),                      //               cpu_instruction_master.address
-		.cpu_instruction_master_waitrequest         (cpu_instruction_master_waitrequest),                  //                                     .waitrequest
-		.cpu_instruction_master_read                (cpu_instruction_master_read),                         //                                     .read
-		.cpu_instruction_master_readdata            (cpu_instruction_master_readdata),                     //                                     .readdata
-		.cpu_instruction_master_readdatavalid       (cpu_instruction_master_readdatavalid),                //                                     .readdatavalid
-		.sgdma_rx_descriptor_read_address           (sgdma_rx_descriptor_read_address),                    //             sgdma_rx_descriptor_read.address
-		.sgdma_rx_descriptor_read_waitrequest       (sgdma_rx_descriptor_read_waitrequest),                //                                     .waitrequest
-		.sgdma_rx_descriptor_read_read              (sgdma_rx_descriptor_read_read),                       //                                     .read
-		.sgdma_rx_descriptor_read_readdata          (sgdma_rx_descriptor_read_readdata),                   //                                     .readdata
-		.sgdma_rx_descriptor_read_readdatavalid     (sgdma_rx_descriptor_read_readdatavalid),              //                                     .readdatavalid
-		.sgdma_rx_descriptor_write_address          (sgdma_rx_descriptor_write_address),                   //            sgdma_rx_descriptor_write.address
-		.sgdma_rx_descriptor_write_waitrequest      (sgdma_rx_descriptor_write_waitrequest),               //                                     .waitrequest
-		.sgdma_rx_descriptor_write_write            (sgdma_rx_descriptor_write_write),                     //                                     .write
-		.sgdma_rx_descriptor_write_writedata        (sgdma_rx_descriptor_write_writedata),                 //                                     .writedata
-		.sgdma_rx_m_write_address                   (sgdma_rx_m_write_address),                            //                     sgdma_rx_m_write.address
-		.sgdma_rx_m_write_waitrequest               (sgdma_rx_m_write_waitrequest),                        //                                     .waitrequest
-		.sgdma_rx_m_write_byteenable                (sgdma_rx_m_write_byteenable),                         //                                     .byteenable
-		.sgdma_rx_m_write_write                     (sgdma_rx_m_write_write),                              //                                     .write
-		.sgdma_rx_m_write_writedata                 (sgdma_rx_m_write_writedata),                          //                                     .writedata
-		.sgdma_tx_descriptor_read_address           (sgdma_tx_descriptor_read_address),                    //             sgdma_tx_descriptor_read.address
-		.sgdma_tx_descriptor_read_waitrequest       (sgdma_tx_descriptor_read_waitrequest),                //                                     .waitrequest
-		.sgdma_tx_descriptor_read_read              (sgdma_tx_descriptor_read_read),                       //                                     .read
-		.sgdma_tx_descriptor_read_readdata          (sgdma_tx_descriptor_read_readdata),                   //                                     .readdata
-		.sgdma_tx_descriptor_read_readdatavalid     (sgdma_tx_descriptor_read_readdatavalid),              //                                     .readdatavalid
-		.sgdma_tx_descriptor_write_address          (sgdma_tx_descriptor_write_address),                   //            sgdma_tx_descriptor_write.address
-		.sgdma_tx_descriptor_write_waitrequest      (sgdma_tx_descriptor_write_waitrequest),               //                                     .waitrequest
-		.sgdma_tx_descriptor_write_write            (sgdma_tx_descriptor_write_write),                     //                                     .write
-		.sgdma_tx_descriptor_write_writedata        (sgdma_tx_descriptor_write_writedata),                 //                                     .writedata
-		.sgdma_tx_m_read_address                    (sgdma_tx_m_read_address),                             //                      sgdma_tx_m_read.address
-		.sgdma_tx_m_read_waitrequest                (sgdma_tx_m_read_waitrequest),                         //                                     .waitrequest
-		.sgdma_tx_m_read_read                       (sgdma_tx_m_read_read),                                //                                     .read
-		.sgdma_tx_m_read_readdata                   (sgdma_tx_m_read_readdata),                            //                                     .readdata
-		.sgdma_tx_m_read_readdatavalid              (sgdma_tx_m_read_readdatavalid),                       //                                     .readdatavalid
-		.cpu_jtag_debug_module_address              (mm_interconnect_0_cpu_jtag_debug_module_address),     //                cpu_jtag_debug_module.address
-		.cpu_jtag_debug_module_write                (mm_interconnect_0_cpu_jtag_debug_module_write),       //                                     .write
-		.cpu_jtag_debug_module_read                 (mm_interconnect_0_cpu_jtag_debug_module_read),        //                                     .read
-		.cpu_jtag_debug_module_readdata             (mm_interconnect_0_cpu_jtag_debug_module_readdata),    //                                     .readdata
-		.cpu_jtag_debug_module_writedata            (mm_interconnect_0_cpu_jtag_debug_module_writedata),   //                                     .writedata
-		.cpu_jtag_debug_module_byteenable           (mm_interconnect_0_cpu_jtag_debug_module_byteenable),  //                                     .byteenable
-		.cpu_jtag_debug_module_waitrequest          (mm_interconnect_0_cpu_jtag_debug_module_waitrequest), //                                     .waitrequest
-		.cpu_jtag_debug_module_debugaccess          (mm_interconnect_0_cpu_jtag_debug_module_debugaccess), //                                     .debugaccess
-		.descriptor_memory_s1_address               (mm_interconnect_0_descriptor_memory_s1_address),      //                 descriptor_memory_s1.address
-		.descriptor_memory_s1_write                 (mm_interconnect_0_descriptor_memory_s1_write),        //                                     .write
-		.descriptor_memory_s1_readdata              (mm_interconnect_0_descriptor_memory_s1_readdata),     //                                     .readdata
-		.descriptor_memory_s1_writedata             (mm_interconnect_0_descriptor_memory_s1_writedata),    //                                     .writedata
-		.descriptor_memory_s1_byteenable            (mm_interconnect_0_descriptor_memory_s1_byteenable),   //                                     .byteenable
-		.descriptor_memory_s1_chipselect            (mm_interconnect_0_descriptor_memory_s1_chipselect),   //                                     .chipselect
-		.descriptor_memory_s1_clken                 (mm_interconnect_0_descriptor_memory_s1_clken),        //                                     .clken
-		.ext_flash_uas_address                      (mm_interconnect_0_ext_flash_uas_address),             //                        ext_flash_uas.address
-		.ext_flash_uas_write                        (mm_interconnect_0_ext_flash_uas_write),               //                                     .write
-		.ext_flash_uas_read                         (mm_interconnect_0_ext_flash_uas_read),                //                                     .read
-		.ext_flash_uas_readdata                     (mm_interconnect_0_ext_flash_uas_readdata),            //                                     .readdata
-		.ext_flash_uas_writedata                    (mm_interconnect_0_ext_flash_uas_writedata),           //                                     .writedata
-		.ext_flash_uas_burstcount                   (mm_interconnect_0_ext_flash_uas_burstcount),          //                                     .burstcount
-		.ext_flash_uas_byteenable                   (mm_interconnect_0_ext_flash_uas_byteenable),          //                                     .byteenable
-		.ext_flash_uas_readdatavalid                (mm_interconnect_0_ext_flash_uas_readdatavalid),       //                                     .readdatavalid
-		.ext_flash_uas_waitrequest                  (mm_interconnect_0_ext_flash_uas_waitrequest),         //                                     .waitrequest
-		.ext_flash_uas_lock                         (mm_interconnect_0_ext_flash_uas_lock),                //                                     .lock
-		.ext_flash_uas_debugaccess                  (mm_interconnect_0_ext_flash_uas_debugaccess),         //                                     .debugaccess
-		.onchip_ram_s1_address                      (mm_interconnect_0_onchip_ram_s1_address),             //                        onchip_ram_s1.address
-		.onchip_ram_s1_write                        (mm_interconnect_0_onchip_ram_s1_write),               //                                     .write
-		.onchip_ram_s1_readdata                     (mm_interconnect_0_onchip_ram_s1_readdata),            //                                     .readdata
-		.onchip_ram_s1_writedata                    (mm_interconnect_0_onchip_ram_s1_writedata),           //                                     .writedata
-		.onchip_ram_s1_byteenable                   (mm_interconnect_0_onchip_ram_s1_byteenable),          //                                     .byteenable
-		.onchip_ram_s1_chipselect                   (mm_interconnect_0_onchip_ram_s1_chipselect),          //                                     .chipselect
-		.onchip_ram_s1_clken                        (mm_interconnect_0_onchip_ram_s1_clken),               //                                     .clken
-		.onchip_ram_s2_address                      (mm_interconnect_0_onchip_ram_s2_address),             //                        onchip_ram_s2.address
-		.onchip_ram_s2_write                        (mm_interconnect_0_onchip_ram_s2_write),               //                                     .write
-		.onchip_ram_s2_readdata                     (mm_interconnect_0_onchip_ram_s2_readdata),            //                                     .readdata
-		.onchip_ram_s2_writedata                    (mm_interconnect_0_onchip_ram_s2_writedata),           //                                     .writedata
-		.onchip_ram_s2_byteenable                   (mm_interconnect_0_onchip_ram_s2_byteenable),          //                                     .byteenable
-		.onchip_ram_s2_chipselect                   (mm_interconnect_0_onchip_ram_s2_chipselect),          //                                     .chipselect
-		.onchip_ram_s2_clken                        (mm_interconnect_0_onchip_ram_s2_clken),               //                                     .clken
-		.pb_cpu_to_io_s0_address                    (mm_interconnect_0_pb_cpu_to_io_s0_address),           //                      pb_cpu_to_io_s0.address
-		.pb_cpu_to_io_s0_write                      (mm_interconnect_0_pb_cpu_to_io_s0_write),             //                                     .write
-		.pb_cpu_to_io_s0_read                       (mm_interconnect_0_pb_cpu_to_io_s0_read),              //                                     .read
-		.pb_cpu_to_io_s0_readdata                   (mm_interconnect_0_pb_cpu_to_io_s0_readdata),          //                                     .readdata
-		.pb_cpu_to_io_s0_writedata                  (mm_interconnect_0_pb_cpu_to_io_s0_writedata),         //                                     .writedata
-		.pb_cpu_to_io_s0_burstcount                 (mm_interconnect_0_pb_cpu_to_io_s0_burstcount),        //                                     .burstcount
-		.pb_cpu_to_io_s0_byteenable                 (mm_interconnect_0_pb_cpu_to_io_s0_byteenable),        //                                     .byteenable
-		.pb_cpu_to_io_s0_readdatavalid              (mm_interconnect_0_pb_cpu_to_io_s0_readdatavalid),     //                                     .readdatavalid
-		.pb_cpu_to_io_s0_waitrequest                (mm_interconnect_0_pb_cpu_to_io_s0_waitrequest),       //                                     .waitrequest
-		.pb_cpu_to_io_s0_debugaccess                (mm_interconnect_0_pb_cpu_to_io_s0_debugaccess),       //                                     .debugaccess
-		.sgdma_rx_csr_address                       (mm_interconnect_0_sgdma_rx_csr_address),              //                         sgdma_rx_csr.address
-		.sgdma_rx_csr_write                         (mm_interconnect_0_sgdma_rx_csr_write),                //                                     .write
-		.sgdma_rx_csr_read                          (mm_interconnect_0_sgdma_rx_csr_read),                 //                                     .read
-		.sgdma_rx_csr_readdata                      (mm_interconnect_0_sgdma_rx_csr_readdata),             //                                     .readdata
-		.sgdma_rx_csr_writedata                     (mm_interconnect_0_sgdma_rx_csr_writedata),            //                                     .writedata
-		.sgdma_rx_csr_chipselect                    (mm_interconnect_0_sgdma_rx_csr_chipselect),           //                                     .chipselect
-		.sgdma_tx_csr_address                       (mm_interconnect_0_sgdma_tx_csr_address),              //                         sgdma_tx_csr.address
-		.sgdma_tx_csr_write                         (mm_interconnect_0_sgdma_tx_csr_write),                //                                     .write
-		.sgdma_tx_csr_read                          (mm_interconnect_0_sgdma_tx_csr_read),                 //                                     .read
-		.sgdma_tx_csr_readdata                      (mm_interconnect_0_sgdma_tx_csr_readdata),             //                                     .readdata
-		.sgdma_tx_csr_writedata                     (mm_interconnect_0_sgdma_tx_csr_writedata),            //                                     .writedata
-		.sgdma_tx_csr_chipselect                    (mm_interconnect_0_sgdma_tx_csr_chipselect),           //                                     .chipselect
-		.tse_mac_control_port_address               (mm_interconnect_0_tse_mac_control_port_address),      //                 tse_mac_control_port.address
-		.tse_mac_control_port_write                 (mm_interconnect_0_tse_mac_control_port_write),        //                                     .write
-		.tse_mac_control_port_read                  (mm_interconnect_0_tse_mac_control_port_read),         //                                     .read
-		.tse_mac_control_port_readdata              (mm_interconnect_0_tse_mac_control_port_readdata),     //                                     .readdata
-		.tse_mac_control_port_writedata             (mm_interconnect_0_tse_mac_control_port_writedata),    //                                     .writedata
-		.tse_mac_control_port_waitrequest           (mm_interconnect_0_tse_mac_control_port_waitrequest)   //                                     .waitrequest
+		.clkin_50_clk_clk                           (clk_clk),                                            //                         clkin_50_clk.clk
+		.cpu_reset_reset_bridge_in_reset_reset      (rst_controller_001_reset_out_reset),                 //      cpu_reset_reset_bridge_in_reset.reset
+		.sgdma_tx_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                     // sgdma_tx_reset_reset_bridge_in_reset.reset
+		.cpu_data_master_address                    (cpu_data_master_address),                            //                      cpu_data_master.address
+		.cpu_data_master_waitrequest                (cpu_data_master_waitrequest),                        //                                     .waitrequest
+		.cpu_data_master_byteenable                 (cpu_data_master_byteenable),                         //                                     .byteenable
+		.cpu_data_master_read                       (cpu_data_master_read),                               //                                     .read
+		.cpu_data_master_readdata                   (cpu_data_master_readdata),                           //                                     .readdata
+		.cpu_data_master_readdatavalid              (cpu_data_master_readdatavalid),                      //                                     .readdatavalid
+		.cpu_data_master_write                      (cpu_data_master_write),                              //                                     .write
+		.cpu_data_master_writedata                  (cpu_data_master_writedata),                          //                                     .writedata
+		.cpu_data_master_debugaccess                (cpu_data_master_debugaccess),                        //                                     .debugaccess
+		.cpu_instruction_master_address             (cpu_instruction_master_address),                     //               cpu_instruction_master.address
+		.cpu_instruction_master_waitrequest         (cpu_instruction_master_waitrequest),                 //                                     .waitrequest
+		.cpu_instruction_master_read                (cpu_instruction_master_read),                        //                                     .read
+		.cpu_instruction_master_readdata            (cpu_instruction_master_readdata),                    //                                     .readdata
+		.cpu_instruction_master_readdatavalid       (cpu_instruction_master_readdatavalid),               //                                     .readdatavalid
+		.sgdma_rx_descriptor_read_address           (sgdma_rx_descriptor_read_address),                   //             sgdma_rx_descriptor_read.address
+		.sgdma_rx_descriptor_read_waitrequest       (sgdma_rx_descriptor_read_waitrequest),               //                                     .waitrequest
+		.sgdma_rx_descriptor_read_read              (sgdma_rx_descriptor_read_read),                      //                                     .read
+		.sgdma_rx_descriptor_read_readdata          (sgdma_rx_descriptor_read_readdata),                  //                                     .readdata
+		.sgdma_rx_descriptor_read_readdatavalid     (sgdma_rx_descriptor_read_readdatavalid),             //                                     .readdatavalid
+		.sgdma_rx_descriptor_write_address          (sgdma_rx_descriptor_write_address),                  //            sgdma_rx_descriptor_write.address
+		.sgdma_rx_descriptor_write_waitrequest      (sgdma_rx_descriptor_write_waitrequest),              //                                     .waitrequest
+		.sgdma_rx_descriptor_write_write            (sgdma_rx_descriptor_write_write),                    //                                     .write
+		.sgdma_rx_descriptor_write_writedata        (sgdma_rx_descriptor_write_writedata),                //                                     .writedata
+		.sgdma_rx_m_write_address                   (sgdma_rx_m_write_address),                           //                     sgdma_rx_m_write.address
+		.sgdma_rx_m_write_waitrequest               (sgdma_rx_m_write_waitrequest),                       //                                     .waitrequest
+		.sgdma_rx_m_write_byteenable                (sgdma_rx_m_write_byteenable),                        //                                     .byteenable
+		.sgdma_rx_m_write_write                     (sgdma_rx_m_write_write),                             //                                     .write
+		.sgdma_rx_m_write_writedata                 (sgdma_rx_m_write_writedata),                         //                                     .writedata
+		.sgdma_tx_descriptor_read_address           (sgdma_tx_descriptor_read_address),                   //             sgdma_tx_descriptor_read.address
+		.sgdma_tx_descriptor_read_waitrequest       (sgdma_tx_descriptor_read_waitrequest),               //                                     .waitrequest
+		.sgdma_tx_descriptor_read_read              (sgdma_tx_descriptor_read_read),                      //                                     .read
+		.sgdma_tx_descriptor_read_readdata          (sgdma_tx_descriptor_read_readdata),                  //                                     .readdata
+		.sgdma_tx_descriptor_read_readdatavalid     (sgdma_tx_descriptor_read_readdatavalid),             //                                     .readdatavalid
+		.sgdma_tx_descriptor_write_address          (sgdma_tx_descriptor_write_address),                  //            sgdma_tx_descriptor_write.address
+		.sgdma_tx_descriptor_write_waitrequest      (sgdma_tx_descriptor_write_waitrequest),              //                                     .waitrequest
+		.sgdma_tx_descriptor_write_write            (sgdma_tx_descriptor_write_write),                    //                                     .write
+		.sgdma_tx_descriptor_write_writedata        (sgdma_tx_descriptor_write_writedata),                //                                     .writedata
+		.sgdma_tx_m_read_address                    (sgdma_tx_m_read_address),                            //                      sgdma_tx_m_read.address
+		.sgdma_tx_m_read_waitrequest                (sgdma_tx_m_read_waitrequest),                        //                                     .waitrequest
+		.sgdma_tx_m_read_read                       (sgdma_tx_m_read_read),                               //                                     .read
+		.sgdma_tx_m_read_readdata                   (sgdma_tx_m_read_readdata),                           //                                     .readdata
+		.sgdma_tx_m_read_readdatavalid              (sgdma_tx_m_read_readdatavalid),                      //                                     .readdatavalid
+		.cpu_debug_mem_slave_address                (mm_interconnect_0_cpu_debug_mem_slave_address),      //                  cpu_debug_mem_slave.address
+		.cpu_debug_mem_slave_write                  (mm_interconnect_0_cpu_debug_mem_slave_write),        //                                     .write
+		.cpu_debug_mem_slave_read                   (mm_interconnect_0_cpu_debug_mem_slave_read),         //                                     .read
+		.cpu_debug_mem_slave_readdata               (mm_interconnect_0_cpu_debug_mem_slave_readdata),     //                                     .readdata
+		.cpu_debug_mem_slave_writedata              (mm_interconnect_0_cpu_debug_mem_slave_writedata),    //                                     .writedata
+		.cpu_debug_mem_slave_byteenable             (mm_interconnect_0_cpu_debug_mem_slave_byteenable),   //                                     .byteenable
+		.cpu_debug_mem_slave_waitrequest            (mm_interconnect_0_cpu_debug_mem_slave_waitrequest),  //                                     .waitrequest
+		.cpu_debug_mem_slave_debugaccess            (mm_interconnect_0_cpu_debug_mem_slave_debugaccess),  //                                     .debugaccess
+		.descriptor_memory_s1_address               (mm_interconnect_0_descriptor_memory_s1_address),     //                 descriptor_memory_s1.address
+		.descriptor_memory_s1_write                 (mm_interconnect_0_descriptor_memory_s1_write),       //                                     .write
+		.descriptor_memory_s1_readdata              (mm_interconnect_0_descriptor_memory_s1_readdata),    //                                     .readdata
+		.descriptor_memory_s1_writedata             (mm_interconnect_0_descriptor_memory_s1_writedata),   //                                     .writedata
+		.descriptor_memory_s1_byteenable            (mm_interconnect_0_descriptor_memory_s1_byteenable),  //                                     .byteenable
+		.descriptor_memory_s1_chipselect            (mm_interconnect_0_descriptor_memory_s1_chipselect),  //                                     .chipselect
+		.descriptor_memory_s1_clken                 (mm_interconnect_0_descriptor_memory_s1_clken),       //                                     .clken
+		.ext_flash_uas_address                      (mm_interconnect_0_ext_flash_uas_address),            //                        ext_flash_uas.address
+		.ext_flash_uas_write                        (mm_interconnect_0_ext_flash_uas_write),              //                                     .write
+		.ext_flash_uas_read                         (mm_interconnect_0_ext_flash_uas_read),               //                                     .read
+		.ext_flash_uas_readdata                     (mm_interconnect_0_ext_flash_uas_readdata),           //                                     .readdata
+		.ext_flash_uas_writedata                    (mm_interconnect_0_ext_flash_uas_writedata),          //                                     .writedata
+		.ext_flash_uas_burstcount                   (mm_interconnect_0_ext_flash_uas_burstcount),         //                                     .burstcount
+		.ext_flash_uas_byteenable                   (mm_interconnect_0_ext_flash_uas_byteenable),         //                                     .byteenable
+		.ext_flash_uas_readdatavalid                (mm_interconnect_0_ext_flash_uas_readdatavalid),      //                                     .readdatavalid
+		.ext_flash_uas_waitrequest                  (mm_interconnect_0_ext_flash_uas_waitrequest),        //                                     .waitrequest
+		.ext_flash_uas_lock                         (mm_interconnect_0_ext_flash_uas_lock),               //                                     .lock
+		.ext_flash_uas_debugaccess                  (mm_interconnect_0_ext_flash_uas_debugaccess),        //                                     .debugaccess
+		.onchip_ram_s1_address                      (mm_interconnect_0_onchip_ram_s1_address),            //                        onchip_ram_s1.address
+		.onchip_ram_s1_write                        (mm_interconnect_0_onchip_ram_s1_write),              //                                     .write
+		.onchip_ram_s1_readdata                     (mm_interconnect_0_onchip_ram_s1_readdata),           //                                     .readdata
+		.onchip_ram_s1_writedata                    (mm_interconnect_0_onchip_ram_s1_writedata),          //                                     .writedata
+		.onchip_ram_s1_byteenable                   (mm_interconnect_0_onchip_ram_s1_byteenable),         //                                     .byteenable
+		.onchip_ram_s1_chipselect                   (mm_interconnect_0_onchip_ram_s1_chipselect),         //                                     .chipselect
+		.onchip_ram_s1_clken                        (mm_interconnect_0_onchip_ram_s1_clken),              //                                     .clken
+		.onchip_ram_s2_address                      (mm_interconnect_0_onchip_ram_s2_address),            //                        onchip_ram_s2.address
+		.onchip_ram_s2_write                        (mm_interconnect_0_onchip_ram_s2_write),              //                                     .write
+		.onchip_ram_s2_readdata                     (mm_interconnect_0_onchip_ram_s2_readdata),           //                                     .readdata
+		.onchip_ram_s2_writedata                    (mm_interconnect_0_onchip_ram_s2_writedata),          //                                     .writedata
+		.onchip_ram_s2_byteenable                   (mm_interconnect_0_onchip_ram_s2_byteenable),         //                                     .byteenable
+		.onchip_ram_s2_chipselect                   (mm_interconnect_0_onchip_ram_s2_chipselect),         //                                     .chipselect
+		.onchip_ram_s2_clken                        (mm_interconnect_0_onchip_ram_s2_clken),              //                                     .clken
+		.pb_cpu_to_io_s0_address                    (mm_interconnect_0_pb_cpu_to_io_s0_address),          //                      pb_cpu_to_io_s0.address
+		.pb_cpu_to_io_s0_write                      (mm_interconnect_0_pb_cpu_to_io_s0_write),            //                                     .write
+		.pb_cpu_to_io_s0_read                       (mm_interconnect_0_pb_cpu_to_io_s0_read),             //                                     .read
+		.pb_cpu_to_io_s0_readdata                   (mm_interconnect_0_pb_cpu_to_io_s0_readdata),         //                                     .readdata
+		.pb_cpu_to_io_s0_writedata                  (mm_interconnect_0_pb_cpu_to_io_s0_writedata),        //                                     .writedata
+		.pb_cpu_to_io_s0_burstcount                 (mm_interconnect_0_pb_cpu_to_io_s0_burstcount),       //                                     .burstcount
+		.pb_cpu_to_io_s0_byteenable                 (mm_interconnect_0_pb_cpu_to_io_s0_byteenable),       //                                     .byteenable
+		.pb_cpu_to_io_s0_readdatavalid              (mm_interconnect_0_pb_cpu_to_io_s0_readdatavalid),    //                                     .readdatavalid
+		.pb_cpu_to_io_s0_waitrequest                (mm_interconnect_0_pb_cpu_to_io_s0_waitrequest),      //                                     .waitrequest
+		.pb_cpu_to_io_s0_debugaccess                (mm_interconnect_0_pb_cpu_to_io_s0_debugaccess),      //                                     .debugaccess
+		.sgdma_rx_csr_address                       (mm_interconnect_0_sgdma_rx_csr_address),             //                         sgdma_rx_csr.address
+		.sgdma_rx_csr_write                         (mm_interconnect_0_sgdma_rx_csr_write),               //                                     .write
+		.sgdma_rx_csr_read                          (mm_interconnect_0_sgdma_rx_csr_read),                //                                     .read
+		.sgdma_rx_csr_readdata                      (mm_interconnect_0_sgdma_rx_csr_readdata),            //                                     .readdata
+		.sgdma_rx_csr_writedata                     (mm_interconnect_0_sgdma_rx_csr_writedata),           //                                     .writedata
+		.sgdma_rx_csr_chipselect                    (mm_interconnect_0_sgdma_rx_csr_chipselect),          //                                     .chipselect
+		.sgdma_tx_csr_address                       (mm_interconnect_0_sgdma_tx_csr_address),             //                         sgdma_tx_csr.address
+		.sgdma_tx_csr_write                         (mm_interconnect_0_sgdma_tx_csr_write),               //                                     .write
+		.sgdma_tx_csr_read                          (mm_interconnect_0_sgdma_tx_csr_read),                //                                     .read
+		.sgdma_tx_csr_readdata                      (mm_interconnect_0_sgdma_tx_csr_readdata),            //                                     .readdata
+		.sgdma_tx_csr_writedata                     (mm_interconnect_0_sgdma_tx_csr_writedata),           //                                     .writedata
+		.sgdma_tx_csr_chipselect                    (mm_interconnect_0_sgdma_tx_csr_chipselect),          //                                     .chipselect
+		.tse_mac_control_port_address               (mm_interconnect_0_tse_mac_control_port_address),     //                 tse_mac_control_port.address
+		.tse_mac_control_port_write                 (mm_interconnect_0_tse_mac_control_port_write),       //                                     .write
+		.tse_mac_control_port_read                  (mm_interconnect_0_tse_mac_control_port_read),        //                                     .read
+		.tse_mac_control_port_readdata              (mm_interconnect_0_tse_mac_control_port_readdata),    //                                     .readdata
+		.tse_mac_control_port_writedata             (mm_interconnect_0_tse_mac_control_port_writedata),   //                                     .writedata
+		.tse_mac_control_port_waitrequest           (mm_interconnect_0_tse_mac_control_port_waitrequest)  //                                     .waitrequest
 	);
 
 	a5gx_starter_fpga_bup_qsys_mm_interconnect_1 mm_interconnect_1 (
@@ -813,7 +813,7 @@ module a5gx_starter_fpga_bup_qsys (
 		.receiver2_irq (irq_mapper_receiver2_irq),           // receiver2.irq
 		.receiver3_irq (irq_mapper_receiver3_irq),           // receiver3.irq
 		.receiver4_irq (irq_mapper_receiver4_irq),           // receiver4.irq
-		.sender_irq    (cpu_d_irq_irq)                       //    sender.irq
+		.sender_irq    (cpu_irq_irq)                         //    sender.irq
 	);
 
 	a5gx_starter_fpga_bup_qsys_avalon_st_adapter #(
@@ -942,7 +942,7 @@ module a5gx_starter_fpga_bup_qsys (
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_001 (
 		.reset_in0      (~merged_resets_in_reset_reset_n),        // reset_in0.reset
-		.reset_in1      (cpu_jtag_debug_module_reset_reset),      // reset_in1.reset
+		.reset_in1      (cpu_debug_reset_request_reset),          // reset_in1.reset
 		.reset_in2      (~merged_resets_in_reset_reset_n),        // reset_in2.reset
 		.clk            (clk_clk),                                //       clk.clk
 		.reset_out      (rst_controller_001_reset_out_reset),     // reset_out.reset

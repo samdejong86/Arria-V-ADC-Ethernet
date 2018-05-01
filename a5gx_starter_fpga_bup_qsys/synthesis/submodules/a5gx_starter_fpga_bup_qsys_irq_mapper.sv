@@ -22,7 +22,7 @@
 // Parameters
 //   NUM_RCVRS        : 5
 //   SENDER_IRW_WIDTH : 32
-//   IRQ_MAP          : 0:3,1:2,2:0,3:4,4:1
+//   IRQ_MAP          : 0:2,1:3,2:0,3:4,4:1
 //
 // -------------------------------------------------------
 
@@ -55,8 +55,8 @@ module a5gx_starter_fpga_bup_qsys_irq_mapper
     always @* begin
 	sender_irq = 0;
 
-        sender_irq[3] = receiver0_irq;
-        sender_irq[2] = receiver1_irq;
+        sender_irq[2] = receiver0_irq;
+        sender_irq[3] = receiver1_irq;
         sender_irq[0] = receiver2_irq;
         sender_irq[4] = receiver3_irq;
         sender_irq[1] = receiver4_irq;
