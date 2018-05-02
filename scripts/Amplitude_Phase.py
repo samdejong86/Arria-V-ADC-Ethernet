@@ -50,7 +50,9 @@ b=tn.read_until("trigger".encode('ascii'))
 tn.write("TRIG:SOURCE:EXT\n".encode('ascii'))
 b=tn.read_until("trigger".encode('ascii'))
 
-
+frameInterval=10
+if args.movie:
+    frameInterval=125
 
 
 
@@ -126,7 +128,7 @@ class SubplotAnimation(animation.TimedAnimation):
         ax3.set_xlim(0, 1000/self.sampleFreq)
         ax3.set_ylim(0, 16000)
 
-        animation.TimedAnimation.__init__(self, fig, interval=125, blit=True)
+        animation.TimedAnimation.__init__(self, fig, interval=frameInterval, blit=True)
 
     def _draw_frame(self, framedata):
         i = framedata

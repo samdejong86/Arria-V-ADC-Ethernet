@@ -124,8 +124,13 @@ fig = plt.figure()
 number_of_frames = int(int(args.length)/0.125)
 data=[]
 
+frameInterval=10
+
+if args.movie:
+    frameInterval=125
+
 # call the animator.  blit=True means only re-draw the parts that have changed.
-anim = animation.FuncAnimation(fig, update_hist,number_of_frames,interval=125,fargs=(data,))
+anim = animation.FuncAnimation(fig, update_hist,number_of_frames,interval=frameInterval,fargs=(data,))
 
 if args.movie:
     anim.save(args.filename, metadata={'artist':'Sam'})
