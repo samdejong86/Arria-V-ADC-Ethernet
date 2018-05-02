@@ -1,6 +1,5 @@
 post_message -type info "Entering a5gx_starter_fpga_bup_top.sdc"
 
-source src/checkQuartusVersion.sdc
 source src/commentOutSDCFile.sdc
 
 #checkQuartusVersion "Version 12.0 Build 178 05/31/2012 SJ Full Version"
