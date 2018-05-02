@@ -23,6 +23,7 @@ import argparse
 import scipy.optimize
 import re
 
+
 parser = argparse.ArgumentParser(description='Find amplitude and phase of sinewave from FPGA')
 
 parser.add_argument('-a','--address', help='IP address of FPGA', default="142.104.63.132", required=False)
@@ -86,8 +87,7 @@ class SubplotAnimation(animation.TimedAnimation):
         ax1.set_xscale('log')
         ax2.set_xscale('log')
 
-
-        self.t = np.linspace(0, 80, 19999)
+        self.t = np.linspace(0, 80, 2500)
         self.x = []
         self.y = []
         self.freq =[]
@@ -126,12 +126,12 @@ class SubplotAnimation(animation.TimedAnimation):
         ax3.set_xlim(0, 1000/self.sampleFreq)
         ax3.set_ylim(0, 16000)
 
-        animation.TimedAnimation.__init__(self, fig, interval=10, blit=True)
+        animation.TimedAnimation.__init__(self, fig, interval=125, blit=True)
 
     def _draw_frame(self, framedata):
         i = framedata
         head = i - 1
-
+  
         tn.write("acquire\n".encode('ascii'))
         rawdata = tn.read_until("complete".encode('ascii'))
 

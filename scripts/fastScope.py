@@ -27,7 +27,9 @@ parser.add_argument('-a','--address', help='IP address of FPGA', default="142.10
 parser.add_argument('-p','--port', help='The port to listen to', default="30", required=False)
 
 parser.add_argument('-m','--movie', help='Save a 200 frame video', action='store_true', required=False)
-parser.add_argument('-f','--filename', help='Video filename', default="slowScope.mp4", required=False)
+parser.add_argument('-f','--filename', help='Video filename', default="fastScope.mp4", required=False)
+parser.add_argument('-l','--length', help='length if video (in seconds)', default='60', required=False)
+
 parser.add_argument('-r','--freq'   , help='Sampling frequency in Megahertz (default: %(default)s)',     default=40, required=False)
 
 parser.add_argument('-t','--trigSource', help='Set trigger source (self or ext)', default='self', choices=['self', 'ext'], required=False)
@@ -108,9 +110,9 @@ def update_hist(num, data):
 
     
 
-    plt2.cla()
+    plt.cla()
     plt.title(status, loc='left')
-    plt2.plot(x,y, color='red', label='Wave Number='+str(wavenum))
+    plt.plot(x,y, color='red', label='Wave Number='+str(wavenum))
     plt.xlabel("Time (ns)")
     plt.ylabel("ADC counts (AU)")
     plt.legend(loc='upper right')
@@ -119,14 +121,15 @@ def update_hist(num, data):
 
 fig = plt.figure()
 
-number_of_frames = 10
+number_of_frames = int(int(args.length)/0.125)
 data=[]
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
-anim = animation.FuncAnimation(fig, update_hist,number_of_frames,fargs=(data,))
+anim = animation.FuncAnimation(fig, update_hist,number_of_frames,interval=125,fargs=(data,))
 
 if args.movie:
     anim.save(args.filename, metadata={'artist':'Sam'})
+    
 
 
 
