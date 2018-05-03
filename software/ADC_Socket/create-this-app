@@ -3,9 +3,9 @@
 # This script creates the simple_socket_server_rgmii application in this directory.
 
 
-BSP_DIR=../Simple_Socket_BUP_bsp
+BSP_DIR=../ADC_Socket_bsp
 QUARTUS_PROJECT_DIR=../../
-NIOS2_APP_GEN_ARGS="--elf-name Simple_Socket_BUP.elf  --set OBJDUMP_INCLUDE_SOURCE 1 --src-files alt_error_handler.c iniche_init.c led.c network_utilities.c simple_socket_server.c tse_my_system.c"
+NIOS2_APP_GEN_ARGS="--elf-name ADC_Socket.elf  --set OBJDUMP_INCLUDE_SOURCE 1 --src-files alt_error_handler.c iniche_init.c led.c network_utilities.c simple_socket_server.c tse_my_system.c"
 
 
 # First, check to see if $SOPC_KIT_NIOS2 environmental variable is set.

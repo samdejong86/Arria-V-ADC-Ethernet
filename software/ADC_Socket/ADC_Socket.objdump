@@ -1,6 +1,6 @@
 
-Simple_Socket_BUP.elf:     file format elf32-littlenios2
-Simple_Socket_BUP.elf
+ADC_Socket.elf:     file format elf32-littlenios2
+ADC_Socket.elf
 architecture: nios2:r1, flags 0x00000112:
 EXEC_P, HAS_SYMS, D_PAGED
 start address 0x08200200
@@ -35,49 +35,49 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  10 .debug_aranges 00001d58  00000000  00000000  00055000  2**3
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_info   00068385  00000000  00000000  00056d58  2**0
+ 11 .debug_info   00068362  00000000  00000000  00056d58  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_abbrev 000159f8  00000000  00000000  000bf0dd  2**0
+ 12 .debug_abbrev 000159f8  00000000  00000000  000bf0ba  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   0001dd22  00000000  00000000  000d4ad5  2**0
+ 13 .debug_line   0001dc8f  00000000  00000000  000d4ab2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_frame  00008950  00000000  00000000  000f27f8  2**2
+ 14 .debug_frame  00008950  00000000  00000000  000f2744  2**2
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    0000b9f3  00000000  00000000  000fb148  2**0
+ 15 .debug_str    0000b9e5  00000000  00000000  000fb094  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_loc    0001f259  00000000  00000000  00106b3b  2**0
+ 16 .debug_loc    0001f259  00000000  00000000  00106a79  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_alt_sim_info 00000050  00000000  00000000  00125d94  2**2
+ 17 .debug_alt_sim_info 00000050  00000000  00000000  00125cd4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_ranges 00001eb8  00000000  00000000  00125de8  2**3
+ 18 .debug_ranges 00001eb8  00000000  00000000  00125d28  2**3
                   CONTENTS, READONLY, DEBUGGING
- 19 .thread_model 00000006  00000000  00000000  001324f2  2**0
+ 19 .thread_model 00000006  00000000  00000000  0013242a  2**0
                   CONTENTS, READONLY
- 20 .cpu          00000003  00000000  00000000  001324f8  2**0
+ 20 .cpu          00000003  00000000  00000000  00132430  2**0
                   CONTENTS, READONLY
- 21 .qsys         00000001  00000000  00000000  001324fb  2**0
+ 21 .qsys         00000001  00000000  00000000  00132433  2**0
                   CONTENTS, READONLY
- 22 .simulation_enabled 00000001  00000000  00000000  001324fc  2**0
+ 22 .simulation_enabled 00000001  00000000  00000000  00132434  2**0
                   CONTENTS, READONLY
- 23 .sysid_hash   00000004  00000000  00000000  001324fd  2**0
+ 23 .sysid_hash   00000004  00000000  00000000  00132435  2**0
                   CONTENTS, READONLY
- 24 .sysid_base   00000004  00000000  00000000  00132501  2**0
+ 24 .sysid_base   00000004  00000000  00000000  00132439  2**0
                   CONTENTS, READONLY
- 25 .sysid_time   00000004  00000000  00000000  00132505  2**0
+ 25 .sysid_time   00000004  00000000  00000000  0013243d  2**0
                   CONTENTS, READONLY
- 26 .stderr_dev   0000000b  00000000  00000000  00132509  2**0
+ 26 .stderr_dev   0000000b  00000000  00000000  00132441  2**0
                   CONTENTS, READONLY
- 27 .stdin_dev    0000000b  00000000  00000000  00132514  2**0
+ 27 .stdin_dev    0000000b  00000000  00000000  0013244c  2**0
                   CONTENTS, READONLY
- 28 .stdout_dev   0000000b  00000000  00000000  0013251f  2**0
+ 28 .stdout_dev   0000000b  00000000  00000000  00132457  2**0
                   CONTENTS, READONLY
- 29 .sopc_system_name 0000001a  00000000  00000000  0013252a  2**0
+ 29 .sopc_system_name 0000001a  00000000  00000000  00132462  2**0
                   CONTENTS, READONLY
- 30 .quartus_project_dir 00000023  00000000  00000000  00132544  2**0
+ 30 .quartus_project_dir 00000023  00000000  00000000  0013247c  2**0
                   CONTENTS, READONLY
- 31 .jdi          00007005  00000000  00000000  00132567  2**0
+ 31 .jdi          00007175  00000000  00000000  0013249f  2**0
                   CONTENTS, READONLY
- 32 .sopcinfo     000c1277  00000000  00000000  0013956c  2**0
+ 32 .sopcinfo     000c1277  00000000  00000000  00139614  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 04a80000 l    d  .entry	00000000 .entry
@@ -99,7 +99,7 @@ SYMBOL TABLE:
 00000000 l    d  .debug_loc	00000000 .debug_loc
 00000000 l    d  .debug_alt_sim_info	00000000 .debug_alt_sim_info
 00000000 l    d  .debug_ranges	00000000 .debug_ranges
-00000000 l    df *ABS*	00000000 ../Simple_Socket_BUP_bsp//obj/HAL/src/crt0.o
+00000000 l    df *ABS*	00000000 ../ADC_Socket_bsp//obj/HAL/src/crt0.o
 08200244 l       .text	00000000 alt_after_alt_main
 00000000 l    df *ABS*	00000000 alt_exception_entry.o
 082000d4 l       .exceptions	00000000 alt_exception_unknown

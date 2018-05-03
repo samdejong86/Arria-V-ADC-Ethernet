@@ -4,7 +4,7 @@
         <BspVersion>default</BspVersion>
         <BspGeneratedTimeStamp>May 1, 2018 3:03:57 PM</BspGeneratedTimeStamp>
         <BspGeneratedUnixTimeStamp>1525212237840</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>/home/srdejong/Arria-V-ADC-Ethernet/software/Simple_Socket_BUP_bsp</BspGeneratedLocation>
+        <BspGeneratedLocation>/home/srdejong/Arria-V-ADC-Ethernet/software/ADC_Socket_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../a5gx_starter_fpga_bup_qsys.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>

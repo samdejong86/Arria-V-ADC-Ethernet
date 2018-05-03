@@ -10,7 +10,7 @@
 					<folderInfo id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.2082992614." name="/" resourcePath="">
 						<toolChain id="altera.nios2.linux.gcc4.913231015" name="Linux Nios II GCC4" superClass="altera.nios2.linux.gcc4">
 							<targetPlatform id="altera.nios2.linux.gcc4.504191131" name="Nios II" osList="linux" superClass="altera.nios2.linux.gcc4"/>
-							<builder buildPath="${workspace_loc://Simple_Socket_BUP}" id="altera.tool.gnu.builder.810829117" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="altera.tool.gnu.builder"/>
+							<builder buildPath="${workspace_loc://ADC_Socket}" id="altera.tool.gnu.builder.810829117" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="altera.tool.gnu.builder"/>
 							<tool id="altera.tool.gnu.c.compiler.1884835785" name="Nios II GCC C Compiler" superClass="altera.tool.gnu.c.compiler">
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.568853047" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -47,7 +47,7 @@
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="Simple_Socket_BUP.null.1424274906" name="Simple_Socket_BUP"/>
+		<project id="ADC_Socket.null.1424274906" name="ADC_Socket"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="scannerConfiguration">
