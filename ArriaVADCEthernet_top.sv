@@ -86,22 +86,22 @@ assign tx_clk_to_the_tse_mac =   ( eth_mode_from_the_tse_mac ) ? ( enet_tx_125 )
                         
 assign enet_mdio = ( !mdio_oen_from_the_tse_mac ) ? ( mdio_out_from_the_tse_mac ) : ( 1'bz );
 
-parameter MSB = 19; // PHY interface: need minimum 10ms delay for POR
+// PHY interface: need minimum 10ms delay for POR
 
-    reg [MSB:0] epcount; 
+    reg [19:0] epcount; 
     
     always @(posedge clkin_50)
     begin 
      if (cpu_resetn == 1'b0)
-        epcount <= MSB + 1'b0;
+        epcount <= 20'd19 + 20'b0;
       else
-		if (epcount[MSB] == 1'b0)
-			epcount <= epcount + 1;
+		if (epcount[19] == 1'b0)
+			epcount <= epcount + 20'b1;
 		else
 			epcount <= epcount;
     end
     
-assign enet_resetn = !epcount[MSB-1];
+assign enet_resetn = !epcount[19-1];
 
 wire [7:0] adcControl;
 wire [15:0] waveSample;
