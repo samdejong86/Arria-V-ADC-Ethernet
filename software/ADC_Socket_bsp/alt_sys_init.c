@@ -1,8 +1,8 @@
 /*
  * alt_sys_init.c - HAL initialization source
  *
- * Machine generated for CPU 'cpu' in SOPC Builder design 'a5gx_starter_fpga_bup_qsys'
- * SOPC Builder design path: ../../a5gx_starter_fpga_bup_qsys.sopcinfo
+ * Machine generated for CPU 'cpu' in SOPC Builder design 'Nios_CPU_qsys'
+ * SOPC Builder design path: ../../Nios_CPU_qsys.sopcinfo
  *
  * Generated: Tue May 01 13:33:28 PDT 2018
  */

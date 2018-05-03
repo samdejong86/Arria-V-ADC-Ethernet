@@ -1,11 +1,11 @@
-post_message -type info "Entering a5gx_starter_fpga_bup_top.sdc"
+post_message -type info "Entering Nios_CPU_top.sdc"
 
 source src/commentOutSDCFile.sdc
 
 #checkQuartusVersion "Version 12.0 Build 178 05/31/2012 SJ Full Version"
-commentOutSDCFile "a5gx_starter_fpga_bup_qsys/synthesis/submodules/altera_eth_tse_mac.sdc"
+commentOutSDCFile "Nios_CPU_qsys/synthesis/submodules/altera_eth_tse_mac.sdc"
 
-#Info: Reading SDC File: 'a5gx_starter_fpga_bup_qsys/synthesis/submodules/a5gx_starter_fpga_bup_qsys_tse_mac_constraints.sdc'
+#Info: Reading SDC File: 'Nios_CPU_qsys/synthesis/submodules/Nios_CPU_qsys_tse_mac_constraints.sdc'
 
 #
 # Start by getting all of the PLL related clocks declared
@@ -23,8 +23,8 @@ create_clock -period 20.00 -name clkin_50_adc  [ get_ports clkin_50_adc ]
 #
 # these are the generated clocks from jtag and plls that we care about
 #
-#set ddrlo_sysclk_125    { a5gx_starter_fpga_bup_qsys_inst|ddr2_lo_latency_128m|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_controller_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_alt_mem_phy_inst|clk|pll|altpll_component|auto_generated|pll1|clk[1] }
-#set ddrlo_auxhalf_62p5  { a5gx_starter_fpga_bup_qsys_inst|ddr2_lo_latency_128m|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_controller_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_alt_mem_phy_inst|clk|pll|altpll_component|auto_generated|pll1|clk[0] }
+#set ddrlo_sysclk_125    { Nios_CPU_qsys_inst|ddr2_lo_latency_128m|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_controller_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_alt_mem_phy_inst|clk|pll|altpll_component|auto_generated|pll1|clk[1] }
+#set ddrlo_auxhalf_62p5  { Nios_CPU_qsys_inst|ddr2_lo_latency_128m|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_controller_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_inst|s5gx100g_fpga_bup_qsys_inst_ddr2_lo_latency_128m_phy_alt_mem_phy_inst|clk|pll|altpll_component|auto_generated|pll1|clk[0] }
 
 set enet_pll_125  { u0|enet_pll|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk } 
 set enet_pll_25   { u0|enet_pll|altera_pll_i|general[1].gpll~PLL_OUTPUT_COUNTER|divclk }
@@ -68,7 +68,7 @@ set_clock_groups \
 #
 # this is the locked output from the Ethernet PLL in the design, it can be cut
 #
-#set_false_path -from {a5gx_starter_fpga_bup_qsys_inst:a5gx_starter_fpga_bup_qsys_inst|enet_pll:the_enet_pll|count_done} -to *
+#set_false_path -from {Nios_CPU_qsys_inst:Nios_CPU_qsys_inst|enet_pll:the_enet_pll|count_done} -to *
 
 #
 # this is for the IRQ signals that come from the slow peripheral clock domain to the linux cpu

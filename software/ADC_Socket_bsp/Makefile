@@ -101,7 +101,7 @@ ACDS_VERSION := 16.1
 # BUILD_NUMBER: 196
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := ../../a5gx_starter_fpga_bup_qsys.sopcinfo
+SOPC_FILE := ../../Nios_CPU_qsys.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS

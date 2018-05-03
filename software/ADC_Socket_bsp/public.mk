@@ -86,7 +86,7 @@ ACDS_VERSION := 16.1
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
-SOPCINFO_FILE := $(ABS_BSP_ROOT_DIR)/../../a5gx_starter_fpga_bup_qsys.sopcinfo
+SOPCINFO_FILE := $(ABS_BSP_ROOT_DIR)/../../Nios_CPU_qsys.sopcinfo
 
 # Big-Endian operation. 
 # setting BIG_ENDIAN is false
@@ -139,8 +139,8 @@ QSYS := 1
 ELF_PATCH_FLAG += --qsys true
 
 # Design Name 
-# setting SOPC_NAME is a5gx_starter_fpga_bup_qsys
-SOPC_NAME := a5gx_starter_fpga_bup_qsys
+# setting SOPC_NAME is Nios_CPU_qsys
+SOPC_NAME := Nios_CPU_qsys
 
 # SopcBuilder Simulation Enabled 
 # setting SOPC_SIMULATION_ENABLED is false
@@ -157,9 +157,9 @@ SOPC_SYSID_FLAG += --sidp=0x9000088
 ELF_PATCH_FLAG  += --sidp 0x9000088
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1525206587
-SOPC_SYSID_FLAG += --timestamp=1525206587
-ELF_PATCH_FLAG  += --timestamp 1525206587
+# setting SOPC_TIMESTAMP is 1525383394
+SOPC_SYSID_FLAG += --timestamp=1525383394
+ELF_PATCH_FLAG  += --timestamp 1525383394
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 

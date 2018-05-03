@@ -1,10 +1,10 @@
 /*
  * system.h - SOPC Builder system and BSP software package information
  *
- * Machine generated for CPU 'cpu' in SOPC Builder design 'a5gx_starter_fpga_bup_qsys'
- * SOPC Builder design path: ../../a5gx_starter_fpga_bup_qsys.sopcinfo
+ * Machine generated for CPU 'cpu' in SOPC Builder design 'Nios_CPU_qsys'
+ * SOPC Builder design path: ../../Nios_CPU_qsys.sopcinfo
  *
- * Generated: Tue May 01 13:33:28 PDT 2018
+ * Generated: Thu May 03 14:42:54 PDT 2018
  */
 
 /*
@@ -186,7 +186,7 @@
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
-#define ALT_SYSTEM_NAME "a5gx_starter_fpga_bup_qsys"
+#define ALT_SYSTEM_NAME "Nios_CPU_qsys"
 
 
 /*
@@ -239,7 +239,7 @@
 #define DESCRIPTOR_MEMORY_CONTENTS_INFO ""
 #define DESCRIPTOR_MEMORY_DUAL_PORT 0
 #define DESCRIPTOR_MEMORY_GUI_RAM_BLOCK_TYPE "AUTO"
-#define DESCRIPTOR_MEMORY_INIT_CONTENTS_FILE "a5gx_starter_fpga_bup_qsys_descriptor_memory"
+#define DESCRIPTOR_MEMORY_INIT_CONTENTS_FILE "Nios_CPU_qsys_descriptor_memory"
 #define DESCRIPTOR_MEMORY_INIT_MEM_CONTENT 1
 #define DESCRIPTOR_MEMORY_INSTANCE_ID "NONE"
 #define DESCRIPTOR_MEMORY_IRQ -1
@@ -355,7 +355,7 @@
 #define ONCHIP_RAM_CONTENTS_INFO ""
 #define ONCHIP_RAM_DUAL_PORT 1
 #define ONCHIP_RAM_GUI_RAM_BLOCK_TYPE "AUTO"
-#define ONCHIP_RAM_INIT_CONTENTS_FILE "a5gx_starter_fpga_bup_qsys_onchip_ram"
+#define ONCHIP_RAM_INIT_CONTENTS_FILE "Nios_CPU_qsys_onchip_ram"
 #define ONCHIP_RAM_INIT_MEM_CONTENT 1
 #define ONCHIP_RAM_INSTANCE_ID "NONE"
 #define ONCHIP_RAM_IRQ -1
@@ -383,7 +383,7 @@
 #define SGDMA_RX_M_WRITE_ONCHIP_RAM_CONTENTS_INFO ""
 #define SGDMA_RX_M_WRITE_ONCHIP_RAM_DUAL_PORT 1
 #define SGDMA_RX_M_WRITE_ONCHIP_RAM_GUI_RAM_BLOCK_TYPE "AUTO"
-#define SGDMA_RX_M_WRITE_ONCHIP_RAM_INIT_CONTENTS_FILE "a5gx_starter_fpga_bup_qsys_onchip_ram"
+#define SGDMA_RX_M_WRITE_ONCHIP_RAM_INIT_CONTENTS_FILE "Nios_CPU_qsys_onchip_ram"
 #define SGDMA_RX_M_WRITE_ONCHIP_RAM_INIT_MEM_CONTENT 1
 #define SGDMA_RX_M_WRITE_ONCHIP_RAM_INSTANCE_ID "NONE"
 #define SGDMA_RX_M_WRITE_ONCHIP_RAM_IRQ -1
@@ -411,7 +411,7 @@
 #define SGDMA_TX_M_READ_ONCHIP_RAM_CONTENTS_INFO ""
 #define SGDMA_TX_M_READ_ONCHIP_RAM_DUAL_PORT 1
 #define SGDMA_TX_M_READ_ONCHIP_RAM_GUI_RAM_BLOCK_TYPE "AUTO"
-#define SGDMA_TX_M_READ_ONCHIP_RAM_INIT_CONTENTS_FILE "a5gx_starter_fpga_bup_qsys_onchip_ram"
+#define SGDMA_TX_M_READ_ONCHIP_RAM_INIT_CONTENTS_FILE "Nios_CPU_qsys_onchip_ram"
 #define SGDMA_TX_M_READ_ONCHIP_RAM_INIT_MEM_CONTENT 1
 #define SGDMA_TX_M_READ_ONCHIP_RAM_INSTANCE_ID "NONE"
 #define SGDMA_TX_M_READ_ONCHIP_RAM_IRQ -1
@@ -573,7 +573,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1525206587
+#define SYSID_TIMESTAMP 1525383394
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

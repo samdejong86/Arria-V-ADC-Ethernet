@@ -171,7 +171,7 @@ NIOS2_ELF_FORMAT ?= elf32-littlenios2
 #-------------------------------------
 
 # Memory: descriptor_memory
-MEM_0 := a5gx_starter_fpga_bup_qsys_descriptor_memory
+MEM_0 := Nios_CPU_qsys_descriptor_memory
 $(MEM_0)_NAME := descriptor_memory
 $(MEM_0)_MEM_INIT_FILE_PARAM_NAME := INIT_FILE
 HEX_FILES += $(MEM_INIT_DIR)/$(MEM_0).hex
@@ -220,7 +220,7 @@ FLASH_DAT_FILES += $(MEM_1).dat
 ext_flash: check_elf_exists $(MEM_1).dat $(MEM_1).sym
 
 # Memory: onchip_ram
-MEM_2 := a5gx_starter_fpga_bup_qsys_onchip_ram
+MEM_2 := Nios_CPU_qsys_onchip_ram
 $(MEM_2)_NAME := onchip_ram
 $(MEM_2)_MEM_INIT_FILE_PARAM_NAME := INIT_FILE
 HEX_FILES += $(MEM_INIT_DIR)/$(MEM_2).hex

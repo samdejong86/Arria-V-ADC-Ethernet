@@ -108,7 +108,7 @@ wire [15:0] waveSample;
 wire [15:0] SampleNum;
 
 
- a5gx_starter_fpga_bup_qsys u0 (
+ Nios_CPU_qsys u0 (
 		  .clk_clk                                         (clkin_50),        
         .enet_pll_outclk0_clk                            (enet_tx_125),      
         .enet_pll_outclk1_clk                            (enet_tx_25),    

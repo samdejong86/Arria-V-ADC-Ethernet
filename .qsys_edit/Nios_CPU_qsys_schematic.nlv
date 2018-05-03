@@ -1,0 +1,60 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst Nios_CPU_qsys.enet_pll -pg 1 -lvl 7 -y 230
+preplace inst Nios_CPU_qsys.sgdma_rx -pg 1 -lvl 3 -y 980
+preplace inst Nios_CPU_qsys.sampleNum -pg 1 -lvl 7 -y 130
+preplace inst Nios_CPU_qsys.ext_flash.slave_translator -pg 1
+preplace inst Nios_CPU_qsys.cpu.clock_bridge -pg 1
+preplace inst Nios_CPU_qsys.onchip_ram -pg 1 -lvl 7 -y 990
+preplace inst Nios_CPU_qsys.sysid -pg 1 -lvl 7 -y 510
+preplace inst Nios_CPU_qsys.lcd -pg 1 -lvl 7 -y 410
+preplace inst Nios_CPU_qsys.waveSample -pg 1 -lvl 7 -y 310
+preplace inst Nios_CPU_qsys.descriptor_memory -pg 1 -lvl 7 -y 1130
+preplace inst Nios_CPU_qsys.cpu -pg 1 -lvl 4 -y 1030
+preplace inst Nios_CPU_qsys.ext_flash.tdt -pg 1
+preplace inst Nios_CPU_qsys.cpu.cpu -pg 1
+preplace inst Nios_CPU_qsys.cfi_flash_atb_bridge_0 -pg 1 -lvl 7 -y 790
+preplace inst Nios_CPU_qsys.pb_cpu_to_io -pg 1 -lvl 6 -y 990
+preplace inst Nios_CPU_qsys.clkin_50 -pg 1 -lvl 5 -y 820
+preplace inst Nios_CPU_qsys.tse_mac.i_tse_mac -pg 1
+preplace inst Nios_CPU_qsys.ext_flash.reset -pg 1
+preplace inst Nios_CPU_qsys.ext_flash -pg 1 -lvl 6 -y 800
+preplace inst Nios_CPU_qsys.merged_resets -pg 1 -lvl 4 -y 860
+preplace inst Nios_CPU_qsys.tse_mac -pg 1 -lvl 2 -y 1020
+preplace inst Nios_CPU_qsys.ext_flash.clk -pg 1
+preplace inst Nios_CPU_qsys -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst Nios_CPU_qsys.sgdma_tx -pg 1 -lvl 1 -y 920
+preplace inst Nios_CPU_qsys.adc_control -pg 1 -lvl 7 -y 30
+preplace inst Nios_CPU_qsys.sys_clk_timer -pg 1 -lvl 7 -y 690
+preplace inst Nios_CPU_qsys.jtag_uart_0 -pg 1 -lvl 7 -y 590
+preplace inst Nios_CPU_qsys.high_res_timer -pg 1 -lvl 7 -y 890
+preplace inst Nios_CPU_qsys.ext_flash.tda -pg 1
+preplace inst Nios_CPU_qsys.cpu.reset_bridge -pg 1
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)tse_mac.mac_rgmii_connection,(SLAVE)Nios_CPU_qsys.tse_mac_mac_rgmii_connection) 1 0 2 NJ 1110 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)tse_mac.mac_mdio_connection,(SLAVE)Nios_CPU_qsys.tse_mac_mac_mdio_connection) 1 0 2 NJ 1070 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)enet_pll.reset,(SLAVE)Nios_CPU_qsys.enet_pll_reset) 1 0 7 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(MASTER)Nios_CPU_qsys.enet_pll_outclk2,(MASTER)enet_pll.outclk2) 1 7 1 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)tse_mac.mac_status_connection,(SLAVE)Nios_CPU_qsys.tse_mac_mac_status_connection) 1 0 2 NJ 1130 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.clk,(SLAVE)clkin_50.clk_in) 1 0 5 NJ 830 NJ 830 NJ 830 NJ 830 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.samplenum_out,(SLAVE)sampleNum.external_connection) 1 0 7 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.adc_control_out,(SLAVE)adc_control.external_connection) 1 0 7 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.wavesample_in,(SLAVE)waveSample.external_connection) 1 0 7 NJ 340 NJ 340 NJ 340 NJ 340 NJ 340 NJ 340 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)tse_mac.pcs_mac_rx_clock_connection,(SLAVE)Nios_CPU_qsys.tse_mac_pcs_mac_rx_clock_connection) 1 0 2 NJ 1150 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.enet_pll_locked,(SLAVE)enet_pll.locked) 1 0 7 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ
+preplace netloc POINT_TO_POINT<net_container>Nios_CPU_qsys</net_container>(MASTER)ext_flash.tcm,(SLAVE)cfi_flash_atb_bridge_0.tcs) 1 6 1 2170
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(MASTER)Nios_CPU_qsys.enet_pll_outclk1,(MASTER)enet_pll.outclk1) 1 7 1 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)cfi_flash_atb_bridge_0.out,(SLAVE)Nios_CPU_qsys.cfi_flash_atb_bridge_0_out) 1 0 7 NJ 740 NJ 740 NJ 740 NJ 740 NJ 740 NJ 740 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.tse_mac_pcs_mac_tx_clock_connection,(SLAVE)tse_mac.pcs_mac_tx_clock_connection) 1 0 2 NJ 1170 NJ
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.merged_resets_in_reset,(SLAVE)merged_resets.in_reset) 1 0 4 NJ 870 NJ 870 NJ 870 NJ
+preplace netloc FAN_OUT<net_container>Nios_CPU_qsys</net_container>(SLAVE)tse_mac.control_port_clock_connection,(SLAVE)pb_cpu_to_io.clk,(SLAVE)onchip_ram.clk2,(SLAVE)sysid.clk,(SLAVE)cpu.clk,(SLAVE)cfi_flash_atb_bridge_0.clk,(SLAVE)waveSample.clk,(SLAVE)sys_clk_timer.clk,(MASTER)clkin_50.clk,(SLAVE)sampleNum.clk,(SLAVE)tse_mac.transmit_clock_connection,(SLAVE)jtag_uart_0.clk,(SLAVE)tse_mac.receive_clock_connection,(SLAVE)sgdma_rx.clk,(SLAVE)adc_control.clk,(SLAVE)sgdma_tx.clk,(SLAVE)enet_pll.refclk,(SLAVE)high_res_timer.clk,(SLAVE)lcd.clk,(SLAVE)onchip_ram.clk1,(SLAVE)ext_flash.clk,(SLAVE)descriptor_memory.clk1) 1 0 7 250 1030 500 960 950 950 1250 930 NJ 930 1870 960 2110
+preplace netloc POINT_TO_POINT<net_container>Nios_CPU_qsys</net_container>(MASTER)tse_mac.receive,(SLAVE)sgdma_rx.in) 1 2 1 930
+preplace netloc FAN_IN<net_container>Nios_CPU_qsys</net_container>(SLAVE)descriptor_memory.s1,(MASTER)sgdma_tx.descriptor_read,(MASTER)sgdma_tx.descriptor_write,(MASTER)sgdma_rx.descriptor_write,(MASTER)sgdma_rx.descriptor_read) 1 1 6 480 910 NJ 910 1190 850 NJ 910 NJ 910 2090
+preplace netloc FAN_OUT<net_container>Nios_CPU_qsys</net_container>(SLAVE)jtag_uart_0.irq,(SLAVE)high_res_timer.irq,(SLAVE)sys_clk_timer.irq,(SLAVE)sgdma_rx.csr_irq,(MASTER)cpu.irq,(SLAVE)sgdma_tx.csr_irq) 1 0 7 230 890 NJ 890 930 930 NJ 950 1670 1040 NJ 980 2150
+preplace netloc POINT_TO_POINT<net_container>Nios_CPU_qsys</net_container>(MASTER)sgdma_tx.out,(SLAVE)tse_mac.transmit) 1 1 1 460
+preplace netloc FAN_OUT<net_container>Nios_CPU_qsys</net_container>(SLAVE)sampleNum.s1,(SLAVE)high_res_timer.s1,(SLAVE)adc_control.s1,(SLAVE)sysid.control_slave,(SLAVE)waveSample.s1,(SLAVE)lcd.control_slave,(SLAVE)sys_clk_timer.s1,(MASTER)pb_cpu_to_io.m0,(SLAVE)jtag_uart_0.avalon_jtag_slave) 1 6 1 2130
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(SLAVE)Nios_CPU_qsys.lcd_external,(SLAVE)lcd.external) 1 0 7 NJ 460 NJ 460 NJ 460 NJ 460 NJ 460 NJ 460 NJ
+preplace netloc INTERCONNECT<net_container>Nios_CPU_qsys</net_container>(MASTER)sgdma_rx.m_write,(SLAVE)ext_flash.uas,(MASTER)cpu.data_master,(MASTER)cpu.instruction_master,(MASTER)sgdma_tx.m_read,(SLAVE)cpu.debug_mem_slave,(SLAVE)onchip_ram.s2,(SLAVE)onchip_ram.s1,(SLAVE)sgdma_rx.csr,(SLAVE)sgdma_tx.csr,(SLAVE)pb_cpu_to_io.s0) 1 0 7 270 910 460 940 910 970 1210 970 1650 1000 1930 1100 2230
+preplace netloc EXPORT<net_container>Nios_CPU_qsys</net_container>(MASTER)Nios_CPU_qsys.enet_pll_outclk0,(MASTER)enet_pll.outclk0) 1 7 1 NJ
+preplace netloc INTERCONNECT<net_container>Nios_CPU_qsys</net_container>(SLAVE)clkin_50.clk_in_reset,(SLAVE)sys_clk_timer.reset,(SLAVE)descriptor_memory.reset1,(SLAVE)adc_control.reset,(SLAVE)onchip_ram.reset2,(SLAVE)sampleNum.reset,(SLAVE)sysid.reset,(SLAVE)tse_mac.reset_connection,(SLAVE)jtag_uart_0.reset,(SLAVE)cfi_flash_atb_bridge_0.reset,(SLAVE)cpu.reset,(SLAVE)pb_cpu_to_io.reset,(SLAVE)ext_flash.reset,(MASTER)clkin_50.clk_reset,(SLAVE)onchip_ram.reset1,(SLAVE)high_res_timer.reset,(SLAVE)sgdma_rx.reset,(SLAVE)waveSample.reset,(MASTER)cpu.debug_reset_request,(MASTER)merged_resets.out_reset,(SLAVE)lcd.reset,(SLAVE)sgdma_tx.reset) 1 0 7 270 1190 480 980 890 1110 1230 990 1630 1020 1910 1080 2210
+levelinfo -pg 1 0 200 2580
+levelinfo -hier Nios_CPU_qsys 210 300 760 1000 1370 1700 1990 2300 2450

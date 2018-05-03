@@ -71,13 +71,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  28 .stdout_dev   0000000b  00000000  00000000  00132457  2**0
                   CONTENTS, READONLY
- 29 .sopc_system_name 0000001a  00000000  00000000  00132462  2**0
+ 29 .sopc_system_name 0000000d  00000000  00000000  00132462  2**0
                   CONTENTS, READONLY
- 30 .quartus_project_dir 00000023  00000000  00000000  0013247c  2**0
+ 30 .quartus_project_dir 00000023  00000000  00000000  0013246f  2**0
                   CONTENTS, READONLY
- 31 .jdi          00007175  00000000  00000000  0013249f  2**0
+ 31 .jdi          00006419  00000000  00000000  00132492  2**0
                   CONTENTS, READONLY
- 32 .sopcinfo     000c1277  00000000  00000000  00139614  2**0
+ 32 .sopcinfo     000c11f1  00000000  00000000  001388ab  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 04a80000 l    d  .entry	00000000 .entry

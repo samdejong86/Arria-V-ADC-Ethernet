@@ -5,7 +5,7 @@
 BSP_TYPE=ucosii
 BSP_DIR=.
 SOPC_DIR=../../
-SOPC_FILE=../../a5gx_starter_fpga_bup_qsys.sopcinfo
+SOPC_FILE=../../Nios_CPU_qsys.sopcinfo
 NIOS2_BSP_ARGS="--set hal.make.bsp_cflags_defined_symbols -DTSE_MY_SYSTEM --cmd enable_sw_package altera_iniche"
 CPU_NAME=
 
