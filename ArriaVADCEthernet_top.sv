@@ -254,9 +254,13 @@ ADC_Mux	delayMux (
 	.result ( delayedSignal )
 	);
 	
+	
+parameter negVal = 7000;
+parameter posVal = 9400;
+	
 ADC_Mux	triggerSlopeMux (
-	.data0x ( 14'd7000 ),
-	.data1x ( 14'd9400 ),
+	.data0x (negVal),
+	.data1x (posVal),
 	.sel ( trigSlope ),
 	.result ( triggerLevel )
 	);
