@@ -2,7 +2,7 @@ set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_TOOL_VERSION "16.1"
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "Nios_CPU_qsys" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../Nios_CPU_qsys.sopcinfo"]
-set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name SLD_INFO "QSYS_NAME Nios_CPU_qsys HAS_SOPCINFO 1 GENERATION_ID 1525383394"
+set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name SLD_INFO "QSYS_NAME Nios_CPU_qsys HAS_SOPCINFO 1 GENERATION_ID 1525725311"
 set_global_assignment -library "Nios_CPU_qsys" -name MISC_FILE [file join $::quartus(qip_path) "../Nios_CPU_qsys.cmp"]
 set_global_assignment -library "Nios_CPU_qsys" -name SLD_FILE [file join $::quartus(qip_path) "Nios_CPU_qsys.regmap"]
 set_global_assignment -library "Nios_CPU_qsys" -name SLD_FILE [file join $::quartus(qip_path) "Nios_CPU_qsys.debuginfo"]
@@ -16,7 +16,7 @@ set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTUyNTM4MzM5NA==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTUyNTcyNTMxMQ==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::QXJyaWEgVg==::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::NUFHWEZCM0g0RjM1QzQ=::QXV0byBERVZJQ0U="
 set_global_assignment -entity "Nios_CPU_qsys" -library "Nios_CPU_qsys" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::NF9INA==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -2415,7 +2415,9 @@ set_global_assignment -entity "Nios_CPU_qsys_adc_control" -library "Nios_CPU_qsy
 set_global_assignment -entity "Nios_CPU_qsys_adc_control" -library "Nios_CPU_qsys" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9pcnFfdHlwZQ==::Tk9ORQ==::ZGVyaXZlZF9pcnFfdHlwZQ=="
 set_global_assignment -entity "Nios_CPU_qsys_adc_control" -library "Nios_CPU_qsys" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9oYXNfaXJx::ZmFsc2U=::ZGVyaXZlZF9oYXNfaXJx"
 
-set_global_assignment -library "Nios_CPU_qsys" -name VERILOG_FILE [file join $::quartus(qip_path) "Nios_CPU_qsys.v"]
+set_global_assignment -library "Nios_CPU_qsys" -name VHDL_FILE [file join $::quartus(qip_path) "Nios_CPU_qsys.vhd"]
+set_global_assignment -library "Nios_CPU_qsys" -name VHDL_FILE [file join $::quartus(qip_path) "nios_cpu_qsys_rst_controller.vhd"]
+set_global_assignment -library "Nios_CPU_qsys" -name VHDL_FILE [file join $::quartus(qip_path) "nios_cpu_qsys_rst_controller_001.vhd"]
 set_global_assignment -library "Nios_CPU_qsys" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_reset_controller.v"]
 set_global_assignment -library "Nios_CPU_qsys" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_reset_synchronizer.v"]
 set_global_assignment -library "Nios_CPU_qsys" -name SDC_FILE [file join $::quartus(qip_path) "submodules/altera_reset_controller.sdc"]

@@ -11,6 +11,6 @@
  </systemtable>
  <library expandedCategories="Library,Project" />
  <window width="1678" height="1148" x="177" y="52" />
- <generation greybox="1" block_symbol_file="0" />
- <hdlexample language="VERILOG" />
+ <generation greybox="1" block_symbol_file="0" synthesis="VHDL" />
+ <hdlexample language="VHDL" />
 </preferences>

@@ -220,14 +220,14 @@ wire			[13:0]			a2da_data;
 wire			[13:0]			a2db_data;		
 		
 		
-adcSync sync_a(
+adc_sync_vhdl sync_a(
 	.sys_clk(sys_clk), 
 	.DCO(ada_dco), 
 	.ADCin(adc_da), 
 	.ADCout(a2da_data)
 );		
 	
-adcSync sync_b(
+adc_sync_vhdl sync_b(
 	.sys_clk(sys_clk), 
 	.DCO(adb_dco), 
 	.ADCin(adc_db), 
@@ -236,6 +236,7 @@ adcSync sync_b(
 	
 
 wire [13:0] DelayVec [100];
+wire [13:0] DelayVecVHDL [100];
 wire triggerSelf;
 wire triggerExt;
 wire trigger;
@@ -275,14 +276,22 @@ wire running;
 
 assign running = (acquire) ? 1'b0 : sys_clk;
 
-delayVec delayModule(
+
+
+//wire [13:0] DelayVecVHDL [100];
+
+
+
+delayVec_vhdl delayModulevhdl(
 	.clk(sys_clk),
 	.ADC_IN(a2db_data),
 	.DelayVec(DelayVec)
 );
 
 
-trigger trigModuleSelf(
+
+
+trigger_vhdl trigModuleSelf(
 	.clk(sys_clk),
 	.ADC_IN(a2db_data), 
 	.trigSlope(trigSlope), 
@@ -290,7 +299,7 @@ trigger trigModuleSelf(
 	.trigger(triggerSelf)
 	);
 	
-trigger trigModuleExt(
+trigger_vhdl trigModuleExt(
 	.clk(sys_clk),
 	.ADC_IN(a2da_data), 
 	.trigSlope(trigSlope), 

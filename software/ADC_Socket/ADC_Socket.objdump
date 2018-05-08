@@ -75,9 +75,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  30 .quartus_project_dir 00000023  00000000  00000000  0013246f  2**0
                   CONTENTS, READONLY
- 31 .jdi          00006419  00000000  00000000  00132492  2**0
+ 31 .jdi          00005352  00000000  00000000  00132492  2**0
                   CONTENTS, READONLY
- 32 .sopcinfo     000c11f1  00000000  00000000  001388ab  2**0
+ 32 .sopcinfo     000c11f1  00000000  00000000  001377e4  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 04a80000 l    d  .entry	00000000 .entry
