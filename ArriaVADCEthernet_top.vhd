@@ -171,7 +171,7 @@ begin
 
 	enetResteProc : process(clkin_50) is
 	begin
-		if rising_edge(sys_clk) then
+		if rising_edge(clkin_50) then
 			if cpu_resetn = '0' then
 				epcount <= "00000000000000010011";
 			elsif epcount(19) = '0' then
@@ -229,26 +229,7 @@ begin
             tse_mac_pcs_mac_tx_clock_connection_clk         => tx_clk_to_the_tse_mac,         
             tse_mac_mac_rgmii_connection_tx_control         => enet_tx_en        
          );
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+ 
 
 
 	ada_oe <= '0';
