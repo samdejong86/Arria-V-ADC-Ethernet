@@ -1,3 +1,5 @@
+--This module handles an acquire reset
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -19,7 +21,7 @@ begin
 	acquireProc : process(clk) is
 	begin
 		if rising_edge(clk) then
-			if (acquireRequest='1') and not (waveNumber = lastwavenum) then
+			if (acquireRequest='1') and not (waveNumber = lastwavenum) then  --if acquisition is requested, and there is a new waveform, set acquire
 				acquire<='1';
 			else
 				acquire<='0';

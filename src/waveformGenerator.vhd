@@ -1,3 +1,5 @@
+--This module generates a waveform
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -25,7 +27,7 @@ begin
 	begin
 
 		if rising_edge(clk) then
-			if ( triggerIn='1' ) or not (counter = 0) then
+			if ( triggerIn='1' ) or not (counter = 0) then --start generating a waveform when trigger goes high, continue after the counter is started
 				counter := counter+1;
 				waveform(counter) <= signal_in;
 			else
@@ -33,8 +35,8 @@ begin
 			end if;
 			
 			if counter=999 then
-				counter :=0;
-				waveNumBuf := waveNumBuf + 1 ;
+				counter :=0;  --reset counter
+				waveNumBuf := waveNumBuf + 1 ;  --increment the waveform counter
 			end if;
 		end if;
 		waveNumber<=waveNumBuf;

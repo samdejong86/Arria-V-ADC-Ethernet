@@ -1,3 +1,4 @@
+--This module generates an array of delayed signals
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -24,9 +25,9 @@ begin
 	begin
 		if rising_edge(clk) then
 			for I in 1 to 99 loop
-				localDelay(I)<=localDelay(I-1);				
+				localDelay(I)<=localDelay(I-1); --set each entry equal to the one before it
 			end loop;
-			localDelay(0)<=ADC_IN;
+			localDelay(0)<=ADC_IN;  --the 0th entry has no delay
 		end if;
 	end process delayProc;
 	

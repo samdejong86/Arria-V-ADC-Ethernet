@@ -2,15 +2,16 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
+--my custom modules
 library work;
 use work.my_types_pkg.all;
---use work.adc_sync.all;
 
+
+--PLL for adc
 library adc_pll;
 use adc_pll.all;
 
-
+--NIOS processor
 library Nios_CPU_qsys;
 use Nios_CPU_qsys.all;
 
@@ -18,10 +19,12 @@ use Nios_CPU_qsys.all;
 
 entity ArriaVADCEthernet_top is 
 	port(
+		-- clocks
 		clkin_50: in std_logic;
 		clkin_50_adc: in std_logic;
 		cpu_resetn: in std_logic;
    
+		--ethernet interface
 		enet_mdc: out std_logic;
 		enet_mdio: inout std_logic;
 		enet_resetn: out std_logic; 
@@ -32,6 +35,7 @@ entity ArriaVADCEthernet_top is
 		enet_tx_en: out std_logic;
 		enet_tx_d : out STD_LOGIC_VECTOR (3 DOWNTO 0);
    
+		--flash interface
 		flash_cen: out STD_LOGIC_VECTOR (0 DOWNTO 0);
 		flash_cen2: out STD_LOGIC_VECTOR (0 DOWNTO 0);
 		flash_oen: out STD_LOGIC_VECTOR (0 DOWNTO 0);
@@ -42,12 +46,13 @@ entity ArriaVADCEthernet_top is
 		flash_advn: out std_logic;
 		flash_clk: out std_logic;
 
+		--lcd interface
 		lcd_wen: out std_logic;
 		lcd_data: inout STD_LOGIC_VECTOR (7 DOWNTO 0);
 		lcd_en: out std_logic;
 		lcd_d_cn: out std_logic;
 
-	
+		--adc interface
 		ada_dco: in std_logic;
 		adb_dco: in std_logic;
 	
@@ -71,6 +76,7 @@ end ArriaVADCEthernet_top;
 
 architecture rtl of ArriaVADCEthernet_top is
 
+	--ethernet signals
 	signal locked_from_the_enet_pll :std_logic;
 	signal mdio_oen_from_the_tse_mac :std_logic;
 	signal mdio_out_from_the_tse_mac :std_logic;
@@ -82,11 +88,12 @@ architecture rtl of ArriaVADCEthernet_top is
 	signal tx_clk_to_the_tse_mac :std_logic;
 	signal global_resetn :std_logic;
 
-
-	signal  adcControl:STD_LOGIC_VECTOR (7 DOWNTO 0):="00000000";
+	--pios from the NIOS processor
+	signal adcControl:STD_LOGIC_VECTOR (7 DOWNTO 0):="00000000";
 	signal waveSample: unsigned (15 DOWNTO 0);
 	signal SampleNum: STD_LOGIC_VECTOR (15 DOWNTO 0);
 
+	--adc pll signals
 	signal reset_n :std_logic;
 	signal sys_clk :std_logic;
 	signal sys_clk_90deg :std_logic;
@@ -94,44 +101,37 @@ architecture rtl of ArriaVADCEthernet_top is
 	signal sys_clk_270deg :std_logic;
 	signal pll_locked :std_logic;	
 
+	--daq controls
 	signal delay :std_logic := '0';
 	signal trigSource :std_logic;
 	signal trigSlope :std_logic;	
 	signal acquire :std_logic := '0';		
-
-
 	signal acquireRequest :std_logic;
 
 	signal waveNumber : unsigned (15 DOWNTO 0);	
 	signal lastwavenum : unsigned (15 DOWNTO 0);
 
-
-
+	--synced adc signals
 	signal a2da_data : unsigned (13 DOWNTO 0);
 	signal a2db_data : unsigned (13 DOWNTO 0);		
 		
-
+	--triggering and delay
 	signal DelayVec: adcArray (0 to 99);
 	signal DelayVecVHDL : adcArray (0 to 99);
 	signal triggerSelf :std_logic;
 	signal triggerExt :std_logic;
 	signal trigger :std_logic;
 	signal waveform : adcArray (0 to 999);
-
-
 	signal delayedSignal : unsigned (13 DOWNTO 0);
 	signal triggerLevel : unsigned (13 DOWNTO 0);
 	signal trigSourceData : unsigned (13 DOWNTO 0);
 	
-	
 	signal delayedSignal_std : STD_LOGIC_VECTOR (13 DOWNTO 0);
 	signal triggerLevel_std : STD_LOGIC_VECTOR (13 DOWNTO 0);
 
-
 	signal running :std_logic;
-	
-	--signal tx_clk_ena_10 : std_logic;
 
+	--negative and positive trigger thresholds
 	constant negVal : STD_LOGIC_VECTOR (13 DOWNTO 0) := "01101101011000";
 	constant posVal : STD_LOGIC_VECTOR (13 DOWNTO 0) := "10010010111000";
 
@@ -145,13 +145,13 @@ architecture rtl of ArriaVADCEthernet_top is
 	
 begin
 
-
+	--setup flash
 	flash_resetn <= cpu_resetn;
 	flash_advn <= '0';
 	flash_clk <= '0';
 	flash_cen2(0) <= '1';
 	
-	
+	--use a ddio for the ethernet tx clock
 	ddio_buffer_inst : entity work.ddio_buffer PORT MAP (
 		aclr     => not cpu_resetn,
 		datain_h         => "1",
@@ -162,13 +162,14 @@ begin
 	enet_gtx_clk <= gtx_clk_temp(0);
 
 
-
+	--chose the correct clock based on the ethernet mode
 	tx_clk_to_the_tse_mac <= enet_tx_125 when eth_mode_from_the_tse_mac = '1' else
 									 enet_tx_2p5 when ena_10_from_the_tse_mac   = '1' else 
 									 enet_tx_25;
-	
+		
 	enet_mdio <= mdio_out_from_the_tse_mac when mdio_oen_from_the_tse_mac = '0' else 'Z';
 
+	--needs to be a delay before the ethernet is enables
 	enetResteProc : process(clkin_50) is
 	begin
 		if rising_edge(clkin_50) then
@@ -183,15 +184,12 @@ begin
 	end process enetResteProc;
 	
 	enet_resetn <= not epcount(18);
-	
-	--std_SampleNum <= std_logic_vector(SampleNum);
-	
-	
+		
 	
 	std_waveSample <= std_logic_vector(waveSample);
 	
-
-    u0 : entity Nios_CPU_qsys.Nios_CPU_qsys port map (
+	--The NIOS processor
+   u0 : entity Nios_CPU_qsys.Nios_CPU_qsys port map (
 				clk_clk                                         => clkin_50,                                         
             enet_pll_outclk0_clk                            => enet_tx_125,                            
             enet_pll_outclk1_clk                            => enet_tx_25,                            
@@ -231,7 +229,7 @@ begin
          );
  
 
-
+	--setup the ADC
 	ada_oe <= '0';
 	adb_oe <= '0';
 	ad_sclk <= '0';
@@ -239,6 +237,7 @@ begin
 	ada_spi_cs <= '1';
 	adb_spi_cs <= '1';
 
+	--apply the ADC clocks
 	fpga_clk_a_p <=  sys_clk_180deg;
 	fpga_clk_a_n <= not sys_clk_180deg;
 	fpga_clk_b_p <=  sys_clk_270deg;
@@ -246,7 +245,7 @@ begin
 
 	reset_n <= '0';
 	
-	
+	--initialize the adc pll
 	adc_pll_inst : entity adc_pll.adc_pll PORT MAP (
 		refclk => clkin_50_adc,
 		outclk_0 => sys_clk,
@@ -257,26 +256,25 @@ begin
 		rst => reset_n
 	);
 	
+	--connect delay and trigger settings with the nios processor
 	delay <= adcControl(3);
 	trigSlope <= adcControl(2);
 	trigSource <= adcControl(1);
 	acquireRequest <= adcControl(0);
 	
+	--handle an acquire request
 	setAcquire : entity work.acquireSet PORT MAP(
 		acquireRequest => acquireRequest,
 		clk => sys_clk,
 		waveNumber => waveNumber,
 		lastwavenum => lastwavenum,
-		acquire => acquire
-	
+		acquire => acquire	
 	);
-	
-	
 	
 	
 	running <= sys_clk when acquire = '0' else '0';
 	
-	
+	--sync for channel a
 	sync_a : entity work.adc_sync PORT MAP (
 		sys_clk => sys_clk,
 		DCO => ada_dco, 
@@ -284,6 +282,7 @@ begin
 		ADCout => a2da_data	
 	);
 	
+	--sync for channel b
 	sync_b : entity work.adc_sync PORT MAP (
 		sys_clk => sys_clk,
 		DCO => adb_dco, 
@@ -291,13 +290,14 @@ begin
 		ADCout => a2db_data	
 	);
 	
+	--create a vector of delayed signals
 	delayModule : entity work.delayVec PORT MAP (
 		clk => sys_clk,
 		ADC_IN => a2db_data,
 		DelayVec => DelayVec
 	);
 	
-	
+	--mux controls delay
 	delayMux : entity work.adc_mux PORT MAP (
 		data0x	 => std_logic_vector(DelayVec(0)),
 		data1x	 => std_logic_vector(DelayVec(99)),
@@ -305,6 +305,7 @@ begin
 		result	 => delayedSignal_std
 	);
 
+	--mux controls trigger slope
 	triggerSlopeMux : entity work.adc_mux PORT MAP (
 		data0x	 => std_logic_vector(negVal),
 		data1x	 => std_logic_vector(posVal),
@@ -312,12 +313,12 @@ begin
 		result	 => triggerLevel_std
 	);
 
-
+	
 	triggerLevel <= unsigned(triggerLevel_std);
 	delayedSignal <= unsigned(delayedSignal_std);
 
 
-
+	--self trigger
 	trigModuleSelf : entity work.trigger PORT MAP (
 		clk => sys_clk,
 		ADC_IN => a2db_data, 
@@ -326,7 +327,8 @@ begin
 		trigger => triggerSelf
 	);
 	
-	 trigModuleExt : entity work.trigger PORT MAP (
+	--external trigger	
+	trigModuleExt : entity work.trigger PORT MAP (
 		clk => sys_clk,
 		ADC_IN => a2da_data, 
 		trigSlope => trigSlope, 
@@ -334,10 +336,10 @@ begin
 		trigger => triggerExt
 	);
 
-		
+	--mux for trigger source
 	trigger <= triggerSelf when trigSource = '0' else triggerExt;
 	
-	
+	--generate a waveform
 	waveGen : entity work.waveformGenerator PORT MAP (
 		clk => running, 
 		triggerIn => trigger, 
@@ -346,6 +348,7 @@ begin
 		waveNumber => waveNumber
 	);
 
+	--get a sample from the waveform
 	samplerModule : entity work.getSample PORT MAP(
 		clk => sys_clk, 
 		sampleNum => unsigned(SampleNum), 

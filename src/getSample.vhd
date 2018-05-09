@@ -1,4 +1,4 @@
-
+--This module gets the requested sample
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -19,23 +19,17 @@ entity getSample is
 end getSample;
 
 architecture rtl of getSample is
-	signal addOne : unsigned (15 DOWNTO 0) :=to_unsigned(1, 16);
-	--signal temp : unsigned (15 downto 0);
-	
-
 
 begin 
-	
-	--temp <= sampleNum - addOne;
 
 	getSampleProc : process(clk) is
 	begin
 		if rising_edge(clk) then
-			if sampleNum  >= 1 and sampleNum <= 1000 and acquire = '1' then
+			if sampleNum  >= 1 and sampleNum <= 1000 and acquire = '1' then  -- if the sample number is between 1 and 1000, send the sample
 				waveSample <= "00" & waveform(to_integer(sampleNum));				
-			elsif sampleNum = 1001 and acquire = '1' then
+			elsif sampleNum = 1001 and acquire = '1' then  --send the wavenumber last
 				waveSample<=wavenum;
-				lastwavenum<=wavenum;
+				lastwavenum<=wavenum;  --set the lastwavenum to the current wavenum, since this waveform has been sent.
 			end if;		
 		end if;
 end process getSampleProc;

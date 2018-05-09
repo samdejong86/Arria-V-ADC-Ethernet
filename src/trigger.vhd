@@ -12,25 +12,22 @@ entity trigger is
 	);
 end trigger;
 
-architecture rtl of trigger is 
-	--signal lastVal : unsigned (13 DOWNTO 0)   :="00000000000000";
-	--signal trigCount : unsigned (13 DOWNTO 0) :="00000000000000";
-	--signal trigCount : natural range 0 to 99:=0;
-	
+architecture rtl of trigger is 	
 begin
 
 
 trigProc : process(clk) is
-	variable  lastVal : unsigned (13 DOWNTO 0)   :="00000000000000";
+	variable  lastVal : unsigned (13 DOWNTO 0)   :="00000000000000"; 
 	variable trigCount : natural range 0 to 999:=0;
 
 	begin
 		if rising_edge(clk) then
+			--positive trigger
 			if trigSlope = '1' then
-				if ADC_IN > trigLevel and ADC_IN>=lastVal then
+				if ADC_IN > trigLevel and ADC_IN>=lastVal then  --want the trigger to be above theshold and above previous value
 					trigCount:=trigCount+1;
 					if trigCount=2 then
-						trigger <= '1';
+						trigger <= '1'; --only set the trigger high on second clock cycle.
 					else
 						trigger <= '0';
 					end if;
@@ -40,6 +37,7 @@ trigProc : process(clk) is
 					
 				end if;	
 			else 
+				--negative trigger
 				if ADC_IN < trigLevel and ADC_IN<=lastVal then
 						trigCount:=trigCount+1;
 					if trigCount=2 then
