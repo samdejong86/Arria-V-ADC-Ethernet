@@ -288,20 +288,6 @@ set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE ArriaVADCEthernet_top.stp
 set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to ada_dco
 set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to adb_dco
-set_global_assignment -name SDC_FILE ArriaVADCEthernet_top.sdc
-set_global_assignment -name CDF_FILE ArriaVADCEthernet_top.cdf
-set_global_assignment -name SIGNALTAP_FILE ArriaVADCEthernet_top.stp
-set_global_assignment -name QIP_FILE Nios_CPU_qsys/synthesis/Nios_CPU_qsys.qip
-set_global_assignment -name QIP_FILE ddio_buffer/enet_gtx_clk_ddio_buffer.qip
-set_global_assignment -name SYSTEMVERILOG_FILE src/getSample.sv
-set_global_assignment -name VHDL_FILE adcSync_VHDL.vhd
-set_global_assignment -name VHDL_FILE trigger_vhdl.vhd
-set_global_assignment -name VHDL_FILE delayVec_vhdl.vhd
-set_global_assignment -name VHDL_FILE delayArray.vhd
-set_global_assignment -name VHDL_FILE ArriaVADCEthernet_top.vhd
-set_global_assignment -name QIP_FILE adc_pll_vhdl.qip
-set_global_assignment -name SIP_FILE adc_pll_vhdl.sip
-set_global_assignment -name QIP_FILE adc_mux_vhdl/adc_mux_vhdl.qip
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "adc_pll_vhdl:adc_pll|outclk_0" -section_id auto_signaltap_0
@@ -474,9 +460,6 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_global_assignment -name VHDL_FILE waveformGenerator_vhdl.vhd
-set_global_assignment -name VHDL_FILE getSample_vhdl.vhd
-set_global_assignment -name QIP_FILE ddio_buffer_vhdl/ddio_buffer_vhdl.qip
 set_location_assignment PIN_AK20 -to flash_cen2[0]
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_1
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_1
@@ -606,7 +589,6 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to auto_signaltap_1|vcc -section_id auto_signaltap_1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to auto_signaltap_1|vcc -section_id auto_signaltap_1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to auto_signaltap_1|vcc -section_id auto_signaltap_1
-set_global_assignment -name VHDL_FILE acquireSet_vhdl.vhd
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "acquireSet_vhdl:setAcquire|acquire" -section_id auto_signaltap_1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "acquireSet_vhdl:setAcquire|acquireRequest" -section_id auto_signaltap_1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "acquireSet_vhdl:setAcquire|lastwavenum[0]" -section_id auto_signaltap_1
@@ -845,5 +827,22 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to auto_signaltap_1|vcc -section_id auto_signaltap_1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_1|gnd -section_id auto_signaltap_1
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=2048" -section_id auto_signaltap_1
+set_global_assignment -name QIP_FILE adc_pll/adc_pll_vhdl.qip
+set_global_assignment -name SIP_FILE adc_pll/adc_pll_vhdl.sip
+set_global_assignment -name VHDL_FILE src/waveformGenerator_vhdl.vhd
+set_global_assignment -name VHDL_FILE src/trigger_vhdl.vhd
+set_global_assignment -name VHDL_FILE src/getSample_vhdl.vhd
+set_global_assignment -name VHDL_FILE src/delayVec_vhdl.vhd
+set_global_assignment -name VHDL_FILE src/delayArray.vhd
+set_global_assignment -name VHDL_FILE src/adcSync_VHDL.vhd
+set_global_assignment -name VHDL_FILE src/adc_pll_vhdl.vhd
+set_global_assignment -name VHDL_FILE src/acquireSet_vhdl.vhd
+set_global_assignment -name SDC_FILE ArriaVADCEthernet_top.sdc
+set_global_assignment -name CDF_FILE ArriaVADCEthernet_top.cdf
+set_global_assignment -name SIGNALTAP_FILE ArriaVADCEthernet_top.stp
+set_global_assignment -name QIP_FILE Nios_CPU_qsys/synthesis/Nios_CPU_qsys.qip
+set_global_assignment -name VHDL_FILE ArriaVADCEthernet_top.vhd
+set_global_assignment -name QIP_FILE adc_mux_vhdl/adc_mux_vhdl.qip
+set_global_assignment -name QIP_FILE ddio_buffer_vhdl/ddio_buffer_vhdl.qip
 set_global_assignment -name SLD_FILE db/ArriaVADCEthernet_top_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
