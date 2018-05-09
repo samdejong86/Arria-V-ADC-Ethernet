@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<simPackage>
- <file path="adc_pll_vhdl_sim/adc_pll_vhdl.vho" type="VHDL" />
- <topLevel name="adc_pll_vhdl" />
- <deviceFamily name="arriav" />
-</simPackage>

@@ -5,10 +5,10 @@ use ieee.numeric_std.all;
 
 library work;
 use work.my_types_pkg.all;
---use work.adc_sync_vhdl.all;
+--use work.adc_sync.all;
 
-library adc_pll_vhdl;
-use adc_pll_vhdl.all;
+library adc_pll;
+use adc_pll.all;
 
 
 library Nios_CPU_qsys;
@@ -152,7 +152,7 @@ begin
 	flash_cen2(0) <= '1';
 	
 	
-	ddio_buffer_vhdl_inst : entity work.ddio_buffer_vhdl PORT MAP (
+	ddio_buffer_inst : entity work.ddio_buffer PORT MAP (
 		aclr     => not cpu_resetn,
 		datain_h         => "1",
 		datain_l         => "0",
@@ -266,7 +266,7 @@ begin
 	reset_n <= '0';
 	
 	
-	adc_pll : entity adc_pll_vhdl.adc_pll_vhdl PORT MAP (
+	adc_pll_inst : entity adc_pll.adc_pll PORT MAP (
 		refclk => clkin_50_adc,
 		outclk_0 => sys_clk,
 		outclk_1 => sys_clk_90deg,
@@ -281,7 +281,7 @@ begin
 	trigSource <= adcControl(1);
 	acquireRequest <= adcControl(0);
 	
-	setAcquire : entity work.acquireSet_vhdl PORT MAP(
+	setAcquire : entity work.acquireSet PORT MAP(
 		acquireRequest => acquireRequest,
 		clk => sys_clk,
 		waveNumber => waveNumber,
@@ -296,35 +296,35 @@ begin
 	running <= sys_clk when acquire = '0' else '0';
 	
 	
-	sync_a : entity work.adc_sync_vhdl PORT MAP (
+	sync_a : entity work.adc_sync PORT MAP (
 		sys_clk => sys_clk,
 		DCO => ada_dco, 
 		ADCin => adc_da, 
 		ADCout => a2da_data	
 	);
 	
-	sync_b : entity work.adc_sync_vhdl PORT MAP (
+	sync_b : entity work.adc_sync PORT MAP (
 		sys_clk => sys_clk,
 		DCO => adb_dco, 
 		ADCin => adc_db, 
 		ADCout => a2db_data	
 	);
 	
-	delayModule : entity work.delayVec_vhdl PORT MAP (
+	delayModule : entity work.delayVec PORT MAP (
 		clk => sys_clk,
 		ADC_IN => a2db_data,
 		DelayVec => DelayVec
 	);
 	
 	
-	delayMux : entity work.adc_mux_vhdl PORT MAP (
+	delayMux : entity work.adc_mux PORT MAP (
 		data0x	 => std_logic_vector(DelayVec(0)),
 		data1x	 => std_logic_vector(DelayVec(99)),
 		sel	 => delay,
 		result	 => delayedSignal_std
 	);
 
-	triggerSlopeMux : entity work.adc_mux_vhdl PORT MAP (
+	triggerSlopeMux : entity work.adc_mux PORT MAP (
 		data0x	 => std_logic_vector(negVal),
 		data1x	 => std_logic_vector(posVal),
 		sel	 => trigSlope,
@@ -337,7 +337,7 @@ begin
 
 
 
-	trigModuleSelf : entity work.trigger_vhdl PORT MAP (
+	trigModuleSelf : entity work.trigger PORT MAP (
 		clk => sys_clk,
 		ADC_IN => a2db_data, 
 		trigSlope => trigSlope, 
@@ -345,7 +345,7 @@ begin
 		trigger => triggerSelf
 	);
 	
-	 trigModuleExt : entity work.trigger_vhdl PORT MAP (
+	 trigModuleExt : entity work.trigger PORT MAP (
 		clk => sys_clk,
 		ADC_IN => a2da_data, 
 		trigSlope => trigSlope, 
@@ -357,7 +357,7 @@ begin
 	trigger <= triggerSelf when trigSource = '0' else triggerExt;
 	
 	
-	waveGen : entity work.waveformGenerator_vhdl PORT MAP (
+	waveGen : entity work.waveformGenerator PORT MAP (
 		clk => running, 
 		triggerIn => trigger, 
 		signal_in => delayedSignal, 
@@ -365,7 +365,7 @@ begin
 		waveNumber => waveNumber
 	);
 
-	samplerModule : entity work.getSample_vhdl PORT MAP(
+	samplerModule : entity work.getSample PORT MAP(
 		clk => sys_clk, 
 		sampleNum => unsigned(SampleNum), 
 		waveform => waveform, 
