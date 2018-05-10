@@ -24,3 +24,5 @@ simulation/*
 unsaved/*
 *.elf
 *.bsf
+*inst*
+*hex
