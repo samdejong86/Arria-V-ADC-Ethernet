@@ -337,7 +337,7 @@ begin
 	);
 
 	--mux for trigger source
-	trigger <= triggerSelf when trigSource = '0' else triggerExt;
+	trigger <= triggerSelf when trigSource = '1' else triggerExt;
 	
 	--generate a waveform
 	waveGen : entity work.waveformGenerator PORT MAP (

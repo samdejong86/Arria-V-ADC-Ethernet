@@ -26,7 +26,7 @@ begin
 	begin
 		if rising_edge(clk) then
 			if sampleNum  >= 1 and sampleNum <= 1000 and acquire = '1' then  -- if the sample number is between 1 and 1000, send the sample
-				waveSample <= "00" & waveform(to_integer(sampleNum));				
+				waveSample <= "00" & waveform(to_integer(sampleNum)-1);				
 			elsif sampleNum = 1001 and acquire = '1' then  --send the wavenumber last
 				waveSample<=wavenum;
 				lastwavenum<=wavenum;  --set the lastwavenum to the current wavenum, since this waveform has been sent.

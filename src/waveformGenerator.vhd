@@ -22,19 +22,19 @@ architecture rtl of waveformGenerator is
 begin
 	waveformProc : process(clk) is
 	variable waveNumBuf : unsigned (15 DOWNTO 0) :=to_unsigned(0, 16);
-	variable counter : natural range 0 to 999:=0;
+	variable counter : natural range 0 to 1000:=0;
 
 	begin
 
 		if rising_edge(clk) then
 			if ( triggerIn='1' ) or not (counter = 0) then --start generating a waveform when trigger goes high, continue after the counter is started
-				counter := counter+1;
 				waveform(counter) <= signal_in;
+				counter := counter+1;
 			else
 				counter :=0;
 			end if;
 			
-			if counter=999 then
+			if counter=1000 then
 				counter :=0;  --reset counter
 				waveNumBuf := waveNumBuf + 1 ;  --increment the waveform counter
 			end if;
