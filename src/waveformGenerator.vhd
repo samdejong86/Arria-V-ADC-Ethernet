@@ -9,20 +9,20 @@ use work.my_types_pkg.all;
 
 entity waveformGenerator is
 	port(
-		signal_in :	 in unsigned (13 DOWNTO 0);
+		signal_in 	: in unsigned (13 DOWNTO 0);
 		triggerIn 	: in std_logic;
 		clk			: in std_logic;
-		waveNumber	:out unsigned (15 DOWNTO 0) :=to_unsigned(0, 16);
-		waveform 	:out adcArray (0 to 999)
+		waveNumber	: out unsigned (15 DOWNTO 0) :=to_unsigned(0, 16);
+		waveform 	: out adcArray (0 to 999)
 	);
 end waveformGenerator;
 
 architecture rtl of waveformGenerator is
 
 begin
-	waveformProc : process(clk) is
-	variable waveNumBuf : unsigned (15 DOWNTO 0) :=to_unsigned(0, 16);
-	variable counter : natural range 0 to 1000:=0;
+	waveformProc 			: process(clk) is
+	variable waveNumBuf 	: unsigned (15 DOWNTO 0) :=to_unsigned(0, 16);
+	variable counter 		: natural range 0 to 1000:=0;
 
 	begin
 

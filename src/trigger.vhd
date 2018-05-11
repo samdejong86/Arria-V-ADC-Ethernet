@@ -17,8 +17,8 @@ begin
 
 
 trigProc : process(clk) is
-	variable  lastVal : unsigned (13 DOWNTO 0)   :="00000000000000"; 
-	variable trigCount : natural range 0 to 999:=0;
+	variable lastVal 		: unsigned (13 DOWNTO 0)   :="00000000000000"; 
+	variable trigCount 	: natural range 0 to 999:=0;
 
 	begin
 		if rising_edge(clk) then

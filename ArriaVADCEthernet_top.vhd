@@ -20,127 +20,127 @@ use Nios_CPU_qsys.all;
 entity ArriaVADCEthernet_top is 
 	port(
 		-- clocks
-		clkin_50: in std_logic;
-		clkin_50_adc: in std_logic;
-		cpu_resetn: in std_logic;
+		clkin_50			: in std_logic;
+		clkin_50_adc	: in std_logic;
+		cpu_resetn		: in std_logic;
    
 		--ethernet interface
-		enet_mdc: out std_logic;
-		enet_mdio: inout std_logic;
-		enet_resetn: out std_logic; 
-		enet_rx_clk: in std_logic;
-		enet_rx_dv: in std_logic;
-		enet_rx_d : in STD_LOGIC_VECTOR (3 DOWNTO 0);
-		enet_gtx_clk: out std_logic;
-		enet_tx_en: out std_logic;
-		enet_tx_d : out STD_LOGIC_VECTOR (3 DOWNTO 0);
+		enet_mdc			: out std_logic;
+		enet_mdio		: inout std_logic;
+		enet_resetn		: out std_logic; 
+		enet_rx_clk		: in std_logic;
+		enet_rx_dv		: in std_logic;
+		enet_rx_d 		: in STD_LOGIC_VECTOR (3 DOWNTO 0);
+		enet_gtx_clk	: out std_logic;
+		enet_tx_en		: out std_logic;
+		enet_tx_d 		: out STD_LOGIC_VECTOR (3 DOWNTO 0);
    
 		--flash interface
-		flash_cen: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		flash_cen2: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		flash_oen: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		flash_resetn: out std_logic;
-		flash_wen: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		fm_a : out STD_LOGIC_VECTOR (26 DOWNTO 0);
-		fm_d: inout STD_LOGIC_VECTOR (15 DOWNTO 0);
-		flash_advn: out std_logic;
-		flash_clk: out std_logic;
+		flash_cen		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
+		flash_cen2		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
+		flash_oen		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
+		flash_resetn	: out std_logic;
+		flash_wen		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
+		fm_a 				: out STD_LOGIC_VECTOR (26 DOWNTO 0);
+		fm_d				: inout STD_LOGIC_VECTOR (15 DOWNTO 0);
+		flash_advn		: out std_logic;
+		flash_clk		: out std_logic;
 
 		--lcd interface
-		lcd_wen: out std_logic;
-		lcd_data: inout STD_LOGIC_VECTOR (7 DOWNTO 0);
-		lcd_en: out std_logic;
-		lcd_d_cn: out std_logic;
+		lcd_wen			: out std_logic;
+		lcd_data			: inout STD_LOGIC_VECTOR (7 DOWNTO 0);
+		lcd_en			: out std_logic;
+		lcd_d_cn			: out std_logic;
 
 		--adc interface
-		ada_dco: in std_logic;
-		adb_dco: in std_logic;
+		ada_dco			: in std_logic;
+		adb_dco			: in std_logic;
 	
-		fpga_clk_a_p: inout std_logic;
-		fpga_clk_a_n: inout std_logic;
-		fpga_clk_b_p: inout std_logic;
-		fpga_clk_b_n: inout std_logic;
+		fpga_clk_a_p	: inout std_logic;
+		fpga_clk_a_n	: inout std_logic;
+		fpga_clk_b_p	: inout std_logic;
+		fpga_clk_b_n	: inout std_logic;
 	
-		ad_sclk: out std_logic;
-		ad_sdio: out std_logic;
-		ada_spi_cs: out std_logic;
-		adb_spi_cs: out std_logic;
+		ad_sclk			: out std_logic;
+		ad_sdio			: out std_logic;
+		ada_spi_cs		: out std_logic;
+		adb_spi_cs		: out std_logic;
 	
-		adc_da: in unsigned (13 DOWNTO 0);
-		adc_db: in unsigned (13 DOWNTO 0);
+		adc_da			: in unsigned (13 DOWNTO 0);
+		adc_db			: in unsigned (13 DOWNTO 0);
 	
-		ada_oe: out std_logic;
-		adb_oe: out std_logic		
+		ada_oe			: out std_logic;
+		adb_oe			: out std_logic		
 	);	
 end ArriaVADCEthernet_top;
 
 architecture rtl of ArriaVADCEthernet_top is
 
 	--ethernet signals
-	signal locked_from_the_enet_pll :std_logic;
-	signal mdio_oen_from_the_tse_mac :std_logic;
-	signal mdio_out_from_the_tse_mac :std_logic;
-	signal eth_mode_from_the_tse_mac :std_logic;
-	signal ena_10_from_the_tse_mac :std_logic;
-	signal enet_tx_125 :std_logic;
-	signal enet_tx_25 :std_logic;
-	signal enet_tx_2p5 :std_logic;
-	signal tx_clk_to_the_tse_mac :std_logic;
-	signal global_resetn :std_logic;
+	signal locked_from_the_enet_pll 	: std_logic;
+	signal mdio_oen_from_the_tse_mac : std_logic;
+	signal mdio_out_from_the_tse_mac : std_logic;
+	signal eth_mode_from_the_tse_mac : std_logic;
+	signal ena_10_from_the_tse_mac 	: std_logic;
+	signal enet_tx_125 					: std_logic;
+	signal enet_tx_25 					: std_logic;
+	signal enet_tx_2p5 					: std_logic;
+	signal tx_clk_to_the_tse_mac 		: std_logic;
+	signal global_resetn 				: std_logic;
 
 	--pios from the NIOS processor
-	signal adcControl:STD_LOGIC_VECTOR (7 DOWNTO 0):="00000000";
-	signal waveSample: unsigned (15 DOWNTO 0);
-	signal SampleNum: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	signal adcControl						: STD_LOGIC_VECTOR (7 DOWNTO 0):="00000000";
+	signal waveSample						: unsigned (15 DOWNTO 0);
+	signal SampleNum						: STD_LOGIC_VECTOR (15 DOWNTO 0);
 
 	--adc pll signals
-	signal reset_n :std_logic;
-	signal sys_clk :std_logic;
-	signal sys_clk_90deg :std_logic;
-	signal sys_clk_180deg :std_logic;
-	signal sys_clk_270deg :std_logic;
-	signal pll_locked :std_logic;	
+	signal reset_n 						: std_logic;
+	signal sys_clk 						: std_logic;
+	signal sys_clk_90deg 				: std_logic;
+	signal sys_clk_180deg 				: std_logic;
+	signal sys_clk_270deg 				: std_logic;
+	signal pll_locked 					: std_logic;	
 
 	--daq controls
-	signal delay :std_logic := '0';
-	signal trigSource :std_logic;
-	signal trigSlope :std_logic;	
-	signal acquire :std_logic := '0';		
-	signal acquireRequest :std_logic;
+	signal delay 							: std_logic := '0';
+	signal trigSource 					: std_logic;
+	signal trigSlope 						: std_logic;	
+	signal acquire 						: std_logic := '0';		
+	signal acquireRequest 				: std_logic;
 
-	signal waveNumber : unsigned (15 DOWNTO 0);	
-	signal lastwavenum : unsigned (15 DOWNTO 0);
+	signal waveNumber 					: unsigned (15 DOWNTO 0);	
+	signal lastwavenum 					: unsigned (15 DOWNTO 0);
 
 	--synced adc signals
-	signal a2da_data : unsigned (13 DOWNTO 0);
-	signal a2db_data : unsigned (13 DOWNTO 0);		
+	signal a2da_data 						: unsigned (13 DOWNTO 0);
+	signal a2db_data 						: unsigned (13 DOWNTO 0);		
 		
 	--triggering and delay
-	signal DelayVec: adcArray (0 to 99);
-	signal DelayVecVHDL : adcArray (0 to 99);
-	signal triggerSelf :std_logic;
-	signal triggerExt :std_logic;
-	signal trigger :std_logic;
-	signal waveform : adcArray (0 to 999);
-	signal delayedSignal : unsigned (13 DOWNTO 0);
-	signal triggerLevel : unsigned (13 DOWNTO 0);
-	signal trigSourceData : unsigned (13 DOWNTO 0);
+	signal DelayVec						: adcArray (0 to 99);
+	signal DelayVecVHDL 					: adcArray (0 to 99);
+	signal triggerSelf 					: std_logic;
+	signal triggerExt 					: std_logic;
+	signal trigger 						: std_logic;
+	signal waveform 						: adcArray (0 to 999);
+	signal delayedSignal 				: unsigned (13 DOWNTO 0);
+	signal triggerLevel 					: unsigned (13 DOWNTO 0);
+	signal trigSourceData 				: unsigned (13 DOWNTO 0);
 	
-	signal delayedSignal_std : STD_LOGIC_VECTOR (13 DOWNTO 0);
-	signal triggerLevel_std : STD_LOGIC_VECTOR (13 DOWNTO 0);
+	signal delayedSignal_std 			: STD_LOGIC_VECTOR (13 DOWNTO 0);
+	signal triggerLevel_std 			: STD_LOGIC_VECTOR (13 DOWNTO 0);
 
-	signal running :std_logic;
+	signal running 						: std_logic;
 
 	--negative and positive trigger thresholds
-	constant negVal : STD_LOGIC_VECTOR (13 DOWNTO 0) := "01101101011000";
-	constant posVal : STD_LOGIC_VECTOR (13 DOWNTO 0) := "10010010111000";
+	constant negVal 						: STD_LOGIC_VECTOR (13 DOWNTO 0) := "01101101011000";
+	constant posVal 						: STD_LOGIC_VECTOR (13 DOWNTO 0) := "10010010111000";
 
-	signal gtx_clk_temp : std_logic_vector (0 downto 0) := "0";
+	signal gtx_clk_temp 					: std_logic_vector (0 downto 0) := "0";
 	
-	signal epcount : unsigned (19 DOWNTO 0);
+	signal epcount 						: unsigned (19 DOWNTO 0);
 	
-	signal std_SampleNum : std_logic_vector (15 downto 0) := "0000000000000000";
-	signal std_waveSample : std_logic_vector (15 downto 0) := "0000000000000000";
+	signal std_SampleNum 				: std_logic_vector (15 downto 0) := "0000000000000000";
+	signal std_waveSample 				: std_logic_vector (15 downto 0) := "0000000000000000";
 	
 	
 begin

@@ -8,10 +8,10 @@ use ieee.numeric_std.all;
 entity acquireSet is
 	port(
 		acquireRequest : in std_logic;
-		clk			: in std_logic;
-		waveNumber  :	 in unsigned (15 DOWNTO 0);
-		lastwavenum  :	 in unsigned (15 DOWNTO 0);
-		acquire : out std_logic
+		clk				: in std_logic;
+		waveNumber  	: in unsigned (15 DOWNTO 0);
+		lastwavenum 	: in unsigned (15 DOWNTO 0);
+		acquire 			: out std_logic
 	);
 end acquireSet;
 
