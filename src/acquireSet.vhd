@@ -1,4 +1,4 @@
---This module handles an acquire reset
+--This module handles an acquire request
 
 library ieee;
 use ieee.std_logic_1164.all;
