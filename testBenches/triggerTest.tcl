@@ -10,6 +10,8 @@ add wave -position end  sim:/triggerTB/trigSlope
 add wave -position end  sim:/triggerTB/trigLevel
 add wave -position end  sim:/triggerTB/trigger
 
+property wave -radix unsigned /triggerTB/trigLevel
+property wave -radix unsigned /triggerTB/ADC
 
 
 vlog -reportprogress 300 -work work ../../testBenches/triggerTB.v

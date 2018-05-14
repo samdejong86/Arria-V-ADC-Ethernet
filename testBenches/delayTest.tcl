@@ -8,7 +8,8 @@ add wave -position end  sim:/delay_tb/CLOCK
 add wave -position end  sim:/delay_tb/ADC
 add wave -position end  sim:/delay_tb/delay
 
-
+property wave -radix unsigned /delay_tb/ADC
+property wave -radix unsigned /delay_tb/delay
 
 
 vlog -reportprogress 300 -work work ../../testBenches/delayTB.sv
