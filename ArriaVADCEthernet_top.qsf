@@ -1846,13 +1846,15 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "adc_pll:adc_pll|outclk_0" -section_id nios
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1,sld_reserved_ArriaVADCEthernet_nios_2_71f6," -section_id nios
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH delayTB -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH ADC_testbench -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME delayTB -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id delayTB
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME delay_tb -section_id delayTB
+set_global_assignment -name EDA_TEST_BENCH_NAME ADC_testbench -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id ADC_testbench
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME ADC_testbench -section_id ADC_testbench
 set_global_assignment -name SLD_FILE db/ArriaVADCEthernet_top_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name EDA_TEST_BENCH_FILE testBenches/delayTB.sv -section_id delayTB
 set_global_assignment -name SYSTEMVERILOG_FILE ArriaVADCEthernet_top.sv
 set_global_assignment -name SDC_FILE ArriaVADCEthernet_top.sdc
 set_global_assignment -name CDF_FILE ArriaVADCEthernet_top.cdf
@@ -1862,9 +1864,15 @@ set_global_assignment -name QIP_FILE adc_mux/ADC_Mux.qip
 set_global_assignment -name QIP_FILE ddio_buffer/enet_gtx_clk_ddio_buffer.qip
 set_global_assignment -name QIP_FILE adc_pll/adc_pll.qip
 set_global_assignment -name SIP_FILE adc_pll/adc_pll.sip
+set_global_assignment -name SYSTEMVERILOG_FILE src/ADC_handler.sv
 set_global_assignment -name VERILOG_FILE src/trigger.v
 set_global_assignment -name VERILOG_FILE src/adcSync.v
 set_global_assignment -name SYSTEMVERILOG_FILE src/delayVec.sv
 set_global_assignment -name SYSTEMVERILOG_FILE src/waveformGenerator.sv
 set_global_assignment -name SYSTEMVERILOG_FILE src/getSample.sv
 set_global_assignment -name SYSTEMVERILOG_FILE testBenches/delayTB.sv
+set_global_assignment -name VERILOG_FILE testBenches/triggerTB.v
+set_global_assignment -name SYSTEMVERILOG_FILE testBenches/ADC_testbench.sv
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT testBenches/ADC_test.tcl -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_FILE testBenches/delayTB.sv -section_id delayTB
+set_global_assignment -name EDA_TEST_BENCH_FILE testBenches/ADC_testbench.sv -section_id ADC_testbench

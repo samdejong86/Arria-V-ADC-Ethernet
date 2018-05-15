@@ -49,7 +49,7 @@ endmodule
 // CNX file retrieval info
 // ============================================================
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Arria V"
-// Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
+// Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "1"
 // Retrieval info: PRIVATE: new_diagram STRING "1"
 // Retrieval info: LIBRARY: lpm lpm.lpm_components.all
 // Retrieval info: CONSTANT: LPM_SIZE NUMERIC "2"
@@ -70,4 +70,5 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL ADC_Mux.bsf FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ADC_Mux_inst.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ADC_Mux_bb.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ADC_Mux_syn.v TRUE
 // Retrieval info: LIB_FILE: lpm

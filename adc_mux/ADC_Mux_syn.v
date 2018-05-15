@@ -34,6 +34,74 @@
 //agreement for further details.
 
 
+//lpm_mux DEVICE_FAMILY="Arria V" LPM_SIZE=2 LPM_WIDTH=14 LPM_WIDTHS=1 data result sel
+//VERSION_BEGIN 16.1 cbx_lpm_mux 2016:10:19:21:26:20:SJ cbx_mgl 2016:10:19:22:10:30:SJ  VERSION_END
+// synthesis VERILOG_INPUT_VERSION VERILOG_2001
+// altera message_off 10463
+
+
+//synthesis_resources = lut 5 
+//synopsys translate_off
+`timescale 1 ps / 1 ps
+//synopsys translate_on
+module  ADC_Mux_mux
+	( 
+	data,
+	result,
+	sel) /* synthesis synthesis_clearbox=1 */;
+	input   [27:0]  data;
+	output   [13:0]  result;
+	input   [0:0]  sel;
+`ifndef ALTERA_RESERVED_QIS
+// synopsys translate_off
+`endif
+	tri0   [27:0]  data;
+	tri0   [0:0]  sel;
+`ifndef ALTERA_RESERVED_QIS
+// synopsys translate_on
+`endif
+
+	wire	wire_l1_w0_n0_mux_dataout;
+	wire	wire_l1_w10_n0_mux_dataout;
+	wire	wire_l1_w11_n0_mux_dataout;
+	wire	wire_l1_w12_n0_mux_dataout;
+	wire	wire_l1_w13_n0_mux_dataout;
+	wire	wire_l1_w1_n0_mux_dataout;
+	wire	wire_l1_w2_n0_mux_dataout;
+	wire	wire_l1_w3_n0_mux_dataout;
+	wire	wire_l1_w4_n0_mux_dataout;
+	wire	wire_l1_w5_n0_mux_dataout;
+	wire	wire_l1_w6_n0_mux_dataout;
+	wire	wire_l1_w7_n0_mux_dataout;
+	wire	wire_l1_w8_n0_mux_dataout;
+	wire	wire_l1_w9_n0_mux_dataout;
+	wire  [27:0]  data_wire;
+	wire  [13:0]  result_wire_ext;
+	wire  [0:0]  sel_wire;
+
+	assign		wire_l1_w0_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[14] : data_wire[0];
+	assign		wire_l1_w10_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[24] : data_wire[10];
+	assign		wire_l1_w11_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[25] : data_wire[11];
+	assign		wire_l1_w12_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[26] : data_wire[12];
+	assign		wire_l1_w13_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[27] : data_wire[13];
+	assign		wire_l1_w1_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[15] : data_wire[1];
+	assign		wire_l1_w2_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[16] : data_wire[2];
+	assign		wire_l1_w3_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[17] : data_wire[3];
+	assign		wire_l1_w4_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[18] : data_wire[4];
+	assign		wire_l1_w5_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[19] : data_wire[5];
+	assign		wire_l1_w6_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[20] : data_wire[6];
+	assign		wire_l1_w7_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[21] : data_wire[7];
+	assign		wire_l1_w8_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[22] : data_wire[8];
+	assign		wire_l1_w9_n0_mux_dataout = (sel_wire[0] === 1'b1) ? data_wire[23] : data_wire[9];
+	assign
+		data_wire = {data},
+		result = result_wire_ext,
+		result_wire_ext = {wire_l1_w13_n0_mux_dataout, wire_l1_w12_n0_mux_dataout, wire_l1_w11_n0_mux_dataout, wire_l1_w10_n0_mux_dataout, wire_l1_w9_n0_mux_dataout, wire_l1_w8_n0_mux_dataout, wire_l1_w7_n0_mux_dataout, wire_l1_w6_n0_mux_dataout, wire_l1_w5_n0_mux_dataout, wire_l1_w4_n0_mux_dataout, wire_l1_w3_n0_mux_dataout, wire_l1_w2_n0_mux_dataout, wire_l1_w1_n0_mux_dataout, wire_l1_w0_n0_mux_dataout},
+		sel_wire = {sel[0]};
+endmodule //ADC_Mux_mux
+//VALID FILE
+
+
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
@@ -41,7 +109,7 @@ module ADC_Mux (
 	data0x,
 	data1x,
 	sel,
-	result);
+	result)/* synthesis synthesis_clearbox = 1 */;
 
 	input	[13:0]  data0x;
 	input	[13:0]  data1x;
@@ -56,23 +124,10 @@ module ADC_Mux (
 	wire  sub_wire4 = sel;
 	wire  sub_wire5 = sub_wire4;
 
-	lpm_mux	LPM_MUX_component (
+	ADC_Mux_mux	ADC_Mux_mux_component (
 				.data (sub_wire2),
 				.sel (sub_wire5),
-				.result (sub_wire0)
-				// synopsys translate_off
-				,
-				.aclr (),
-				.clken (),
-				.clock ()
-				// synopsys translate_on
-				);
-	defparam
-		LPM_MUX_component.lpm_size = 2,
-		LPM_MUX_component.lpm_type = "LPM_MUX",
-		LPM_MUX_component.lpm_width = 14,
-		LPM_MUX_component.lpm_widths = 1;
-
+				.result (sub_wire0));
 
 endmodule
 

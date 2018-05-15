@@ -5,7 +5,7 @@ incremental_db/*
 *#
 output_files/*
 greybox_tmp/*
-*greybox_tmp/*
+greybox_tmp*
 *.qws
 *.summary
 *.rpt

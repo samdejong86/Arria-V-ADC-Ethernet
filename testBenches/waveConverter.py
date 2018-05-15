@@ -12,4 +12,10 @@ with open('ADC.dat','r') as f:
 
 with open("waveData.dat", 'w') as f:
     for a in ADCvals:
-        f.write("@(posedge CLOCK);\n#25 ADC=14'd"+a+";\n \n")
+        f.write("@(posedge CLOCK);\n#25 a2db_data=14'd"+a+";\n")
+        if int(a) > 9200:
+            f.write("a2da_data=14'd16383;\n\n")
+        else:
+            f.write("a2da_data=14'd0;\n\n")
+            
+            

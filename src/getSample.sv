@@ -6,7 +6,7 @@ input [15:0] wavenum;
 input [13:0] waveform [1000];
 input acquire;
 output reg [15:0] waveSample;
-output reg [15:0] lastwavenum;
+output reg [15:0] lastwavenum=16'd65535;
 
 always @(posedge clk) begin
 
