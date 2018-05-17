@@ -36,7 +36,7 @@ architecture behave of ADC_testbench is
 			a2db_data<=to_unsigned(8054, a2db_data'length);
 			a2da_data<=to_unsigned(0, a2da_data'length);
 			adcControl<="00001110";
-			SampleNum<="0000001111101001";
+			SampleNum<="0000001111101000";
 	
 		wait for 25 ns;
 	a2db_data<=to_unsigned(8062, a2db_data'length);
@@ -6342,6 +6342,7 @@ architecture behave of ADC_testbench is
 	a2db_data<=to_unsigned(8048, a2db_data'length);
 	a2da_data<=to_unsigned(0, a2da_data'length);
 
+	adcControl<="00001111";
 	wait for 25 ns;
 	a2db_data<=to_unsigned(8061, a2db_data'length);
 	a2da_data<=to_unsigned(0, a2da_data'length);
@@ -6458,6 +6459,7 @@ architecture behave of ADC_testbench is
 	a2db_data<=to_unsigned(7829, a2db_data'length);
 	a2da_data<=to_unsigned(0, a2da_data'length);
 
+	
 	wait for 25 ns;
 	a2db_data<=to_unsigned(7836, a2db_data'length);
 	a2da_data<=to_unsigned(0, a2da_data'length);
@@ -8986,6 +8988,8 @@ architecture behave of ADC_testbench is
 	wait for 25 ns;
 	a2db_data<=to_unsigned(8041, a2db_data'length);
 	a2da_data<=to_unsigned(0, a2da_data'length);
+
+	adcControl<="00001110";
 
 	wait for 25 ns;
 	a2db_data<=to_unsigned(8053, a2db_data'length);

@@ -1,11 +1,15 @@
 
-vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/waveformGenerator.vhd
-vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/trigger.vhd
-vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/getSample.vhd
-vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/delayVec.vhd
-vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/delayArray.vhd
+vlib work
+
+vlog -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/adc_mux/adc_mux_syn.v
 vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/acquireSet.vhd
+vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/delayArray.vhd
+vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/delayVec.vhd
+vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/getSample.vhd
+vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/trigger.vhd
+vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/waveformGenerator.vhd
 vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/src/ADC_handler.vhd
+
 vcom -reportprogress 300 -work work /home/srdejong/Arria-V-ADC-Ethernet/testBenches/ADC_testbench.vhd
 
 

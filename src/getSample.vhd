@@ -14,7 +14,7 @@ entity getSample is
 		waveform 	: in adcArray (0 to 999);
 		acquire 		: in std_logic;
 		waveSample	: out unsigned (15 DOWNTO 0);
-		lastwavenum	: out unsigned (15 DOWNTO 0)	
+		lastwavenum	: out unsigned (15 DOWNTO 0) := to_unsigned(65535, 16)	
 	);
 end getSample;
 

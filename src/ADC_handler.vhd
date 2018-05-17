@@ -30,7 +30,7 @@ architecture rtl of ADC_handler is
 	signal acquireRequest 				: std_logic;
 	
 	signal waveNumber 					: unsigned (15 DOWNTO 0);	
-	signal lastwavenum 					: unsigned (15 DOWNTO 0) := "1111111111111111";
+	signal lastwavenum 					: unsigned (15 DOWNTO 0) := to_unsigned(65535, 16);
 	
 		
 	--triggering and delay
