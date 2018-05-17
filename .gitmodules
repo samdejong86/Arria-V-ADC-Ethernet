@@ -1,6 +1,6 @@
 [submodule "software"]
 	path = software
-	url = https://samdejong86@github.com/samdejong86/Arria-V-ADC-Ethernet-software.git
+	url = https://github.com/samdejong86/Arria-V-ADC-Ethernet-software.git
 [submodule "scripts"]
 	path = scripts
-	url = https://samdejong86@github.com/samdejong86/Arria-V-ADC-Ethernet-scripts.git
+	url = https://github.com/samdejong86/Arria-V-ADC-Ethernet-scripts.git
