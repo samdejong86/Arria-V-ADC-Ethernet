@@ -27,3 +27,5 @@ unsaved/*
 *.hex
 *inst*
 Nios_CPU_qsys/synthesis/submodules/altera_eth_tse_mac.sdc
+*.smsg
+Nios_CPU_qsys/Nios_CPU_qsys_bb.v
