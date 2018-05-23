@@ -35,9 +35,6 @@ architecture rtl of ADC_handler is
 		
 	--triggering and delay
 	signal DelayVec						: adcArray (0 to 99);
-	signal DelayVecVHDL 					: adcArray (0 to 99);
-	signal triggerSelf 					: std_logic;
-	signal triggerExt 					: std_logic;
 	signal trigger 						: std_logic;
 	signal waveform 						: adcArray (0 to 999);
 	signal delayedSignal 				: unsigned (13 DOWNTO 0);
@@ -47,6 +44,7 @@ architecture rtl of ADC_handler is
 		
 	signal delayedSignal_std 			: STD_LOGIC_VECTOR (13 DOWNTO 0);
 	signal triggerLevel_std 			: STD_LOGIC_VECTOR (13 DOWNTO 0);
+	signal triggerBus						: STD_LOGIC_VECTOR (13 DOWNTO 0);
 
 	signal running 						: std_logic;
 
@@ -102,27 +100,21 @@ begin
 	triggerLevel <= unsigned(triggerLevel_std);
 	delayedSignal <= unsigned(delayedSignal_std);
 
-
-	--self trigger
-	trigModuleSelf : entity work.trigger PORT MAP (
-		clk => sys_clk,
-		ADC_IN => a2db_data, 
-		trigSlope => trigSlope, 
-		trigLevel => triggerLevel, 
-		trigger => triggerSelf
+	triggerSourceMux : entity work.adc_mux PORT MAP (
+		data0x	 => std_logic_vector(a2da_data),
+		data1x	 => std_logic_vector(a2db_data),
+		sel	 => trigSource,
+		result	 => triggerBus
 	);
 	
-	--external trigger	
-	trigModuleExt : entity work.trigger PORT MAP (
+	trigModule : entity work.trigger PORT MAP (
 		clk => sys_clk,
-		ADC_IN => a2da_data, 
+		ADC_IN => unsigned(triggerBus), 
 		trigSlope => trigSlope, 
 		trigLevel => triggerLevel, 
-		trigger => triggerExt
+		trigger => trigger
 	);
-
-	--mux for trigger source
-	trigger <= triggerSelf when trigSource = '1' else triggerExt;
+	
 	
 	--generate a waveform
 	waveGen : entity work.waveformGenerator PORT MAP (

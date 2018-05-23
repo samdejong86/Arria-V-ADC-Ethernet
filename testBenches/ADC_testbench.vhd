@@ -7624,6 +7624,9 @@ architecture behave of ADC_testbench is
 	a2db_data<=to_unsigned(8048, a2db_data'length);
 	a2da_data<=to_unsigned(0, a2da_data'length);
 
+
+	adcControl<="00001100";	
+
 	wait for 25 ns;
 	a2db_data<=to_unsigned(8056, a2db_data'length);
 	a2da_data<=to_unsigned(0, a2da_data'length);
