@@ -17,8 +17,6 @@ add wave -position end  sim:/ADC_testbench/adcHandle/trigSlope
 add wave -position end  sim:/ADC_testbench/adcHandle/acquire
 add wave -position end  sim:/ADC_testbench/adcHandle/a2da_data
 add wave -position end  sim:/ADC_testbench/adcHandle/a2db_data
-add wave -position end  sim:/ADC_testbench/adcHandle/triggerSelf
-add wave -position end  sim:/ADC_testbench/adcHandle/triggerExt
 add wave -position end  sim:/ADC_testbench/adcHandle/trigger
 add wave -position end  sim:/ADC_testbench/adcHandle/waveNumber
 add wave -position end  sim:/ADC_testbench/adcHandle/lastwavenum

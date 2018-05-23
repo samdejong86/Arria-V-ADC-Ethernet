@@ -70,7 +70,7 @@ ADC_Mux	triggerSlopeMux (
 	
 	
 
-assign trigger = (trigSource) ? triggerSelf:triggerExt;
+
 	
 	
 
@@ -84,23 +84,25 @@ delayVec delayModule(
 	.DelayVec(DelayVec)
 );
 
+wire [13:0] triggerBus;
 
-trigger trigModuleSelf(
+ADC_Mux	triggerSourceMux (
+	.data0x (a2da_data),
+	.data1x (a2db_data),
+	.sel ( trigSource ),
+	.result ( triggerBus)
+	);
+
+
+
+trigger trigModule(
 	.clk(sys_clk),
-	.ADC_IN(a2db_data), 
+	.ADC_IN(triggerBus), 
 	.trigSlope(trigSlope), 
 	.trigLevel(triggerLevel), 
-	.trigger(triggerSelf)
+	.trigger(trigger)
 	);
 	
-trigger trigModuleExt(
-	.clk(sys_clk),
-	.ADC_IN(a2da_data), 
-	.trigSlope(trigSlope), 
-	.trigLevel(triggerLevel), 
-	.trigger(triggerExt)
-	);
-
 
 waveformGenerator waveGen(
 	.clk(running), 
