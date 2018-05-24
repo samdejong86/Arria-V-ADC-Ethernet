@@ -111,9 +111,9 @@ set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {fm_a[*]} ]
 set_input_delay   -clock [ get_clocks clkin_50 ] 2   [ get_ports {fm_d[*]} ]
 set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {fm_d[*]} ]
 set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {flash_cen[*]} ]
-set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {flash_oen} ]
+set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {flash_oen[0]} ]
 set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {flash_resetn} ]
-set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {flash_wen} ]
+set_output_delay  -clock [ get_clocks clkin_50 ] 2   [ get_ports {flash_wen[0]} ]
 
 # jtag interface
 set_input_delay   -clock [ get_clocks $altera_reserved_tck ] 10 [ get_ports altera_reserved_tms ]
