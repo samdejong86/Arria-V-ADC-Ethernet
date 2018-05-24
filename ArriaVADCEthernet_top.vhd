@@ -19,57 +19,57 @@ use adc_pll.all;
 entity ArriaVADCEthernet_top is 
 	port(
 		-- clocks
-		clkin_50			: in std_logic;
-		clkin_50_adc	: in std_logic;
-		cpu_resetn		: in std_logic;
+		clkin_50			: in 		std_logic;
+		clkin_50_adc	: in 		std_logic;
+		cpu_resetn		: in 		std_logic;
    
 		--ethernet interface
-		enet_mdc			: out std_logic;
-		enet_mdio		: inout std_logic;
-		enet_resetn		: out std_logic; 
-		enet_rx_clk		: in std_logic;
-		enet_rx_dv		: in std_logic;
-		enet_rx_d 		: in STD_LOGIC_VECTOR (3 DOWNTO 0);
-		enet_gtx_clk	: out std_logic;
-		enet_tx_en		: out std_logic;
-		enet_tx_d 		: out STD_LOGIC_VECTOR (3 DOWNTO 0);
+		enet_mdc			: out 	std_logic;
+		enet_mdio		: inout 	std_logic;
+		enet_resetn		: out 	std_logic; 
+		enet_rx_clk		: in 		std_logic;
+		enet_rx_dv		: in 		std_logic;
+		enet_rx_d 		: in 		STD_LOGIC_VECTOR (3 DOWNTO 0);
+		enet_gtx_clk	: out 	std_logic;
+		enet_tx_en		: out 	std_logic;
+		enet_tx_d 		: out 	STD_LOGIC_VECTOR (3 DOWNTO 0);
    
 		--flash interface
-		flash_cen		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		flash_cen2		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		flash_oen		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		flash_resetn	: out std_logic;
-		flash_wen		: out STD_LOGIC_VECTOR (0 DOWNTO 0);
-		fm_a 				: out STD_LOGIC_VECTOR (26 DOWNTO 0);
-		fm_d				: inout STD_LOGIC_VECTOR (15 DOWNTO 0);
-		flash_advn		: out std_logic;
-		flash_clk		: out std_logic;
+		flash_cen		: out 	STD_LOGIC_VECTOR (0 DOWNTO 0);
+		flash_cen2		: out 	STD_LOGIC_VECTOR (0 DOWNTO 0);
+		flash_oen		: out 	STD_LOGIC_VECTOR (0 DOWNTO 0);
+		flash_resetn	: out 	std_logic;
+		flash_wen		: out 	STD_LOGIC_VECTOR (0 DOWNTO 0);
+		fm_a 				: out 	STD_LOGIC_VECTOR (26 DOWNTO 0);
+		fm_d				: inout 	STD_LOGIC_VECTOR (15 DOWNTO 0);
+		flash_advn		: out 	std_logic;
+		flash_clk		: out 	std_logic;
 
 		--lcd interface
-		lcd_wen			: out std_logic;
-		lcd_data			: inout STD_LOGIC_VECTOR (7 DOWNTO 0);
-		lcd_en			: out std_logic;
-		lcd_d_cn			: out std_logic;
+		lcd_wen			: out 	std_logic;
+		lcd_data			: inout 	STD_LOGIC_VECTOR 	(7 DOWNTO 0);
+		lcd_en			: out 	std_logic;
+		lcd_d_cn			: out 	std_logic;
 
 		--adc interface
-		ada_dco			: in std_logic;
-		adb_dco			: in std_logic;
+		ada_dco			: in 		std_logic;
+		adb_dco			: in 		std_logic;
 	
-		fpga_clk_a_p	: inout std_logic;
-		fpga_clk_a_n	: inout std_logic;
-		fpga_clk_b_p	: inout std_logic;
-		fpga_clk_b_n	: inout std_logic;
+		fpga_clk_a_p	: inout 	std_logic;
+		fpga_clk_a_n	: inout 	std_logic;
+		fpga_clk_b_p	: inout 	std_logic;
+		fpga_clk_b_n	: inout 	std_logic;
 	
-		ad_sclk			: out std_logic;
-		ad_sdio			: out std_logic;
-		ada_spi_cs		: out std_logic;
-		adb_spi_cs		: out std_logic;
+		ad_sclk			: out 	std_logic;
+		ad_sdio			: out 	std_logic;
+		ada_spi_cs		: out 	std_logic;
+		adb_spi_cs		: out 	std_logic;
 	
-		adc_da			: in unsigned (13 DOWNTO 0);
-		adc_db			: in unsigned (13 DOWNTO 0);
+		adc_da			: in 		unsigned 			(13 DOWNTO 0);
+		adc_db			: in 		unsigned 			(13 DOWNTO 0);
 	
-		ada_oe			: out std_logic;
-		adb_oe			: out std_logic		
+		ada_oe			: out 	std_logic;
+		adb_oe			: out 	std_logic		
 	);	
 end ArriaVADCEthernet_top;
 
@@ -88,9 +88,9 @@ architecture rtl of ArriaVADCEthernet_top is
 	signal global_resetn 				: std_logic;
 
 	--pios from the NIOS processor
-	signal adcControl						: STD_LOGIC_VECTOR (7 DOWNTO 0):="00000000";
-	signal waveSample						: unsigned (15 DOWNTO 0);
-	signal SampleNum						: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	signal adcControl						: STD_LOGIC_VECTOR 	(7 DOWNTO 0)	:= "00000000";
+	signal waveSample						: unsigned 				(15 DOWNTO 0);
+	signal SampleNum						: STD_LOGIC_VECTOR 	(15 DOWNTO 0);
 
 	--adc pll signals
 	signal reset_n 						: std_logic;
@@ -102,16 +102,16 @@ architecture rtl of ArriaVADCEthernet_top is
 
 
 	--synced adc signals
-	signal a2da_data 						: unsigned (13 DOWNTO 0);
-	signal a2db_data 						: unsigned (13 DOWNTO 0);	
+	signal a2da_data 						: unsigned 				(13 DOWNTO 0);
+	signal a2db_data 						: unsigned 				(13 DOWNTO 0);	
 
 
 
-	signal gtx_clk_temp 					: std_logic_vector (0 downto 0) := "0";
+	signal gtx_clk_temp 					: std_logic_vector 	(0 downto 0) 	:= "0";
 	
-	signal epcount 						: unsigned (19 DOWNTO 0);
+	signal epcount 						: unsigned 				(19 DOWNTO 0);
 	
-	signal std_waveSample 				: std_logic_vector (15 downto 0) := "0000000000000000";
+	signal std_waveSample 				: std_logic_vector 	(15 downto 0) 	:= "0000000000000000";
 	
 	
 begin
