@@ -124,11 +124,11 @@ begin
 	
 	--use a ddio for the ethernet tx clock
 	ddio_buffer_inst : entity work.ddio_buffer PORT MAP (
-		aclr     => not cpu_resetn,
-		datain_h         => "1",
-		datain_l         => "0",
-		outclock         => tx_clk_to_the_tse_mac,
-		dataout  => gtx_clk_temp
+		aclr     	=> not cpu_resetn,
+		datain_h    => "1",
+		datain_l    => "0",
+		outclock    => tx_clk_to_the_tse_mac,
+		dataout  	=> gtx_clk_temp
 	);
 	enet_gtx_clk <= gtx_clk_temp(0);
 
@@ -161,43 +161,43 @@ begin
 	
 	--The NIOS processor
    u0 : entity Nios_CPU_qsys.Nios_CPU_qsys port map (
-				clk_clk                                         => clkin_50,                                         
-            enet_pll_outclk0_clk                            => enet_tx_125,                            
-            enet_pll_outclk1_clk                            => enet_tx_25,                            
-            enet_pll_outclk2_clk                            => enet_tx_2p5,  
-            merged_resets_in_reset_reset_n                  => cpu_resetn,                  
+		clk_clk                                         => clkin_50,                                         
+      enet_pll_outclk0_clk                            => enet_tx_125,                            
+      enet_pll_outclk1_clk                            => enet_tx_25,                            
+      enet_pll_outclk2_clk                            => enet_tx_2p5,  
+      merged_resets_in_reset_reset_n                  => cpu_resetn,                  
 
-            samplenum_out_export                            => SampleNum,                            
-            wavesample_in_export                            => std_waveSample,
-            adc_control_out_export                          => adcControl,                        
+      samplenum_out_export                            => SampleNum,                            
+      wavesample_in_export                            => std_waveSample,
+      adc_control_out_export                          => adcControl,                        
 				
-            lcd_external_E                                  => lcd_en,                                  
-            lcd_external_RS                                 => lcd_d_cn,                                 
-            lcd_external_RW                                 => lcd_wen,                                 
-            lcd_external_data                               => lcd_data,                               
+      lcd_external_E                                  => lcd_en,                                  
+      lcd_external_RS                                 => lcd_d_cn,                                 
+      lcd_external_RW                                 => lcd_wen,                                 
+      lcd_external_data                               => lcd_data,                               
 
-            cfi_flash_atb_bridge_0_out_tcm_address_out      => fm_a,     
-            cfi_flash_atb_bridge_0_out_tcm_read_n_out       => flash_oen,      
-            cfi_flash_atb_bridge_0_out_tcm_write_n_out      => flash_wen,      
-            cfi_flash_atb_bridge_0_out_tcm_data_out         => fm_d,         
-            cfi_flash_atb_bridge_0_out_tcm_chipselect_n_out => flash_cen, 
+      cfi_flash_atb_bridge_0_out_tcm_address_out      => fm_a,     
+      cfi_flash_atb_bridge_0_out_tcm_read_n_out       => flash_oen,      
+      cfi_flash_atb_bridge_0_out_tcm_write_n_out      => flash_wen,      
+      cfi_flash_atb_bridge_0_out_tcm_data_out         => fm_d,         
+      cfi_flash_atb_bridge_0_out_tcm_chipselect_n_out => flash_cen, 
 			
-            enet_pll_locked_export                          => locked_from_the_enet_pll,                          
-            enet_pll_reset_reset                            => not cpu_resetn,                            
+      enet_pll_locked_export                          => locked_from_the_enet_pll,                          
+      enet_pll_reset_reset                            => not cpu_resetn,                            
       
-            tse_mac_mac_status_connection_ena_10            => ena_10_from_the_tse_mac,            
-            tse_mac_mac_status_connection_eth_mode          => eth_mode_from_the_tse_mac,          
-            tse_mac_mac_mdio_connection_mdc                 => enet_mdc,                 
-            tse_mac_mac_mdio_connection_mdio_in             => enet_mdio,             
-            tse_mac_mac_mdio_connection_mdio_oen            => mdio_oen_from_the_tse_mac,            
-            tse_mac_mac_mdio_connection_mdio_out            => mdio_out_from_the_tse_mac,            
-            tse_mac_mac_rgmii_connection_rgmii_in           => enet_rx_d,           
-            tse_mac_mac_rgmii_connection_rgmii_out          => enet_tx_d,          
-            tse_mac_pcs_mac_rx_clock_connection_clk         => enet_rx_clk,         
-            tse_mac_mac_rgmii_connection_rx_control         => enet_rx_dv,         
-            tse_mac_pcs_mac_tx_clock_connection_clk         => tx_clk_to_the_tse_mac,         
-            tse_mac_mac_rgmii_connection_tx_control         => enet_tx_en        
-         );
+      tse_mac_mac_status_connection_ena_10            => ena_10_from_the_tse_mac,            
+      tse_mac_mac_status_connection_eth_mode          => eth_mode_from_the_tse_mac,          
+      tse_mac_mac_mdio_connection_mdc                 => enet_mdc,                 
+      tse_mac_mac_mdio_connection_mdio_in             => enet_mdio,             
+      tse_mac_mac_mdio_connection_mdio_oen            => mdio_oen_from_the_tse_mac,            
+      tse_mac_mac_mdio_connection_mdio_out            => mdio_out_from_the_tse_mac,            
+      tse_mac_mac_rgmii_connection_rgmii_in           => enet_rx_d,           
+      tse_mac_mac_rgmii_connection_rgmii_out          => enet_tx_d,          
+      tse_mac_pcs_mac_rx_clock_connection_clk         => enet_rx_clk,         
+      tse_mac_mac_rgmii_connection_rx_control         => enet_rx_dv,         
+      tse_mac_pcs_mac_tx_clock_connection_clk         => tx_clk_to_the_tse_mac,         
+      tse_mac_mac_rgmii_connection_tx_control         => enet_tx_en        
+   );
  
 
 	--setup the ADC
@@ -218,39 +218,39 @@ begin
 	
 	--initialize the adc pll
 	adc_pll_inst : entity adc_pll.adc_pll PORT MAP (
-		refclk => clkin_50_adc,
-		outclk_0 => sys_clk,
-		outclk_1 => sys_clk_90deg,
-		outclk_2 => sys_clk_180deg,
-		outclk_3 => sys_clk_270deg,
-		locked => pll_locked,
-		rst => reset_n
+		refclk 		=>	clkin_50_adc,
+		outclk_0 	=> sys_clk,
+		outclk_1 	=> sys_clk_90deg,
+		outclk_2 	=> sys_clk_180deg,
+		outclk_3 	=> sys_clk_270deg,
+		locked 		=> pll_locked,
+		rst 			=> reset_n
 	);
 	
 	--sync for channel a
 	sync_a : entity work.adc_sync PORT MAP (
-		sys_clk => sys_clk,
-		DCO => ada_dco, 
-		ADCin => adc_da, 
-		ADCout => a2da_data	
+		sys_clk 		=> sys_clk,
+		DCO 			=> ada_dco, 
+		ADCin 		=> adc_da, 
+		ADCout 		=> a2da_data	
 	);
 	
 	--sync for channel b
 	sync_b : entity work.adc_sync PORT MAP (
-		sys_clk => sys_clk,
-		DCO => adb_dco, 
-		ADCin => adc_db, 
-		ADCout => a2db_data	
+		sys_clk 		=> sys_clk,
+		DCO 			=> adb_dco, 
+		ADCin 		=> adc_db, 
+		ADCout 		=> a2db_data	
 	);
 	
 	
 	ADC_handle : entity work.ADC_handler PORT MAP (
-		adcControl=>adcControl,
-		a2da_data=>a2da_data,
-		a2db_data=>a2db_data,
-		sys_clk=>sys_clk,
-		SampleNum=>SampleNum,
-		waveSample=>waveSample
+		adcControl	=> adcControl,
+		a2da_data	=> a2da_data,
+		a2db_data	=> a2db_data,
+		sys_clk		=> sys_clk,
+		SampleNum	=> SampleNum,
+		waveSample	=> waveSample
 	);
 	
 	

@@ -63,10 +63,10 @@ begin
 	--handle an acquire request
 	setAcquire : entity work.acquireSet PORT MAP(
 		acquireRequest => acquireRequest,
-		clk => sys_clk,
-		waveNumber => waveNumber,
-		lastwavenum => lastwavenum,
-		acquire => acquire	
+		clk 				=> sys_clk,
+		waveNumber 		=> waveNumber,
+		lastwavenum 	=> lastwavenum,
+		acquire 			=> acquire	
 	);
 	
 	
@@ -75,25 +75,25 @@ begin
 	
 	--create a vector of delayed signals
 	delayModule : entity work.delayVec PORT MAP (
-		clk => sys_clk,
-		ADC_IN => a2db_data,
-		DelayVec => DelayVec
+		clk 				=> sys_clk,
+		ADC_IN 			=> a2db_data,
+		DelayVec			=> DelayVec
 	);
 	
 	--mux controls delay
 	delayMux : entity work.adc_mux PORT MAP (
-		data0x	 => std_logic_vector(DelayVec(0)),
-		data1x	 => std_logic_vector(DelayVec(99)),
-		sel	 => delay,
-		result	 => delayedSignal_std
+		data0x	 		=> std_logic_vector(DelayVec(0)),
+		data1x	 		=> std_logic_vector(DelayVec(99)),
+		sel	 			=> delay,
+		result	 		=> delayedSignal_std
 	);
 
 	--mux controls trigger slope
 	triggerSlopeMux : entity work.adc_mux PORT MAP (
-		data0x	 => std_logic_vector(negVal),
-		data1x	 => std_logic_vector(posVal),
-		sel	 => trigSlope,
-		result	 => triggerLevel_std
+		data0x	 		=> std_logic_vector(negVal),
+		data1x	 		=> std_logic_vector(posVal),
+		sel	 			=> trigSlope,
+		result	 		=> triggerLevel_std
 	);
 
 	
@@ -101,39 +101,39 @@ begin
 	delayedSignal <= unsigned(delayedSignal_std);
 
 	triggerSourceMux : entity work.adc_mux PORT MAP (
-		data0x	 => std_logic_vector(a2da_data),
-		data1x	 => std_logic_vector(a2db_data),
-		sel	 => trigSource,
-		result	 => triggerBus
+		data0x	 		=> std_logic_vector(a2da_data),
+		data1x	 		=> std_logic_vector(a2db_data),
+		sel	 			=> trigSource,
+		result	 		=> triggerBus
 	);
 	
 	trigModule : entity work.trigger PORT MAP (
-		clk => sys_clk,
-		ADC_IN => unsigned(triggerBus), 
-		trigSlope => trigSlope, 
-		trigLevel => triggerLevel, 
-		trigger => trigger
+		clk 				=> sys_clk,
+		ADC_IN 			=> unsigned(triggerBus), 
+		trigSlope 		=> trigSlope, 
+		trigLevel 		=> triggerLevel, 
+		trigger 			=> trigger
 	);
 	
 	
 	--generate a waveform
 	waveGen : entity work.waveformGenerator PORT MAP (
-		clk => running, 
-		triggerIn => trigger, 
-		signal_in => delayedSignal, 
-		waveform => waveform, 
-		waveNumber => waveNumber
+		clk 				=> running, 
+		triggerIn 		=> trigger, 
+		signal_in 		=> delayedSignal, 
+		waveform 		=> waveform, 
+		waveNumber 		=> waveNumber
 	);
 
 	--get a sample from the waveform
 	samplerModule : entity work.getSample PORT MAP(
-		clk => sys_clk, 
-		sampleNum => unsigned(SampleNum), 
-		waveform => waveform, 
-		wavenum => waveNumber, 
-		acquire => acquire, 
-		waveSample => waveSample,
-		lastwavenum => lastwavenum
+		clk 				=> sys_clk, 
+		sampleNum 		=> unsigned(SampleNum), 
+		waveform 		=> waveform, 
+		wavenum 			=> waveNumber, 
+		acquire 			=> acquire, 
+		waveSample 		=> waveSample,
+		lastwavenum 	=> lastwavenum
 	);	
 
 
