@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element Nios_CPU_qsys_inst
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_adc_control_out_bfm
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_clk_bfm
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_enet_pll_locked_bfm
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_enet_pll_reset_bfm
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_lcd_external_bfm
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_merged_resets_in_reset_bfm
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_samplenum_out_bfm
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_tse_mac_mac_mdio_connection_bfm
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_tse_mac_mac_rgmii_connection_bfm
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_tse_mac_mac_status_connection_bfm
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_tse_mac_pcs_mac_rx_clock_connection_bfm
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_tse_mac_pcs_mac_tx_clock_connection_bfm
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element Nios_CPU_qsys_inst_wavesample_in_bfm
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element cfi_flash_atb_bridge_0_tcb_translator
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
+   element cfi_flash_atb_bridge_0_tcb_translator_out_bfm
+   {
+      datum _sortIndex
+      {
+         value = "15";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="5AGXFB3H4F35C4" />
+ <parameter name="deviceFamily" value="Arria V" />
+ <parameter name="deviceSpeedGrade" value="4_H4" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName">ArriaVADCEthernet.qpf</parameter>
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="Nios_CPU_qsys" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="true" />
+ <instanceScript></instanceScript>
+ <module
+   name="Nios_CPU_qsys_inst"
+   kind="Nios_CPU_qsys"
+   version="1.0"
+   enabled="1">
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_DEVICE" value="5AGXFB3H4F35C4" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Arria V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="4_H4" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter
+     name="AUTO_TSE_MAC_PCS_MAC_RX_CLOCK_CONNECTION_CLOCK_DOMAIN"
+     value="4" />
+  <parameter name="AUTO_TSE_MAC_PCS_MAC_RX_CLOCK_CONNECTION_CLOCK_RATE" value="0" />
+  <parameter
+     name="AUTO_TSE_MAC_PCS_MAC_RX_CLOCK_CONNECTION_RESET_DOMAIN"
+     value="4" />
+  <parameter
+     name="AUTO_TSE_MAC_PCS_MAC_TX_CLOCK_CONNECTION_CLOCK_DOMAIN"
+     value="5" />
+  <parameter name="AUTO_TSE_MAC_PCS_MAC_TX_CLOCK_CONNECTION_CLOCK_RATE" value="0" />
+  <parameter
+     name="AUTO_TSE_MAC_PCS_MAC_TX_CLOCK_CONNECTION_RESET_DOMAIN"
+     value="5" />
+  <parameter name="AUTO_UNIQUE_ID" value="Nios_CPU_qsys" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_adc_control_out_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="8" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_clk_bfm"
+   kind="altera_avalon_clock_source"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCK_RATE" value="50000000" />
+  <parameter name="CLOCK_UNIT" value="1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_enet_pll_locked_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_enet_pll_reset_bfm"
+   kind="altera_avalon_reset_source"
+   version="16.1"
+   enabled="1">
+  <parameter name="ASSERT_HIGH_RESET" value="1" />
+  <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_lcd_external_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS">input,input,bidir,input</parameter>
+  <parameter name="SIGNAL_ROLES" value="RS,RW,data,E" />
+  <parameter name="SIGNAL_WIDTHS" value="1,1,8,1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_merged_resets_in_reset_bfm"
+   kind="altera_avalon_reset_source"
+   version="16.1"
+   enabled="1">
+  <parameter name="ASSERT_HIGH_RESET" value="0" />
+  <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_samplenum_out_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="16" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_tse_mac_mac_mdio_connection_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS">input,output,input,input</parameter>
+  <parameter name="SIGNAL_ROLES">mdc,mdio_in,mdio_out,mdio_oen</parameter>
+  <parameter name="SIGNAL_WIDTHS" value="1,1,1,1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_tse_mac_mac_rgmii_connection_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS">output,input,output,input</parameter>
+  <parameter name="SIGNAL_ROLES">rgmii_in,rgmii_out,rx_control,tx_control</parameter>
+  <parameter name="SIGNAL_WIDTHS" value="4,4,1,1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_tse_mac_mac_status_connection_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS">output,output,input,input</parameter>
+  <parameter name="SIGNAL_ROLES">set_10,set_1000,eth_mode,ena_10</parameter>
+  <parameter name="SIGNAL_WIDTHS" value="1,1,1,1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_tse_mac_pcs_mac_rx_clock_connection_bfm"
+   kind="altera_avalon_clock_source"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCK_RATE" value="50000000" />
+  <parameter name="CLOCK_UNIT" value="1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_tse_mac_pcs_mac_tx_clock_connection_bfm"
+   kind="altera_avalon_clock_source"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCK_RATE" value="50000000" />
+  <parameter name="CLOCK_UNIT" value="1" />
+ </module>
+ <module
+   name="Nios_CPU_qsys_inst_wavesample_in_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS" value="output" />
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="16" />
+ </module>
+ <module
+   name="cfi_flash_atb_bridge_0_tcb_translator"
+   kind="altera_tristate_conduit_bridge_translator"
+   version="16.1"
+   enabled="1">
+  <parameter name="CHAIN_LENGTH" value="4" />
+  <parameter name="MODULE_ORIGIN_LIST">ext_flash.tcm,ext_flash.tcm,ext_flash.tcm,ext_flash.tcm,ext_flash.tcm</parameter>
+  <parameter name="SIGNAL_ORIGIN_LIST">tcm_address_out,tcm_read_n_out,tcm_write_n_out,tcm_data_out,tcm_chipselect_n_out</parameter>
+  <parameter name="SIGNAL_ORIGIN_TYPE">Output,Output,Output,Bidirectional,Output</parameter>
+  <parameter name="SIGNAL_ORIGIN_WIDTH" value="27,1,1,16,1" />
+ </module>
+ <module
+   name="cfi_flash_atb_bridge_0_tcb_translator_out_bfm"
+   kind="altera_conduit_bfm"
+   version="16.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS">input,input,input,bidir,input</parameter>
+  <parameter name="SIGNAL_ROLES">tcm_address_out,tcm_read_n_out,tcm_write_n_out,tcm_data_out,tcm_chipselect_n_out</parameter>
+  <parameter name="SIGNAL_WIDTHS" value="27,1,1,16,1" />
+ </module>
+ <connection
+   kind="clock"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_clk_bfm.clk"
+   end="Nios_CPU_qsys_inst.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_clk_bfm.clk"
+   end="Nios_CPU_qsys_inst_enet_pll_reset_bfm.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_clk_bfm.clk"
+   end="Nios_CPU_qsys_inst_merged_resets_in_reset_bfm.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_tse_mac_pcs_mac_rx_clock_connection_bfm.clk"
+   end="Nios_CPU_qsys_inst.tse_mac_pcs_mac_rx_clock_connection" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_tse_mac_pcs_mac_tx_clock_connection_bfm.clk"
+   end="Nios_CPU_qsys_inst.tse_mac_pcs_mac_tx_clock_connection" />
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_adc_control_out_bfm.conduit"
+   end="Nios_CPU_qsys_inst.adc_control_out">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_enet_pll_locked_bfm.conduit"
+   end="Nios_CPU_qsys_inst.enet_pll_locked">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_lcd_external_bfm.conduit"
+   end="Nios_CPU_qsys_inst.lcd_external">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="cfi_flash_atb_bridge_0_tcb_translator_out_bfm.conduit"
+   end="cfi_flash_atb_bridge_0_tcb_translator.out">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_samplenum_out_bfm.conduit"
+   end="Nios_CPU_qsys_inst.samplenum_out">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_tse_mac_mac_mdio_connection_bfm.conduit"
+   end="Nios_CPU_qsys_inst.tse_mac_mac_mdio_connection">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_tse_mac_mac_rgmii_connection_bfm.conduit"
+   end="Nios_CPU_qsys_inst.tse_mac_mac_rgmii_connection">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_tse_mac_mac_status_connection_bfm.conduit"
+   end="Nios_CPU_qsys_inst.tse_mac_mac_status_connection">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_wavesample_in_bfm.conduit"
+   end="Nios_CPU_qsys_inst.wavesample_in">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="16.1"
+   start="cfi_flash_atb_bridge_0_tcb_translator.in"
+   end="Nios_CPU_qsys_inst.cfi_flash_atb_bridge_0_out">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="reset"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_enet_pll_reset_bfm.reset"
+   end="Nios_CPU_qsys_inst.enet_pll_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="Nios_CPU_qsys_inst_merged_resets_in_reset_bfm.reset"
+   end="Nios_CPU_qsys_inst.merged_resets_in_reset" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+</system>
