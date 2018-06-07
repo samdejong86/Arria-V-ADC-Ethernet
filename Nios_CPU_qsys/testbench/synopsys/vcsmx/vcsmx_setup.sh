@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.1 196 linux 2018.05.25.13:19:57
+# ACDS 16.1 196 linux 2018.06.05.10:04:46
 
 # ----------------------------------------
 # vcsmx - auto-generated simulation script
@@ -101,7 +101,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 16.1 196 linux 2018.05.25.13:19:57
+# ACDS 16.1 196 linux 2018.06.05.10:04:46
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="Nios_CPU_qsys_tb"
